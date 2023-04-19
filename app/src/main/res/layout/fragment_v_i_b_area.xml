@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UILayer.Common.AreaFragment">
+
+
+    <!-- Use weather_by_hour_item in a recyclerview in the middle of the page, limit the rec view to
+     2 - 3 elements, make it swipeable
+     WEATHER COMPONENT WILL BE THE SAME IN THE OVWorkforceActivity-->
+
+</FrameLayout>

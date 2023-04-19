@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UILayer.Login.LoginEnterCodeFragment">
+
+    <!-- You can extract a background for editTexts if you think
+     you will use same backgrounds throughout the project-->
+
+
+</FrameLayout>

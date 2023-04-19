@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CatastropheCompass"
+        tools:targetApi="31">
+        <activity
+            android:name=".RecordAidRequestTruckLogisticsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddEditMemberActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddEditOrganizationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AssignToGetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HQOrganizerMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateAidStatusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HousingUpdateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DemographicUpdateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FieldOrganizorMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TeamOrganizorAddEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TeamOrganizorMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TeamLeaderMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LogisticsMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChatFragment"
+            android:exported="false" />
+        <activity
+            android:name=".VIBHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VIBStartActivity"
+            android:exported="false"
+            android:label="@string/title_activity_vibstart"
+            android:theme="@style/Theme.CatastropheCompass.NoActionBar" />
+        <activity
+            android:name=".OVWorkforceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OVAidActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OVMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OVFirstActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UILayer.Login.ManagerLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UILayer.Login.LoginOptionsActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
