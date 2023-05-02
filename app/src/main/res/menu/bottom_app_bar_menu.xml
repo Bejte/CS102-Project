@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/icon_1"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Icon 1"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/ic_TLbar_area_icon_te_le_ap_ba"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Icon 2"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/ic_TLbar_chat_icon_te_le_ap_ba"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Icon 3"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/ic_TLbar_people_icon_te_le_ap_ba"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Icon 4"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/ic_TLbar_help_icon_te_le_ap_ba"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Icon 5"
+        app:showAsAction="ifRoom" />
+</menu>

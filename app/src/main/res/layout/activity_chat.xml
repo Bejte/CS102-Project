@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".UILayer.Common.Chat.ChatActivity">
 
-    <!-- use chat_activity_chat_item in a recyclerview -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_chat_ac"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

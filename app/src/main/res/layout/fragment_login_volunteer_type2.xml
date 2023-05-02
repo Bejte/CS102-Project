@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    tools:context=".UILayer.Login.LoginVolunteerType2Fragment">
+   >
 
-    <!-- What can I do & I'm in the field -> Use login_items_background -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/main_background_color"
+        tools:context=".UILayer.Login.LoginVolunteerType2Fragment"
+        android:gravity="center">
 
+        <Button
+            android:id="@+id/btn_what_can_I_do_login2_fr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What can I do?" />
+
+        <Button
+            android:id="@+id/btn_I_am_infield_login2_fr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I am ın the fıeld" />
+
+    </LinearLayout>
 
 </FrameLayout>
+
+

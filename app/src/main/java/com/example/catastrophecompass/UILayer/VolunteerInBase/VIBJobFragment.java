@@ -15,52 +15,101 @@ import com.example.catastrophecompass.R;
  * Use the {@link VIBJobFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VIBJobFragment extends Fragment {
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import androidx.fragment.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import com.example.myapplication.MainActivity;
+import com.example.myapplication.R;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-    public VIBJobFragment() {
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+public class JobsInfoFragment extends Fragment {
+
+    public JobsInfoFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment VIBJobFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static VIBJobFragment newInstance(String param1, String param2) {
-        VIBJobFragment fragment = new VIBJobFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_v_i_b_job, container, false);
+
+        // Initialize UI components
+        TextView jobDescription = view.findViewById(R.id.job_description);
+        ImageView teamLeaderImage = view.findViewById(R.id.team_leader_image);
+        TextView teamLeaderInfo = view.findViewById(R.id.team_leader_info);
+        Button switchJobsButton = view.findViewById(R.id.switch_jobs_button);
+        Button quitToLogoutButton = view.findViewById(R.id.quit_to_logout_button);
+
+        // Set job description text (use actual text instead of placeholder)
+        jobDescription.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit...");
+
+        // Set onClickListeners for the buttons
+        switchJobsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showConfirmationDialog("Switch jobs?");
+            }
+        });
+
+        quitToLogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showConfirmationDialog("Quit to logout?");
+            }
+        });
+
+        return view;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private void showConfirmationDialog(String title) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle(title);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_v_i_b_job, container, false);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Add your code for Yes button click here
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Add your code for No button click here
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        // Change the color of the positive button
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setTextColor(Color.parseColor("#FFC107")); // Change the color according to your preference
+
+        // Change the color of the negative button
+        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        negativeButton.setTextColor(Color.parseColor("#FFFFFF")); // Change the color according to your preference
     }
 }

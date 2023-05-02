@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background_color"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/txt_title_org_info_ac_or_in_ac"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Org Info"
+        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/generalComponentCard"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:elevation="50dp"
+        android:backgroundTint="@color/item_card_soft"
+        android:layout_below="@+id/txt_title_org_info_ac_or_in_ac"
+        app:cardCornerRadius="8dp"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="General Component"
+            android:padding="16dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/infoComponentCard"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/item_card_soft"
+        android:layout_height="200dp"
+        android:elevation="50dp"
+        android:layout_below="@+id/generalComponentCard"
+        app:cardCornerRadius="8dp"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Info Component"
+            android:padding="16dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btn_add_member_ac_or_in_ac"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Member"
+        android:backgroundTint="@color/button_color_soft"
+        android:layout_below="@+id/infoComponentCard"
+        android:layout_marginTop="16dp"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/app_bar_4_amount" />
+
+</RelativeLayout>

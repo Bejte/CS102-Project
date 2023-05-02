@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UILayer.OutsideVolunteer.OVWorkforceActivity">
+    android:orientation="vertical"
+    tools:context=".UILayer.OutsideVolunteer.OVWorkforceActivity"
+    android:padding="16dp">
 
+    <include
+        android:id="@+id/info_component"
+        layout="@layout/info_component"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"/>
 
-    <!-- Use weather_by_hour_item in a recyclerview in the middle of the page, limit the rec view to
-     2 - 3 elements, make it swipeable -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_needed_workforce_ac_ov_ac"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+

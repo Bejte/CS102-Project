@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    tools:context=".UILayer.Login.LoginVolunteerHelpTypeFragment">
+    >
 
-    <!-- See places in need of workforce & see places in need of aid -> Use login_items_background -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/main_background_color"
+        tools:context=".UILayer.Login.LoginVolunteerHelpTypeFragment"
+        android:gravity="center">
 
+        <Button
+            android:id="@+id/btn_see_places_workforce_login_fr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="See places in need of workforce" />
+
+        <Button
+            android:id="@+id/btn_see_places_aid_login_fr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="See places in need of aid material" />
+
+    </LinearLayout>
 
 </FrameLayout>
+
+

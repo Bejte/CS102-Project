@@ -15,52 +15,62 @@ import com.example.catastrophecompass.R;
  * Use the {@link PeopleFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+import android.widget.SearchView;
+
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.example.myapplication.PeopleAdapter;
+import com.example.myapplication.Person;
+import com.example.myapplication.R;
+
 public class PeopleFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private SearchView searchView;
+    private RecyclerView recyclerView;
+    private PeopleAdapter peopleAdapter;
+    private List<Person> peopleList;
 
     public PeopleFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PeopleFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PeopleFragment newInstance(String param1, String param2) {
-        PeopleFragment fragment = new PeopleFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_people, container, false);
+        View view = inflater.inflate(R.layout.fragment_people, container, false);
+
+        searchView = view.findViewById(R.id.search_view);
+        recyclerView = view.findViewById(R.id.rec_UpdateDemographics_ac_de_up_ac);
+
+        initData();
+        peopleAdapter = new PeopleAdapter(peopleList);
+        recyclerView.setAdapter(peopleAdapter);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Implement search functionality here if needed
+                return false;
+            }
+        });
+
+        return view;
+    }
+
+    private void initData() {
+        peopleList = new ArrayList<>();
+        // Add Person objects to the peopleList
+        // You can replace the R.mipmap.ic_launcher with your own profile images
+        peopleList.add(new Person("John Doe", R.mipmap.ic_launcher));
+        peopleList.add(new Person("Jane Smith", R.mipmap.ic_launcher));
+        // ... add more people as needed
     }
 }

@@ -10,57 +10,90 @@ import android.view.ViewGroup;
 
 import com.example.catastrophecompass.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DemographicStatusFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import android.graphics.Color;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+
+import java.util.ArrayList;
+
 public class DemographicStatusFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public DemographicStatusFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DemographicStatusFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DemographicStatusFragment newInstance(String param1, String param2) {
-        DemographicStatusFragment fragment = new DemographicStatusFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private BarChart barChart;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_demographic_status, container, false);
+        View view = inflater.inflate(R.layout.fragment_demographic_status, container, false);
+        barChart = view.findViewById(R.id.demogratic_chart);
+
+        setData();
+
+        return view;
+    }
+
+    private void setData() {
+        ArrayList<BarEntry> men = new ArrayList<>();
+        men.add(new BarEntry(0, 40));
+        men.add(new BarEntry(8, 23));
+        men.add(new BarEntry(15,60));
+        men.add(new BarEntry(65, 30));
+
+        ArrayList<BarEntry> women = new ArrayList<>();
+        women.add(new BarEntry(0, 30));
+        women.add(new BarEntry(8, 49));
+        women.add(new BarEntry(15, 55));
+        women.add(new BarEntry(65, 13));
+
+        BarDataSet barDataSet1 = new BarDataSet(men, "MEN");
+        barDataSet1.setColor(Color.BLUE);
+        BarDataSet barDataSet2 = new BarDataSet(women, "WOMEN");
+        barDataSet2.setColor(Color.RED);
+
+        BarData data = new BarData(barDataSet1, barDataSet2);
+        barChart.setData(data);
+
+        String[] ageGap = new String[] { "0-3", "4-14", "15-64", "65+"};
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(ageGap));
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setGranularity(1);
+        xAxis.setGranularityEnabled(true);
+
+        barChart.setDragEnabled(true);
+
+        float barSpace = 0.08f;
+        float groupSpace = 0.44f;
+        data.setBarWidth(0.10f);
+
+        barChart.getXAxis().setAxisMinimum(0);
+        barChart.getXAxis().setAxisMaximum(0+barChart.getBarData().getGroupWidth(groupSpace, barSpace)*4);
+        barChart.getAxisLeft().setAxisMinimum(0);
+        barChart.groupBars(0, groupSpace, barSpace);
+
+        barChart.invalidate();
+
+        barChart.getDescription().setEnabled(false);
+        barChart.getLegend().setEnabled(false);
+        barChart.getAxisLeft().setAxisMinimum(0f);
+        barChart.getAxisRight().setAxisMinimum(0f);
+        barChart.getXAxis().setDrawGridLines(false);
+        barChart.getAxisLeft().setDrawGridLines(false);
+        barChart.getAxisRight().setDrawGridLines(false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        setData();
     }
 }

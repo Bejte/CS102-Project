@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UILayer.OutsideVolunteer.OVWorkforceFragment">
+    tools:context=".UILayer.OutsideVolunteer.OVWorkforceFragment"
+    android:background="#DCCACA">
 
-    <!-- Use ov_workforce_item in a recyclerview -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_workforece_fr_ov_wo_fr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/ov_workforce_item"/>
 
 </FrameLayout>
+

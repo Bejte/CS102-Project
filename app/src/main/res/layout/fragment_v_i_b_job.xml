@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".UILayer.VolunteerInBase.VIBJobFragment">
+    tools:context=".UILayer.VolunteerInBase.VIBJobFragment"
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Job Description TextView -->
     <TextView
+        android:id="@+id/txt_job_desc_fr_vib_jo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Job Description: Random text"
+        android:textSize="16sp" />
+
+    <!-- Team Leader ImageView -->
+    <!-- Replace with team leader image -->
+    <ImageView
+        android:id="@+id/img_team_leader_fr_vib_jo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <!-- Team Leader Info TextView -->
+    <TextView
+        android:id="@+id/txt_teamleader_info_fr_vib_jo_fr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Team Leader Info"
+        android:textSize="16sp" />
+
+    <!-- Switch Jobs Button -->
+    <Button
+        android:id="@+id/btn_switch_jobs_fr_vib_jo_fr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Switch Jobs" />
+
+    <!-- Quit to Logout Button -->
+
+    //
+    <Button
+        android:id="@+id/btn_quit_fr_vib_jo_fr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Quit to Logout" />
 
 </FrameLayout>
