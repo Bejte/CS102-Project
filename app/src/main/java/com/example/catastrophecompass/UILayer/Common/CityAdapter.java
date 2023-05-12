@@ -20,6 +20,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.catastrophecompass.R;
+
 import java.util.List;
 
 public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder> {

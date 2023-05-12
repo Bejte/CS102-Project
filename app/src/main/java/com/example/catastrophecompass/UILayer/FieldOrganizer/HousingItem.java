@@ -1,5 +1,5 @@
 package com.example.catastrophecompass.UILayer.FieldOrganizer;
- class HousingItem {
+ public class HousingItem {
     private String title;
     private String value;
 

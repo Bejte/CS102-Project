@@ -6,18 +6,18 @@ import android.os.Bundle;
 
 import com.example.catastrophecompass.R;
 
+import com.example.catastrophecompass.UILayer.FieldOrganizer.FieldOrganizerMainActivity;
+import com.example.catastrophecompass.UILayer.VolunteerInBase.VIBStartActivity;
 import com.example.myapplication.FieldOrganizerMain;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class LoginOptionsctivity extends AppCompatActivity {
+public class LoginOptionsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class LoginOptionsctivity extends AppCompatActivity {
         managerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginOptionsctivity.this, ManagerLoginActivity.class);
+                Intent intent = new Intent(LoginOptionsActivity.this, ManagerLoginActivity.class);
                 startActivity(intent);
                 //Intent intent = new Intent(MainActivity.this, ManagerActivity.class);
                 //startActivity(intent);
@@ -52,7 +52,7 @@ public class LoginOptionsctivity extends AppCompatActivity {
         fieldOrganizerMainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginOptionsActivity.this, FieldOrganizerMain.class);
+                Intent intent = new Intent(LoginOptionsActivity.this, FieldOrganizerMainActivity.class);
                 startActivity(intent);
             }
         });
@@ -66,7 +66,7 @@ public class LoginOptionsctivity extends AppCompatActivity {
                 String yourQRDataString = "place_name|job1,job2,job3";
 
                 // Launch ThirdActivity with the QR data
-                Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
+                Intent intent = new Intent(MainActivity.this, VIBStartActivity.class);
                 intent.putExtra("qrData", yourQRDataString);
                 startActivity(intent);
 

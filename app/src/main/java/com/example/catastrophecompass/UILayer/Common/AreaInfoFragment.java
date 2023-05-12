@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.catastrophecompass.R;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.catastrophecompass.R;
+import com.example.catastrophecompass.UILayer.Common.RecyclerViewAdapterForHQ;
+import com.example.catastrophecompass.UILayer.Common.TruckItemForHQ;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +28,12 @@ public class OrganizeTrucksFragment extends Fragment {
     private RecyclerViewAdapterForHQ adapter;
     private List<TruckItemForHQ> truckItems;
 
-    public FirstFragmentOfHQ() { }
+    public OrganizeTrucksFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.hq_fragment_first, container, false);
+        View view = inflater.inflate(R.layout.fragment_organize_trucks, container, false);
 
         truckItems = new ArrayList<>();
         truckItems.add(new TruckItemForHQ("John Doe", "Medium", "Available"));

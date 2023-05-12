@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.catastrophecompass.R;
+import com.example.catastrophecompass.UILayer.OutsideVolunteer.OVAidActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,7 +53,7 @@ public class AidFragment extends Fragment {
 
 
         AidAdapter aidAdapter = new AidAdapter(aidItems, position -> {
-            Intent intent = new Intent(getActivity(), TenthActivity.class);
+            Intent intent = new Intent(getActivity(), OVAidActivity.class);
             startActivity(intent);
         });
 

@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-public class TeamOrganizatorActivity extends AppCompatActivity {
+public class TeamOrganizorMainActivity extends AppCompatActivity {
     private BottomNavigationView bottomAppBar;
 
     @Override

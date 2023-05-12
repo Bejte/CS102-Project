@@ -22,9 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.myapplication.PeopleAdapter;
-import com.example.myapplication.Person;
-import com.example.myapplication.R;
+import com.example.catastrophecompass.UILayer.Common.PeopleAdapter;
+import com.example.catastrophecompass.UILayer.Common.Person;
 
 public class PeopleFragment extends Fragment {
 

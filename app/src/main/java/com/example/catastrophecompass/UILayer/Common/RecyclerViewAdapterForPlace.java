@@ -1,5 +1,6 @@
 package com.example.catastrophecompass.UILayer.Common;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.catastrophecompass.R;
 
 import java.util.List;
 
@@ -32,8 +35,8 @@ public class RecyclerViewAdapterForPlace extends RecyclerView.Adapter<ViewHolder
         return new ViewHolderForPlace(view);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolderForPlace holder, int position) {
+    @Override                          // I don't know what exactly "SuppressLint" does but it fixed the error (Emir)
+    public void onBindViewHolder(@NonNull ViewHolderForPlace holder, @SuppressLint("RecyclerView") int position) {
         PlaceItem placeItem = placeItems.get(position);
         holder.placeTextView.setText("Place: " + placeItem.getPlace());
         holder.addressTextView.setText("Address: " + placeItem.getAddress());

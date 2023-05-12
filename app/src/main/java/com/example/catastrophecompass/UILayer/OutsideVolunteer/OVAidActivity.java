@@ -5,13 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.catastrophecompass.R;
+import com.example.catastrophecompass.UILayer.Common.NeedItem;
+import com.example.catastrophecompass.UILayer.Common.NeedItemAdapter;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TenthActivity extends AppCompatActivity {
+public class OVAidActivity extends AppCompatActivity {
 
     private RecyclerView needsRecyclerView;
     private NeedItemAdapter needItemAdapter;

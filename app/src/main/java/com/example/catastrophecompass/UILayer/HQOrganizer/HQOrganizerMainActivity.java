@@ -1,46 +1,69 @@
 package com.example.catastrophecompass.UILayer.HQOrganizer;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.catastrophecompass.R;
-
-/**
- * Attach OrganizeTrucksFragment, GeneralInfoFragment, ChatFragment, PeopleFragment
- */
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.List;
+import androidx.fragment.app.FragmentTransaction;
 
-public class FirstFragmentOfHQ extends Fragment {
+import android.view.MenuItem;
 
-    private RecyclerView recyclerView;
-    private RecyclerViewAdapterForHQ adapter;
-    private List<TruckItemForHQ> truckItems;
+import com.example.catastrophecompass.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
-    public FirstFragmentOfHQ() { }
+public class HQOrganizerMainActivity extends AppCompatActivity {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.hq_fragment_first, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_hqorganizer_main);
 
-        truckItems = new ArrayList<>();
-        truckItems.add(new TruckItemForHQ("John Doe", "Medium", "Available"));
-        truckItems.add(new TruckItemForHQ("Jane Smith", "Large", "Assigned"));
-        truckItems.add(new TruckItemForHQ("Jack Brown", "Small", "In Transit"));
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
 
-        recyclerView = view.findViewById(R.id.rec_organize_truck_fr);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        // Load FirstFragment by default
+        loadFragment(new OrganizeTrucksFragment());
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragment = null;
+                switch (item.getItemId()) {
+                    case R.id.action_icon1:
+                        fragment = new OrganizeTrucksFragment();
+                        break;
+                    case R.id.action_icon2:
+                        // TODO: Set fragment for the second icon
+                        break;
+                    case R.id.action_icon3:
+                        // TODO: Set fragment for the third icon
+                        break;
+                    case R.id.action_icon4:
+                        // TODO: Set fragment for the fourth icon
+                        break;
+                    case R.id.action_icon5:
+                        // TODO: Set fragment for the fifth icon
+                        break;
+                }
 
-        adapter = new RecyclerViewAdapterForHQ(getActivity(), truckItems);
-        recyclerView.setAdapter(adapter);
+                if (fragment != null) {
+                    loadFragment(fragment);
+                }
 
-        return view;
+                return true;
+            }
+        });
+    }
+
+    private void loadFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

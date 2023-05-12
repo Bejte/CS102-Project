@@ -10,6 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.catastrophecompass.R;
+import com.example.catastrophecompass.UILayer.Common.ItemAdapterForTeamOrganizator;
+import com.example.catastrophecompass.UILayer.Common.ItemDataForTeamOrganizator;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

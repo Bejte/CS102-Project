@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.catastrophecompass.R;
+import com.example.catastrophecompass.UILayer.Common.HousingItemAdapter;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UpdateHousingActivity extends AppCompatActivity {
+public class HousingUpdateActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private HousingItemAdapter adapter;

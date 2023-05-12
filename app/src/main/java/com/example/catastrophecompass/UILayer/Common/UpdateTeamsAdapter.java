@@ -9,6 +9,8 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.catastrophecompass.R;
+
 import java.util.ArrayList;
 import java.util.List;
 

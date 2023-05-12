@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.catastrophecompass.R;
+
 public class AreaInfoForTeamOrganizerFragment extends Fragment {
 
     public AreaInfoForTeamOrganizerFragment() {

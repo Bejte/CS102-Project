@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.catastrophecompass.R;
+
 import java.util.List;
 
 public class ItemAdapterForTeamOrganizator extends RecyclerView.Adapter<ItemViewHolderForTeamOrganizator> {

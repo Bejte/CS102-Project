@@ -10,8 +10,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.catastrophecompass.UILayer.Common.SectionsPagerAdapter;
-import com.example.myapplication.R;
-import com.example.myapplication.SectionsPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -32,8 +30,8 @@ public class OVMainActivity extends AppCompatActivity {
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this);
 
         // Set up your fragments for the EighthActivity here
-        Fragment workforceFragment = new WorkforceFragment();
-        Fragment aidFragment = new AidFragment();
+        Fragment workforceFragment = new OVWorkforceFragment();
+        Fragment aidFragment = new OVAidFragment();
 
         // Add your fragments and their titles to the adapter
         sectionsPagerAdapter.addFragment(workforceFragment, "Workforce");

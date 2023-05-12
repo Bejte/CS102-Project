@@ -5,12 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.catastrophecompass.R;
-import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.myapplication.JobAdapter;
+
+import com.example.catastrophecompass.UILayer.Common.JobAdapter;
 import android.content.Intent;
-import android.os.Bundle;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +18,7 @@ import android.widget.Toast;
 import java.util.Arrays;
 import java.util.List;
 
-public class ThirdActivity extends AppCompatActivity {
+public class VIBStartActivity extends AppCompatActivity {
     private TextView tvPlaceName;
     private RecyclerView recyclerViewJobs;
     private TextView tvReassignQuestion;
@@ -45,13 +45,13 @@ public class ThirdActivity extends AppCompatActivity {
             recyclerViewJobs = findViewById(R.id.recycler_view_jobs);
             recyclerViewJobs.setLayoutManager(new LinearLayoutManager(this));
 
-            jobAdapter = new JobAdapter(ThirdActivity.this, jobList, new JobAdapter.OnJoinButtonClickListener() {
+            jobAdapter = new JobAdapter(VIBStartActivity.this, jobList, new JobAdapter.OnJoinButtonClickListener() {
                 @Override
                 public void onJoinButtonClick(int position) {
                     String teamName = jobList.get(position);
                     String teamDescription = "Team description goes here"; // Replace with the actual team description
 
-                    Intent intent = new Intent(ThirdActivity.this, FourthActivity.class);
+                    Intent intent = new Intent(VIBStartActivity.this, VIBHomeActivity.class);
                     intent.putExtra("teamName", teamName);
                     intent.putExtra("teamDescription", teamDescription);
                     startActivity(intent);
@@ -88,16 +88,16 @@ public class ThirdActivity extends AppCompatActivity {
 
         // Set up the RecyclerView with the job list
         recyclerViewJobs.setLayoutManager(new LinearLayoutManager(this));
-        jobAdapter = new JobAdapter(ThirdActivity.this, jobList, new JobAdapter.OnJoinButtonClickListener() {
+        jobAdapter = new JobAdapter(VIBStartActivity.this, jobList, new JobAdapter.OnJoinButtonClickListener() {
             @Override
             public void onJoinButtonClick(int position) {
                 String teamName = jobList.get(position);
                 String teamDescription = "Team description goes here"; // Replace with the actual team description
 
-                Intent intent2 = new Intent(ThirdActivity.this, FourthActivity.class);
+                Intent intent2 = new Intent(VIBStartActivity.this, VIBHomeActivity.class);
                 startActivity(intent2);
 
-                Intent intent = new Intent(ThirdActivity.this, FourthActivity.class);
+                Intent intent = new Intent(VIBStartActivity.this, VIBHomeActivity.class);
                 intent.putExtra("teamName", teamName);
                 intent.putExtra("teamDescription", teamDescription);
                 startActivity(intent);

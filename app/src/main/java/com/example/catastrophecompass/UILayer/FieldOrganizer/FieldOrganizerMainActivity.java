@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.example.catastrophecompass.UILayer.Common.Chat.ChatActivity;
 import com.google.android.material.bottomappbar.BottomAppBar;
 
-public class FieldOrganizorMainActivity extends AppCompatActivity {
+public class FieldOrganizerMainActivity extends AppCompatActivity {
     private Button updateDemographicsButton;
     private BottomAppBar bottomAppBar;
     private ImageButton icon1, icon2, icon3, icon4, icon5;
@@ -36,13 +36,13 @@ public class FieldOrganizorMainActivity extends AppCompatActivity {
         updateDemographicsButton = findViewById(R.id.btn_update_ac_fi_or_ma_ac);
 
         updateDemographicsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, UpdateDemographicsActivity.class);
+            Intent intent = new Intent(this, DemographicUpdateActivity.class);
             startActivity(intent);
         });
         updateHousingButton = findViewById(R.id.btn_updatebig_housing_chart_ac_fi_or_ma_ac);
 
         updateHousingButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, UpdateHousingActivity.class);
+            Intent intent = new Intent(this, DemographicUpdateActivity.class);
             startActivity(intent);
         });
 
@@ -56,14 +56,14 @@ public class FieldOrganizorMainActivity extends AppCompatActivity {
         icon1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FieldOrganizorMainActivity.this, ChatActivity.class);
+                Intent intent = new Intent(FieldOrganizerMainActivity.this, ChatActivity.class);
                 startActivity(intent);
             }
         });
         icon2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FieldOrganizorMainActivity.this, PeopleActivity.class);
+                Intent intent = new Intent(FieldOrganizerMainActivity.this, PeopleActivity.class);
                 startActivity(intent);
             }
         });

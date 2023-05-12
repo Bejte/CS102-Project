@@ -8,6 +8,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.catastrophecompass.R;
+import com.example.catastrophecompass.UILayer.FieldOrganizer.HousingItem;
+
 import java.util.List;
 
 public class HousingItemAdapter extends RecyclerView.Adapter<HousingItemAdapter.ViewHolder> {

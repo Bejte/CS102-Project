@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.catastrophecompass.R;
+import com.example.catastrophecompass.UILayer.Common.UpdateTeamsAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +19,7 @@ public class TeamLeaderJobFragment extends Fragment {
     private UpdateTeamsAdapter adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_teams_for_teamleader);
 

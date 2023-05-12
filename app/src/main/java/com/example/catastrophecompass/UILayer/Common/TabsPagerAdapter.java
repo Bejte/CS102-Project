@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.catastrophecompass.UILayer.VolunteerInBase.VIBJobFragment;
+
 public class TabsPagerAdapter extends FragmentStateAdapter {
 
     public TabsPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
@@ -15,7 +17,7 @@ public class TabsPagerAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         if (position == 0) {
-            return new JobsInfoFragment();
+            return new VIBJobFragment();
         } else {
             return new AreaInfoFragment();
         }

@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.catastrophecompass.R;
+import com.example.catastrophecompass.UILayer.Common.WorkforceAdapter;
+import com.example.catastrophecompass.UILayer.Common.WorkforceItem;
 
 
- //* A simple {@link Fragment} subclass.
+//* A simple {@link Fragment} subclass.
  //* Use the {@link OVWorkforceFragment#newInstance} factory method to
  //* create an instance of this fragment.
  import android.content.Intent;
@@ -67,7 +69,7 @@ import com.example.catastrophecompass.R;
  workforceItems.add(w3);
  workforceItems.add(w4);
  WorkforceAdapter workforceAdapter = new WorkforceAdapter(workforceItems, position -> {
- Intent intent = new Intent(getActivity(), SeventhActivity.class);
+ Intent intent = new Intent(getActivity(), OVWorkforceActivity.class);
  startActivity(intent);
  });
 

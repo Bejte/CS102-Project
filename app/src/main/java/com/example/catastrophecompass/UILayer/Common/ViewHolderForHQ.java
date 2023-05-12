@@ -6,6 +6,8 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.catastrophecompass.R;
+
 public class ViewHolderForHQ extends RecyclerView.ViewHolder {
     public EditText driverNameEditText;
     public EditText sizeEditText;

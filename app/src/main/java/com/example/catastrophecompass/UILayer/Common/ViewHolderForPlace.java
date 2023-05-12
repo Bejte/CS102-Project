@@ -6,6 +6,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.catastrophecompass.R;
+
 public class ViewHolderForPlace extends RecyclerView.ViewHolder {
     TextView placeTextView;
     TextView addressTextView;

@@ -7,22 +7,13 @@ import android.os.Bundle;
 import com.example.catastrophecompass.R;
 
 
+import com.example.catastrophecompass.UILayer.Common.TabsPagerAdapter;
 
- import com.example.myapplication.SectionsPagerAdapter;
- import android.os.Bundle;
- import androidx.appcompat.app.AppCompatActivity;
- import androidx.fragment.app.FragmentActivity;
- import androidx.viewpager2.widget.ViewPager2;
+import androidx.viewpager2.widget.ViewPager2;
  import com.google.android.material.tabs.TabLayout;
  import com.google.android.material.tabs.TabLayoutMediator;
 
- import androidx.appcompat.app.AppCompatActivity;
- import androidx.viewpager2.widget.ViewPager2;
- import android.os.Bundle;
- import com.google.android.material.tabs.TabLayout;
- import com.google.android.material.tabs.TabLayoutMediator;
-
- public class FourthActivity extends AppCompatActivity {
+public class VIBHomeActivity extends AppCompatActivity {
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {

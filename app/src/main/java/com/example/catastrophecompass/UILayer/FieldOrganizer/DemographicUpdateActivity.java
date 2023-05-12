@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.catastrophecompass.R;
+import com.example.catastrophecompass.UILayer.Common.UpdateDemographicsAdapter;
 
 
 import android.widget.Button;
@@ -14,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Arrays;
 import java.util.List;
 
-public class UpdateDemographicsActivity extends AppCompatActivity {
+public class DemographicUpdateActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private Button doneButton;

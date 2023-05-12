@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class SeventhActivity extends AppCompatActivity {
+public class OVWorkforceActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class SeventhActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Start the SecondActivity
-                Intent intent = new Intent(SeventhActivity.this, SecondActivity.class);
+                Intent intent = new Intent(OVWorkforceActivity.this, SecondActivity.class);
                 startActivity(intent);
             }
         });
