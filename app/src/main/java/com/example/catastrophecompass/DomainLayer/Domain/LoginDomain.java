@@ -1,5 +1,8 @@
 package com.example.catastrophecompass.DomainLayer.Domain;
 
+import com.example.catastrophecompass.DataLayer.Dao.CurrentUserDao;
+import com.example.catastrophecompass.DataLayer.Dao.VIBDao;
+
 public class LoginDomain {
     private CurrentUserDao currentUserDao;
     private VIBDao vibDao;

@@ -1,5 +1,9 @@
 package com.example.catastrophecompass.DomainLayer.Domain;
 
+import com.example.catastrophecompass.DataLayer.Dao.CurrentUserDao;
+import com.example.catastrophecompass.DataLayer.Model.User;
+import com.example.catastrophecompass.DataLayer.Model.UserLogin;
+
 public class ManagerLoginUC {
     private ManagerLoginFBRepo FBRepo;
     private CurrentUserDao currentUserDao;

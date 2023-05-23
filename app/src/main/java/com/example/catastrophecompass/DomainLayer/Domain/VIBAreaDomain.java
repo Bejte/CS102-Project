@@ -1,5 +1,7 @@
 package com.example.catastrophecompass.DomainLayer.Domain;
 
+import com.example.catastrophecompass.DataLayer.Model.WorkplaceWeather;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subscribers.DisposableSubscriber;

@@ -1,5 +1,9 @@
 package com.example.catastrophecompass.DomainLayer.Domain;
 
+import com.example.catastrophecompass.DataLayer.Model.WItem;
+import com.example.catastrophecompass.DataLayer.Model.WItemFB;
+import com.example.catastrophecompass.DataLayer.Model.WItemWeather;
+
 import java.util.List;
 
 public class OVWorkforceListUC {
