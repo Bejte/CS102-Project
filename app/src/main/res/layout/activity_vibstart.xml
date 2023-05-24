@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/main_background_color"
     android:layout_height="match_parent"
     tools:context=".UILayer.VolunteerInBase.VIBStartActivity">
 
     <TextView
-        android:id="@+id/txt_place_name_ac_vibstart"
+        android:id="@+id/vib_place_name_vib_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -18,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txt_jobs_available_ac_vibstart"
+        android:id="@+id/vib_jobs_available_vib_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -26,10 +27,10 @@
         android:text="Jobs Available"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_place_name_ac_vibstart" />
+        app:layout_constraintTop_toBottomOf="@+id/vib_place_name_vib_start" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_jobs_ac_vibstart"
+        android:id="@+id/rec_teams_vib_start_ac"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
@@ -37,11 +38,11 @@
         app:layout_constraintBottom_toTopOf="@+id/tv_reassign_question"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_jobs_available_ac_vibstart"
+        app:layout_constraintTop_toBottomOf="@+id/vib_jobs_available_vib_start"
         tools:listitem="@layout/job_item" />
 
     <TextView
-        android:id="@+id/txt_are_you_ok_reassaign_ac_vibstart"
+        android:id="@+id/tv_reassign_question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -57,7 +58,6 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_reassign_question"
         app:layout_constraintEnd_toEndOf="parent"
-         />
+        app:layout_constraintTop_toTopOf="@+id/tv_reassign_question" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
