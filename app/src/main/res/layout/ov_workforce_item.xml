@@ -6,7 +6,7 @@
     android:padding="10dp"
     android:layout_margin="10dp"
     app:cardCornerRadius="16dp"
-    android:backgroundTint="#9A8142"
+    android:backgroundTint="@color/item_card_soft"
     >
 
 
