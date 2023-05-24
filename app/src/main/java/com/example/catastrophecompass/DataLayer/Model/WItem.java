@@ -13,6 +13,15 @@ public class WItem {
         this.location = location;
     }
 
+    public WItem(WItemFB wItemFB, WItemWeather wItemWeather){
+        this.name = wItemFB.getName();
+        this.workUrgency = wItemFB.getWorkUrgency();
+        this.address = wItemFB.getAddress();
+        this.location = wItemFB.getLocation();
+        this.currentTemp = wItemWeather.getCurrentTemp();
+        this.currentWeatherType = wItemWeather.getCurrentWeatherType();
+    }
+
     public String getName() {
         return name;
     }

@@ -4,6 +4,7 @@ import com.example.catastrophecompass.DataLayer.Model.WItem;
 import com.example.catastrophecompass.DataLayer.Model.WItemFB;
 import com.example.catastrophecompass.DataLayer.Model.WItemWeather;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OVWorkforceListUC {
@@ -18,8 +19,9 @@ public class OVWorkforceListUC {
     public List<WItem> getWItemList(String cityName){
         List<WItemFB> wItemFBList = repo.getWItemList(cityName);
         List<WItemWeather> wItemWeatherList = weather.getWItemCurrentWeather(wItemFBList);
-        // TODO connect WItemFB and WItemWeather and return WItem (Emir)
-
-        return null;
+        List<WItem> wItemList = new ArrayList<>();
+        for (int i = 0; i < wItemFBList.size(); i++)
+            wItemList.add(new WItem(wItemFBList.get(i), wItemWeatherList.get(i)));
+        return wItemList;
     }
 }
