@@ -1,54 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/main_background_color"
     tools:context=".UILayer.VolunteerInBase.VIBJobFragment"
     android:layout_height="match_parent">
 
-    <!-- Job Description TextView -->
     <TextView
-        android:id="@+id/txt_job_desc_fr_vib_jo"
-        android:layout_width="match_parent"
+        android:id="@+id/txt_title_job_info_vib_job"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="Job Description: Random text"
-        android:textSize="16sp" />
+        android:text="Job Info"
+        android:textSize="24sp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>,,
 
-    <!-- Team Leader ImageView -->
+    <!-- Job Description TextView -->
+
+
+    <TextView
+        android:id="@+id/job_description_vib_job"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="50dp"
+        android:layout_marginTop="45dp"
+        android:text="Job Description: Random text"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_title_job_info_vib_job" />
+
+
+    <!-- Team Leader ImageView and Info TextView -->
     <!-- Replace with team leader image -->
     <ImageView
-        android:id="@+id/img_team_leader_fr_vib_jo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:src="@mipmap/ic_launcher" />
+        android:id="@+id/team_leader_image_vib_job"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="24dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintEnd_toStartOf="@+id/team_leader_info_vib_job"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/job_description_vib_job" />
 
-    <!-- Team Leader Info TextView -->
     <TextView
-        android:id="@+id/txt_teamleader_info_fr_vib_jo_fr"
-        android:layout_width="match_parent"
+        android:id="@+id/team_leader_info_vib_job"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Team Leader Info"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/team_leader_image_vib_job"
+        app:layout_constraintTop_toBottomOf="@+id/job_description_vib_job" />
 
     <!-- Switch Jobs Button -->
-    <Button
-        android:id="@+id/btn_switch_jobs_fr_vib_jo_fr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Switch Jobs" />
 
     <!-- Quit to Logout Button -->
 
-    //
-    <Button
-        android:id="@+id/btn_quit_fr_vib_jo_fr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Quit to Logout" />
 
-</FrameLayout>
+
+    <TextView
+        android:id="@+id/team_leader_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:text="Ahmet Kapıcı"
+        app:layout_constraintBottom_toTopOf="@+id/quit_to_logout_button_vib"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/team_leader_image_vib_job"
+        app:layout_constraintTop_toBottomOf="@+id/team_leader_info_vib_job" />
+    <Button
+    android:id="@+id/quit_to_logout_button_vib"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="64dp"
+    android:layout_marginEnd="136dp"
+    android:text="Quit to Logout"
+    android:backgroundTint="@color/button_color_soft"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/team_leader_image_vib_job" />
+</androidx.constraintlayout.widget.ConstraintLayout>
