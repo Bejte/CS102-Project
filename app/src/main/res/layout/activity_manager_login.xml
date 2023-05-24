@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:backgroundTint="@color/item_card"
     android:layout_height="match_parent"
-    tools:context=".UILayer.Login.ManagerLoginActivity"
+    tools:context=".ManagerLoginActivity"
     android:background="@color/white">
 
     <LinearLayout
@@ -15,21 +17,24 @@
         android:padding="16dp">
 
         <ImageView
-            android:id="@+id/img_applogo_ac_ma_lo_ac"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_background"
+            android:id="@+id/ic_manager_login_icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_lock"
+
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Manager Login"
-            android:textSize="24sp"
-            android:fontFamily="sans-serif-medium"
+
             android:layout_marginBottom="16dp"
-            android:textColor="@color/yourTextColor"/>
+            android:fontFamily="sans-serif-medium"
+            android:text="Manager Login"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="40sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -37,13 +42,14 @@
             app:boxBackgroundMode="outline">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_username_ac_ma_lo_ac"
+                android:id="@+id/edt_username_manager_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/main_background_color"
                 android:hint="Username"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:textColor="@color/yourTextColor"/>
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -54,23 +60,24 @@
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_password_ac_ma_lo_ac"
+                android:id="@+id/edt_password_manager_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:inputType="textPassword"
+                android:background="@color/main_background_color"
                 android:maxLines="1"
-                android:textColor="@color/yourTextColor"/>
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btn_login_ac_ma_lo_ac"
+            android:id="@+id/btn_login_manager_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:backgroundTint="@color/yourButtonColor"
+
             android:text="Login"
-            android:textColor="@color/yourTextColor"/>
+            android:backgroundTint="@color/button_color"/>
 
         <ProgressBar
             android:id="@+id/progressBar"
