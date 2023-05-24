@@ -1,30 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/main_background_color"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:context=".UILayer.TeamOrganizor.TeamOrganizorAddEditActivity"
         android:padding="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add/Edit Teams"
-            android:textSize="24sp"
-            android:textColor="@color/design_default_color_secondary" />
+            android:textSize="30sp"
+             />
 
         <!-- First card view -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/design_default_color_secondary_variant"
+            app:cardBackgroundColor="@color/item_card_soft"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
 
@@ -52,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/design_default_color_secondary_variant"
+            app:cardBackgroundColor="@color/item_card_soft"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
 
@@ -74,6 +72,13 @@
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/item_card_soft"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
 
         <!-- Team Leader text and EditText -->
         <LinearLayout
@@ -92,13 +97,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
         </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
         <!-- Third card view -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/design_default_color_secondary_variant"
+            app:cardBackgroundColor="@color/item_card_soft"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
 
@@ -113,24 +119,32 @@
                     android:layout_height="wrap_content"
                     android:text="Team Leader Info: " />
 
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginLeft="8dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="Team Leader Info: " />
+
+                    <ImageView
+                        android:layout_width="163dp"
+                        android:layout_height="84dp"
+
+                        android:layout_marginLeft="8dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_launcher_background" />
+                </LinearLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Bottom card view with buttons -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/design_default_color_secondary_variant"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -143,18 +157,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Discard Team"
-                    android:backgroundTint="@color/design_default_color_error"
+                    android:backgroundTint="@color/button_color_soft"
+                    android:layout_marginTop="20dp"
                     android:layout_marginRight="8dp" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Add/Update"
-                    android:backgroundTint="@color/design_default_color_primary" />
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/button_color_soft" />
 
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+
 
     </LinearLayout>
 </ScrollView>
+
 
