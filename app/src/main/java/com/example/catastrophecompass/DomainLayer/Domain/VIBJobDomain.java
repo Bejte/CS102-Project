@@ -21,8 +21,7 @@ public class VIBJobDomain {
     }
 
     public void attachListeners(Credentials credentials){
-        String teamName = FBRepo.attachToVolunteerList(credentials.getID());
-        FBRepo.attachToTeam(credentials.getCity(), credentials.getPlace(), teamName);
+        FBRepo.attachToVolunteerList(credentials.getCity(), credentials.getPlace(), credentials.getId());
     }
 
     public void getJobInfo(VIBJobInterface vibJobInterface){
