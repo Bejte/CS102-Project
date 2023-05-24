@@ -1,5 +1,7 @@
 package com.example.catastrophecompass.DomainLayer.Domain;
 
+import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;

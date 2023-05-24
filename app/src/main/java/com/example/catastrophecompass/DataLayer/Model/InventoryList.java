@@ -1,10 +1,19 @@
 package com.example.catastrophecompass.DataLayer.Model;
 
-public class Item {
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity
+public class InventoryList {
+
+
+    @PrimaryKey
+    private int id; // 1 for current inventory, 2 for arriving aid
     private int food, heater, manCloth, womanCloth, childCloth, hygene, kitchenMaterial, powerbank;
 
-    public Item(int food, int heater, int manCloth, int womanCloth, int childCloth, int hygene, int kitchenMaterial, int powerbank) {
+
+
+    public InventoryList(int id, int food, int heater, int manCloth, int womanCloth, int childCloth, int hygene, int kitchenMaterial, int powerbank) {
         this.food = food;
         this.heater = heater;
         this.manCloth = manCloth;
@@ -13,6 +22,15 @@ public class Item {
         this.hygene = hygene;
         this.kitchenMaterial = kitchenMaterial;
         this.powerbank = powerbank;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getFood() {

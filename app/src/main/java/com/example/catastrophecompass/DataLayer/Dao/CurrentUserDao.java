@@ -11,6 +11,7 @@ import java.util.List;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Single;
 
 @Dao
 public interface CurrentUserDao {
@@ -19,5 +20,8 @@ public interface CurrentUserDao {
 
     @Query("SELECT * from User")
     Flowable<List<User>> getCurrentUser();
+
+    @Query("SELECT userName FROM User")
+    Single<String> getDriverName();
 
 }

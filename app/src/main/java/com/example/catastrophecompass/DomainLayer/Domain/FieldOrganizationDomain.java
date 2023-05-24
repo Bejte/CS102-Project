@@ -1,5 +1,7 @@
 package com.example.catastrophecompass.DomainLayer.Domain;
 
+import com.example.catastrophecompass.DataLayer.Model.DemographicInfo;
+import com.example.catastrophecompass.DataLayer.Model.HousingInfo;
 import com.example.catastrophecompass.DataLayer.Model.User;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
