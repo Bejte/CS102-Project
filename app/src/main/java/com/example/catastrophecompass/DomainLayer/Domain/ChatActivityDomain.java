@@ -18,7 +18,7 @@ public class ChatActivityDomain {
     }
 
     public void getMessages(ChatActivityInterface chatActivityInterface){
-        localRepo.getMessages()
+        localRepo.getMessages() // TODO Handle backpressure and think about the logic of getting the last item
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new DisposableSubscriber<ChatItem>() {
                     @Override
