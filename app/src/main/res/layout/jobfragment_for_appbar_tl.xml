@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
+    android:background="@color/main_background_color"
     tools:context=".JobFragment">
 
     <TextView
@@ -34,10 +35,11 @@
             android:src="@android:drawable/ic_menu_gallery" />
 
         <Button
-            android:id="@+id/btn_update_teamleader_fr"
+            android:id="@+id/update_teams_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
+            android:backgroundTint="@color/main_background_color"
             android:text="UPDATE" />
     </FrameLayout>
 </LinearLayout>
