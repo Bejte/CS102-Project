@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UILayer.Common.GeneralInfoFragment">
 
-    <!-- Use to_team_item in a recyclerview -->
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/general_info_chart"
+        android:layout_width="263dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginEnd="0dp"
+        android:layout_toEndOf="@+id/textView12" />
 
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="104dp"
+        android:layout_height="86dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="348dp"
+        android:layout_marginBottom="349dp"
+        android:text="Volunteer:\nTeam:\nOrganization:" />
 
-</FrameLayout>
+</RelativeLayout>
