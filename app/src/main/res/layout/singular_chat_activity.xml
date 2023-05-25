@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_background_color"
     tools:context=".ChatActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/chat_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="@color/item_card"
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@android:color/white" />
-
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
+        android:id="@+id/profile_image_single_chat"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@mipmap/ic_profile1"
         app:civ_border_color="@android:color/white"
         app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="@id/chat_toolbar"
@@ -27,15 +27,15 @@
         app:layout_constraintTop_toTopOf="@id/chat_toolbar" />
 
     <TextView
-        android:id="@+id/txt_person_name_si_ch_ac"
+        android:id="@+id/person_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Person Name"
+        android:text="John Doe"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@id/chat_toolbar"
-        app:layout_constraintStart_toEndOf="@id/profile_image"
+        app:layout_constraintStart_toEndOf="@id/profile_image_single_chat"
         app:layout_constraintTop_toTopOf="@id/chat_toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -55,6 +55,18 @@
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
+        <ImageButton
+            android:id="@+id/ic_icon1_of_appbar_singular_chat_ac"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_camera" />
+
+        <ImageButton
+            android:id="@+id/ic_icon2_of_appbar_singular_chat_ac"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_photo" />
+
         <EditText
             android:id="@+id/edt_write_a_message_si_ch_ac"
             android:layout_width="0dp"
@@ -63,23 +75,11 @@
             android:hint="Write a message"
             android:inputType="textMultiLine" />
 
-        <ImageButton
-            android:id="@+id/ic_icon1_of_appbar_singular_chat_ac"
-            android:layout_width="65dp"
-            android:layout_height="56dp"
-            android:src="@mipmap/ic_launcher" />
-
-        <ImageButton
-            android:id="@+id/ic_icon2_of_appbar_singular_chat_ac"
-            android:layout_width="84dp"
-            android:layout_height="61dp"
-            android:src="@mipmap/ic_launcher" />
-
         <Button
-            android:id="@+id/btn_send_si_ch_ac"
-            android:layout_width="wrap_content"
+            android:id="@+id/send_button_single_chat"
+            android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="Send" />
+            android:background="@drawable/ic_send" />
 
     </LinearLayout>
 
