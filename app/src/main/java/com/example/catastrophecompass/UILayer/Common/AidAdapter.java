@@ -14,10 +14,10 @@ import java.util.List;
 
 public class AidAdapter extends RecyclerView.Adapter<AidAdapter.ViewHolder> {
 
-    private final AidItem [] aidItems;
+    private final AidItem[] aidItems;
     private final OnAidItemClickListener onAidItemClickListener;
 
-    public AidAdapter(AidItem [] aidItems, OnAidItemClickListener onAidItemClickListener) {
+    public AidAdapter(AidItem[] aidItems, OnAidItemClickListener onAidItemClickListener) {
         this.aidItems = aidItems;
         this.onAidItemClickListener = onAidItemClickListener;
     }
@@ -61,3 +61,4 @@ public class AidAdapter extends RecyclerView.Adapter<AidAdapter.ViewHolder> {
             itemView.setOnClickListener(v -> onAidItemClickListener.onAidItemClick(getAdapterPosition()));
         }
     }
+}

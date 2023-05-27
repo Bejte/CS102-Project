@@ -23,11 +23,23 @@
         android:id="@+id/rec_organize_truck_fr"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="484dp"
         android:scrollbars="vertical"
-        app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/txt_Organize_Truck_Title_hq_fr" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/app_bar_hq_organize_truck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/team_organizer_hq_app_bar"
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

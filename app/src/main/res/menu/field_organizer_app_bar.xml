@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fieldorg_bar_demog_icon"
+        android:icon="@drawable/demographic_icon"
+        android:title="demographic" />
+    <item
+        android:id="@+id/fieldorg_bar_aid_icon"
+        android:icon="@drawable/aid_icon"
+        android:title="aid" />
+    <item
+        android:id="@+id/fieldorg_bar_chat_icon"
+        android:icon="@drawable/chat_icon"
+        android:title="chat" />
+    <item
+        android:id="@+id/fieldorg_bar_people_icon"
+        android:icon="@drawable/people_icon"
+        android:title="people" />
+    <item
+        android:id="@+id/fieldorg_bar_help_icon"
+        android:icon="@drawable/help_icon"
+        android:title="help" />
+</menu>

@@ -9,8 +9,11 @@
     tools:context=".UILayer.Logistics.LogisticsMainActivity">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_anchor="@+id/scrollView2"
+        app:layout_anchorGravity="center">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,29 +25,29 @@
                 android:id="@+id/txt_logistic_mission_info_ac_lo_ma_ac"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mission Information"
-                android:textSize="30sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="16dp"
+                android:text="Mission Information"
+                android:textSize="30sp" />
 
             <LinearLayout
-                android:layout_width="match_parent"
                 android:id="@+id/cp_logistic_getaddress_ac_lo_ma_ac"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginLeft="40dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/getCard"
                     android:layout_width="300dp"
 
                     android:layout_height="120dp"
-                    app:cardCornerRadius="20dp"
+                    android:layout_margin="16dp"
                     android:backgroundTint="@color/white"
                     android:elevation="40dp"
-                    android:layout_margin="16dp">
+                    app:cardCornerRadius="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -58,16 +61,16 @@
                     android:id="@+id/dropCard"
                     android:layout_width="300dp"
                     android:layout_height="120dp"
-                    app:cardCornerRadius="20dp"
+                    android:layout_margin="16dp"
                     android:backgroundTint="@color/white"
                     android:elevation="40dp"
-                    android:layout_margin="16dp">
+                    app:cardCornerRadius="20dp">
 
                     <TextView
-                        android:text="Drop: The place where should the aid be delivered"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"/>
+                        android:padding="16dp"
+                        android:text="Drop: The place where should the aid be delivered" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -83,17 +86,17 @@
                     android:layout_width="150dp"
 
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="20dp"
+                    android:layout_margin="16dp"
                     android:backgroundTint="@color/fragment_card_soft"
                     android:elevation="20dp"
-                    android:layout_margin="16dp">
+                    app:cardCornerRadius="20dp">
 
                     <CheckBox
                         android:id="@+id/getCheckbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Get:"
-                        android:padding="16dp"/>
+                        android:padding="16dp"
+                        android:text="Get:" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -101,42 +104,37 @@
                     android:id="@+id/dropCheckboxCard"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="20dp"
+                    android:layout_margin="16dp"
                     android:backgroundTint="@color/fragment_card_soft"
                     android:elevation="20dp"
-                    android:layout_margin="16dp">
+                    app:cardCornerRadius="20dp">
 
                     <CheckBox
                         android:id="@+id/dropCheckbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Drop:"
-                        android:padding="16dp"/>
+                        android:padding="16dp"
+                        android:text="Drop:" />
 
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/app_bar_logistic"
+                android:layout_width="match_parent"
+                android:layout_height="91dp"
+                android:layout_marginTop="100dp"
+
+
+                android:layout_marginBottom="20dp"
+
+                app:menu="@menu/logistic_app_bar" />
+
         </LinearLayout>
 
     </ScrollView>
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:fabAlignmentMode="center"
-        app:fabCradleMargin="10dp"
-        app:fabCradleRoundedCornerRadius="10dp"
-        app:fabCradleVerticalOffset="10dp">
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:menu="@menu/app_bar_4_amount" />
-
-    </com.google.android.material.bottomappbar.BottomAppBar>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

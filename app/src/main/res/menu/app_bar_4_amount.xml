@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
         <item
-            android:id="@+id/action_item1"
-            android:icon="@mipmap/ic_launcher"
-        android:title="Item 1" />
+            android:id="@+id/foured_bar_job_icon"
+            android:icon="@drawable/job_info"
+        android:title="job info" />
         <item
-            android:id="@+id/action_item2"
-            android:icon="@mipmap/ic_launcher"
+            android:id="@+id/foured_bar_area_icon"
+            android:icon="@drawable/area_icon"
         android:title="Item 2" />
         <item
-            android:id="@+id/action_item3"
-            android:icon="@mipmap/ic_launcher"
+            android:id="@+id/foured_bar_chat_icon"
+            android:icon="@drawable/chat_icon"
         android:title="Item 3" />
         <item
-            android:id="@+id/action_item4"
-            android:icon="@mipmap/ic_launcher"
+            android:id="@+id/foured_bar_people_icon"
+            android:icon="@drawable/people_icon"
         android:title="Item 4" />
     </menu>

@@ -7,6 +7,7 @@
     android:background="@color/main_background_color"
     tools:context=".UILayer.FieldOrganizer.FieldOrganizerMainActivity">
 
+
     <FrameLayout
         android:id="@+id/demogratic_fragment"
         android:layout_width="411dp"
@@ -15,10 +16,9 @@
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.122"
-        tools:layout_editor_absoluteX="0dp"
-        tools:ignore="MissingConstraints" />
-
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="4dp" />
 
     <FrameLayout
         android:id="@+id/aid_status"
@@ -28,7 +28,7 @@
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/demogratic_fragment"
-        app:layout_constraintVertical_bias="0.468"
+        app:layout_constraintVertical_bias="0.306"
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
@@ -45,6 +45,7 @@
         android:layout_width="404dp"
         android:layout_height="50dp"
         android:text="UPDATE"
+        android:backgroundTint="@color/button_color_soft"
         app:layout_constraintBottom_toTopOf="@+id/aid_status"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,8 +60,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/button_color_soft"
         app:layout_constraintTop_toBottomOf="@+id/aid_status"
         app:layout_constraintVertical_bias="0.357" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/app_bar_logistic"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/field_organizer_app_bar"
+        tools:layout_editor_absoluteX="0dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

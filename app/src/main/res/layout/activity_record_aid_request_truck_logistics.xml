@@ -22,10 +22,11 @@
         android:id="@+id/rec_truck_list_team_organizer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_title_arriving_truck_team_organizer"
         android:layout_above="@+id/request_trucks_button"
-        tools:listitem="@layout/arriving_truck_item"
-        android:layout_marginTop="16dp" />
+        android:layout_below="@+id/txt_title_arriving_truck_team_organizer"
+        android:layout_marginTop="-21dp"
+        android:layout_marginBottom="37dp"
+        tools:listitem="@layout/arriving_truck_item" />
 
     <Button
         android:id="@+id/request_trucks_button"
@@ -42,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
 
-        app:menu="@menu/app_bar_4_amount" />
+        android:layout_marginBottom="3dp"
+        app:menu="@menu/team_organizer_hq_app_bar" />
 
 </RelativeLayout>
