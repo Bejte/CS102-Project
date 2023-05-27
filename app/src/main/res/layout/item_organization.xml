@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="@color/white"
+    android:background="@color/item_card_soft"
     android:padding="8dp">
 
     <TextView
@@ -11,11 +11,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:text="Organization A"
         android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/txt_organization_type_it_or_it"
+    <Button
+        android:id="@+id/button_edit_organization_type_it_or_it"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/button_color_soft"
+        android:text="Edit"
         android:textSize="18sp" />
 </LinearLayout>

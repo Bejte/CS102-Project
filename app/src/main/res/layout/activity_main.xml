@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@mipmap/main_backi"
+    android:background="@mipmap/login_photo"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".UILayer.Login.LoginOptionsActivityActivity"
     >
 
     <RelativeLayout
@@ -19,7 +19,7 @@
             android:layout_height="904dp"
             android:background="@color/main_background_color"
             android:scaleType="centerCrop"
-            android:src="@mipmap/main_backi" />
+            android:src="@mipmap/login_photo" />
 
         <TextView
             android:id="@+id/app_name"
