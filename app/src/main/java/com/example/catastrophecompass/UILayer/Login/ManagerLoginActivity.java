@@ -1,22 +1,27 @@
 package com.example.catastrophecompass.UILayer.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.catastrophecompass.DataLayer.Model.UserLogin;
 import com.example.catastrophecompass.R;
+import com.example.catastrophecompass.UILayer.Common.ManagerLoginViewModel;
 
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 public class ManagerLoginActivity extends AppCompatActivity {
 
-    private EditText usernameEditText;
-    private EditText passwordEditText;
-    private Button loginButton;
+    private ManagerLoginViewModel viewModel;
+    private EditText edtUsername, edtPassword;
+    private Button btnLogin;
     private ProgressBar progressBar;
 
     @Override
@@ -24,22 +29,43 @@ public class ManagerLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_login);
 
-        usernameEditText = findViewById(R.id.edt_username_ac_ma_lo_ac);
-        passwordEditText = findViewById(R.id.edt_password_ac_ma_lo_ac);
-        loginButton = findViewById(R.id.btn_login_ac_ma_lo_ac);
+        viewModel = new ViewModelProvider(this).get(ManagerLoginViewModel.class);
+
+        edtUsername = findViewById(R.id.edt_username_manager_login);
+        edtPassword = findViewById(R.id.edt_password_manager_login);
+        btnLogin = findViewById(R.id.btn_login_manager_login);
         progressBar = findViewById(R.id.progressBar);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onLoginButtonClick();
+        btnLogin.setOnClickListener(v -> {
+            progressBar.setVisibility(View.VISIBLE); // Show the ProgressBar
+            String username = edtUsername.getText().toString();
+            String password = edtPassword.getText().toString();
+            UserLogin userLogin = new UserLogin(username, password);
+            viewModel.validateLogin(userLogin);
+        });
+
+        viewModel.getUser().observe(this, user -> {
+            progressBar.setVisibility(View.GONE); // Hide the ProgressBar
+            if (user != null) {
+                navigateToMainPage(user.getUserType());
+            }
+        });
+
+        viewModel.getLoginFailure().observe(this, failure -> {
+            progressBar.setVisibility(View.GONE); // Hide the ProgressBar
+            if (failure != null && failure) {
+                warnUser();
             }
         });
     }
 
-    private void onLoginButtonClick() {
-        // Perform the login process
-        // Show the ProgressBar when the process takes time
-        progressBar.setVisibility(View.VISIBLE);
+    private void navigateToMainPage(String userType) {
+        Intent intent = new Intent(this, LoginOptionsActivity.class);
+        intent.putExtra("userType", userType);
+        startActivity(intent);
+    }
+
+    private void warnUser() {
+        Toast.makeText(this, "Invalid login, please try again.", Toast.LENGTH_LONG).show();
     }
 }

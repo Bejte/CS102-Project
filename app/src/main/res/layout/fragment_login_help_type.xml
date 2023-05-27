@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/main_background_color"
-        tools:context=".UILayer.Login.LoginVolunteerHelpTypeFragment"
+        tools:context=".UILayer.Login.FragmentLoginHelpType"
         android:gravity="center">
 
         <Button

@@ -3,10 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UILayer.Login.LoginEnterCodeFragment">
+    tools:context=".UILayer.Login.FragmentLoginEnterCode">
 
-    <!-- You can extract a background for editTexts if you think
-     you will use same backgrounds throughout the project-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
 
+        <EditText
+            android:id="@+id/et_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="Enter code" />
+
+        <Button
+            android:id="@+id/btn_submit_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/button_color_soft"
+            android:text="Submit code" />
+
+    </LinearLayout>
 
 </FrameLayout>

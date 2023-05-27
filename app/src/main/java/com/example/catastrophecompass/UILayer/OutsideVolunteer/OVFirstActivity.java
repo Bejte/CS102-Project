@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.catastrophecompass.R;
+import com.example.catastrophecompass.UILayer.Common.ChooseCityViewModel;
 import com.example.catastrophecompass.UILayer.Common.CityAdapter;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -21,49 +23,30 @@ import java.util.ArrayList;
 import androidx.appcompat.app.AlertDialog;
 public class OVFirstActivity extends AppCompatActivity {
 
-    private List<String> cityList = new ArrayList<>();
+    private ChooseCityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ovfirst);
 
+        viewModel = new ViewModelProvider(this).get(ChooseCityViewModel.class);
+
         RecyclerView recyclerViewCities = findViewById(R.id.rec_cities_ac_ov_ac);
         recyclerViewCities.setHasFixedSize(true);
         recyclerViewCities.setLayoutManager(new LinearLayoutManager(this));
 
-        List<String> cityList = new ArrayList<>();
-        // Add city names to the cityList
-        cityList.add("City 1");
-        cityList.add("City 2");
-        cityList.add("City 3");
-        cityList.add("City 4");
-        cityList.add("City 5");
-        cityList.add("City 1");
-        cityList.add("City 2");
-        cityList.add("City 3");
-        cityList.add("City 4");
-        cityList.add("City 5");
-        cityList.add("City 1");
-        cityList.add("City 2");
-        cityList.add("City 3");
-        cityList.add("City 4");
-        cityList.add("City 5");
-
-
-        // ... add more city names as needed
-
-        CityAdapter cityAdapter = new CityAdapter(cityList, new CityAdapter.OnCityItemClickListener() {
-            @Override
-            public void onCityItemClick(int position) {
-                String cityName = cityList.get(position);
-                showOptionsDialog(cityName);
-            }
+        CityAdapter cityAdapter = new CityAdapter(new ArrayList<>(), position -> {
+            String cityName = cityAdapter.getCityNameAt(position);
+            showOptionsDialog(cityName);
         });
-
         recyclerViewCities.setAdapter(cityAdapter);
-    }
 
+        viewModel.getCityNames().observe(this, cityNames -> {
+            // Update the adapter with the new city names
+            cityAdapter.updateCityNames(cityNames);
+        });
+    }
     private void showOptionsDialog(String cityName) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Options for " + cityName);
@@ -108,12 +91,5 @@ public class OVFirstActivity extends AppCompatActivity {
 
 
 
-    private void initializeCityList() {
-        cityList.add("City 1");
-        cityList.add("City 2");
-        cityList.add("City 3");
-        cityList.add("City 4");
-        cityList.add("City 5");
-        // Add more city names as needed
-    }
+
 }
