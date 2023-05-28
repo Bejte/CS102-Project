@@ -23,7 +23,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_item, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_available, parent, false);
         return new ViewHolder(itemView);
     }
 
@@ -43,7 +43,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            foodTextView = itemView.findViewById(R.id.food_text);
+            foodTextView = itemView.findViewById(R.id.txt_foodAvailable_fo_av_fr);
         }
     }
 }

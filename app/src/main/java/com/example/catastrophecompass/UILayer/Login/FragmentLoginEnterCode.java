@@ -47,6 +47,10 @@ public class FragmentLoginEnterCode extends Fragment {
         });
 
         return view;
+
+        if(List<User> .length == 0){
+
+        }
     }
 
     private void navigateToVIBStartPage(String placeName) {

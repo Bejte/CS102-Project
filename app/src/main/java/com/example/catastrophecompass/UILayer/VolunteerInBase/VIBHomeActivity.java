@@ -20,8 +20,8 @@ protected void onCreate(Bundle savedInstanceState) {
 super.onCreate(savedInstanceState);
 setContentView(R.layout.activity_vibhome);
 
-TabLayout tabLayout = findViewById(R.id.tab_layout);
-ViewPager2 viewPager = findViewById(R.id.view_pager);
+TabLayout tabLayout = findViewById(R.id.tab_layout_vib);
+ViewPager2 viewPager = findViewById(R.id.view_pager_vib);
 
 viewPager.setAdapter(new TabsPagerAdapter(this));
 

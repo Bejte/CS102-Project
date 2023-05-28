@@ -11,23 +11,21 @@ import android.widget.Toast;
 import androidx.lifecycle.ViewModel;
 import androidx.room.Insert;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
 import io.reactivex.rxjava3.disposables.Disposable;
 @HiltViewModel
-public class ChooseCityViewModel extends ViewModel {
+public class LoginVM extends ViewModel {
 
     private UC uc;
     private REPO FBRepo;
 
     @Inject
-    public ChooseCityViewModel(UC uc) {
+    public LoginVM(UC uc) {
         this.uc = uc;
     }
-    public List<String> getCities(List<String> getCities){
-        return FBRepo.getCities();
+    public void IsLoggedIn(){
+        FBRepo.IsLoggedIn();
     }
 }

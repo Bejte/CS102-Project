@@ -28,6 +28,7 @@
         <!-- Information about the area -->
         <TextView
             android:layout_width="match_parent"
+            android:id="@+id/vibt"
             android:layout_height="wrap_content"
             android:text="This area is known for its scenic views and hiking trails. There are also several local restaurants and shops in the area. Don't forget to check out the nearby lake for swimming and fishing!"
             android:textColor="@android:color/black"
@@ -45,7 +46,7 @@
             app:cardElevation="4dp">
 
             <include
-                layout="@layout/weather_section"
+                layout="@layout/weather_by_hour_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -63,7 +64,7 @@
 
             <include
                 android:id="@+id/food_available_container"
-                layout="@layout/food_available_layout" />
+                layout="@layout/food_available" />
 
         </androidx.cardview.widget.CardView>
 

@@ -3,26 +3,29 @@ package com.example.catastrophecompass.UILayer.Common;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import static androidx.fragment.app.FragmentManager.TAG;
 
+import android.util.Log;
+import android.widget.Toast;
+
+import androidx.lifecycle.ViewModel;
+import androidx.room.Insert;
+
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
+import io.reactivex.rxjava3.disposables.Disposable;
+@HiltViewModel
 public class EnterCodeViewModel extends ViewModel {
 
-    private MutableLiveData<String> placeName = new MutableLiveData<>();
+    private UC uc;
+    private REPO FBRepo;
 
-    public LiveData<String> getPlaceName() {
-        return placeName;
+    @Inject
+    public EnterCodeViewModel(UC uc) {
+        this.uc = uc;
     }
-
-   // public void validateCode(String code) {
-        // Implement the logic to validate the code here.
-        // This might involve interacting with your Firebase repository to check if the code exists,
-        // then updating the placeName MutableLiveData with the result.
-
-        // For now, I'll use a placeholder implementation.
-     //   if (code.equals("1234")) {
-       //     placeName.setValue("Valid Place");
-       // } else {
-
-        //    placeName.setValue(null);
-       // }
-   // }
+    public void validateCode(String code){
+        FBRepo.validateCode(code);
+    }
 }

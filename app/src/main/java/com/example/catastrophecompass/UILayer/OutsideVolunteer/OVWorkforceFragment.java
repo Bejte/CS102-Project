@@ -8,73 +8,61 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.catastrophecompass.DataLayer.Model.WItem;
 import com.example.catastrophecompass.R;
+import com.example.catastrophecompass.UILayer.Common.OVWorkforceListViewModel;
 import com.example.catastrophecompass.UILayer.Common.WorkforceAdapter;
-import com.example.catastrophecompass.UILayer.Common.WorkforceItem;
+import com.example.catastrophecompass.UILayer.Common.WorkforceItemAdapter;
 
 
 //* A simple {@link Fragment} subclass.
  //* Use the {@link OVWorkforceFragment#newInstance} factory method to
  //* create an instance of this fragment.
  import android.content.Intent;
- import android.os.Bundle;
- import android.view.LayoutInflater;
- import android.view.View;
- import android.view.ViewGroup;
 
- import androidx.annotation.Nullable;
- import androidx.fragment.app.Fragment;
- import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
  import androidx.recyclerview.widget.RecyclerView;
 
- import java.util.ArrayList;
- import java.util.List;
+import java.util.List;
 
 
- import android.content.Intent;
- import android.os.Bundle;
- import android.view.LayoutInflater;
- import android.view.View;
- import android.view.ViewGroup;
- import androidx.annotation.NonNull;
- import androidx.annotation.Nullable;
- import androidx.fragment.app.Fragment;
- import androidx.recyclerview.widget.LinearLayoutManager;
- import androidx.recyclerview.widget.RecyclerView;
- import java.util.Arrays;
- import java.util.List;
+import androidx.annotation.NonNull;
 
- public class OVWorkforceFragment extends Fragment {
+public class OVWorkforceFragment extends Fragment {
 
- WorkforceItem w1, w2, w3, w4;
+ private OVWorkforceListViewModel viewModel;
+ private RecyclerView recyclerView;
+ private WorkforceItemAdapter adapter;
+
+ @Override
+ public void onCreate(@Nullable Bundle savedInstanceState) {
+  super.onCreate(savedInstanceState);
+  viewModel = new ViewModelProvider(this).get(OVWorkforceListViewModel.class);
+ }
 
  @Nullable
  @Override
  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
- View view = inflater.inflate(R.layout.fragment_o_v_workforce, container, false);
+  View view = inflater.inflate(R.layout.fragment_o_v_workforce, container, false);
+  recyclerView = view.findViewById(R.id.rec_workforece_fr_ov_wo_fr);
+  recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
- RecyclerView recyclerView = view.findViewById(R.id.workforce_recyclerView);
- recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+  viewModel.getWItemList("CityName").observe(getViewLifecycleOwner(), this::onWorkforceListUpdated);
 
- // Test for workforceItems
- w1 = new WorkforceItem("Place1", "Address Info For Place 1","17°C", "PARTIAl_SUNNY" );
- w2 = new WorkforceItem("Place2", "Address Info For Place 2","16°C", "PARTIAl_SUNNY" );
- w3 = new WorkforceItem("Place3", "Address Info For Place 3","29°C", "PARTIAl_SUNNY" );
- w4 = new WorkforceItem("Place4", "Address Info For Place 4","-2°C", "PARTIAl_SUNNY" );
-
-
- List<WorkforceItem> workforceItems = new ArrayList<>();
- workforceItems.add(w1);
- workforceItems.add(w2);
- workforceItems.add(w3);
- workforceItems.add(w4);
- WorkforceAdapter workforceAdapter = new WorkforceAdapter(workforceItems, position -> {
- Intent intent = new Intent(getActivity(), OVWorkforceActivity.class);
- startActivity(intent);
- });
-
- recyclerView.setAdapter(workforceAdapter);
-
- return view;
+  return view;
  }
+
+ private void onWorkforceListUpdated(List<WItem> wItemList) {
+  adapter = new WorkforceItemAdapter(wItemList, position -> {
+   WItem clickedWorkforceItem = wItemList.get(position);
+   viewModel.recordClickedPlace(clickedWorkforceItem);
+   // Assuming you will create WorkforceActivity to display details of clicked place
+   Intent intent = new Intent(getActivity(), OVWorkforceActivity.class);
+   intent.putExtra("clicked_workforce_item", clickedWorkforceItem);
+   startActivity(intent);
+  });
+  recyclerView.setAdapter(adapter);
  }
+}

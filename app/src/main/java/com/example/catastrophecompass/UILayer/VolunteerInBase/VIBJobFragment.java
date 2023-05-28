@@ -20,6 +20,8 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.widget.Button;
 
+import com.example.catastrophecompass.UILayer.Common.VIBJobInfoVM;
+import com.example.catastrophecompass.UILayer.Login.LoginOptionsActivity;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
@@ -29,72 +31,61 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 public class VIBJobFragment extends Fragment {
+
+    private VIBJobInfoVM vibJobInfoVM;
 
     public VIBJobFragment() {
         // Required empty public constructor
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_v_i_b_job, container, false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        vibJobInfoVM = new ViewModelProvider(this).get(VIBJobInfoVM.class);
+    }
 
-        // Initialize UI components
-        TextView jobDescription = view.findViewById(R.id.job_description);
-        ImageView teamLeaderImage = view.findViewById(R.id.team_leader_image);
-        TextView teamLeaderInfo = view.findViewById(R.id.team_leader_info);
-        Button switchJobsButton = view.findViewById(R.id.switch_jobs_button);
-        Button quitToLogoutButton = view.findViewById(R.id.quit_to_logout_button);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_vib_job, container, false);
 
-        // Set job description text (use actual text instead of placeholder)
-        jobDescription.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit...");
+        TextView jobInfoTitle = view.findViewById(R.id.txt_title_job_info_vib_job);
+        TextView jobDescription = view.findViewById(R.id.job_description_vib_job);
+        ImageView teamLeaderImage = view.findViewById(R.id.team_leader_image_vib_job);
+        TextView teamLeaderInfo = view.findViewById(R.id.team_leader_info_vib_job);
+        TextView teamLeaderName = view.findViewById(R.id.team_leader_name);
+        Button quitToLogoutButton = view.findViewById(R.id.quit_to_logout_button_vib);
 
-        // Set onClickListeners for the buttons
-        switchJobsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showConfirmationDialog("Switch jobs?");
-            }
-        });
+
+        jobInfoTitle.setText(vibJobInfoVM.getJobTitle());
+        jobDescription.setText(vibJobInfoVM.getJobDescription());
+        teamLeaderInfo.setText(vibJobInfoVM.getTeamLeaderInfo());
+        teamLeaderName.setText(vibJobInfoVM.getTeamLeaderName());
+
 
         quitToLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showConfirmationDialog("Quit to logout?");
+                Intent intent = new Intent(getActivity(), LoginOptionsActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
 
         return view;
-    }
-
-    private void showConfirmationDialog(String title) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        builder.setTitle(title);
-
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Add your code for Yes button click here
-            }
-        });
-
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Add your code for No button click here
-            }
-        });
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-
-        // Change the color of the positive button
-        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-        positiveButton.setTextColor(Color.parseColor("#FFC107")); // Change the color according to your preference
-
-        // Change the color of the negative button
-        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-        negativeButton.setTextColor(Color.parseColor("#FFFFFF")); // Change the color according to your preference
     }
 }

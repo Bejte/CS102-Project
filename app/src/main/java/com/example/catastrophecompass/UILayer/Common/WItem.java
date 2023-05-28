@@ -1,12 +1,12 @@
 package com.example.catastrophecompass.UILayer.Common;
 
-public class WorkforceItem {
+public class WItem {
     private String name;
     private String address;
     private String degree;
     private String weatherType;
 
-    public WorkforceItem(String name, String address, String degree, String weatherType) {
+    public WItem(String name, String address, String degree, String weatherType) {
         this.name = name;
         this.address = address;
         this.degree = degree;

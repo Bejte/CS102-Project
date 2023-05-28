@@ -30,7 +30,7 @@ public class OVFirstActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ovfirst);
 
-        viewModel = new ViewModelProvider(this).get(ChooseCityViewModel.class);
+
 
         RecyclerView recyclerViewCities = findViewById(R.id.rec_cities_ac_ov_ac);
         recyclerViewCities.setHasFixedSize(true);
@@ -42,7 +42,7 @@ public class OVFirstActivity extends AppCompatActivity {
         });
         recyclerViewCities.setAdapter(cityAdapter);
 
-        viewModel.getCityNames().observe(this, cityNames -> {
+        viewModel.getCities().observe(this, cityNames -> {
             // Update the adapter with the new city names
             cityAdapter.updateCityNames(cityNames);
         });

@@ -17,57 +17,75 @@ import java.util.List;
 
 import android.content.Context;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import com.example.catastrophecompass.R;
+
+import java.util.List;
+
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
 
-    private List<String> jobList;
-    private LayoutInflater inflater;
-    private OnJoinButtonClickListener onJoinButtonClickListener;
+    private List<Job> jobs;
+    private OnJoinClickListener onJoinClickListener;
 
-    public JobAdapter(Context context, List<String> jobList, OnJoinButtonClickListener onJoinButtonClickListener) {
-        this.jobList = jobList;
-        this.inflater = LayoutInflater.from(context);
-        this.onJoinButtonClickListener = onJoinButtonClickListener;
+    public JobAdapter(List<Job> jobs) {
+        this.jobs = jobs;
+    }
+
+    public void setOnJoinClickListener(OnJoinClickListener onJoinClickListener) {
+        this.onJoinClickListener = onJoinClickListener;
     }
 
     @NonNull
     @Override
     public JobViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = inflater.inflate(R.layout.job_item, parent, false);
-        return new JobViewHolder(itemView, onJoinButtonClickListener);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.job_item, parent, false);
+        return new JobViewHolder(v, onJoinClickListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull JobViewHolder holder, int position) {
-        String currentJob = jobList.get(position);
-        holder.jobTextView.setText(currentJob);
+        Job job = jobs.get(position);
+        holder.jobTitle.setText(job.getTitle()); // Assuming the job object has a getTitle() method
+        // Populate other fields as necessary
     }
 
     @Override
     public int getItemCount() {
-        return jobList.size();
+        return jobs.size();
     }
 
-    public interface OnJoinButtonClickListener {
-        void onJoinButtonClick(int position);
+    public interface OnJoinClickListener {
+        void onJoinClick(int position);
     }
 
-    public static class JobViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    static class JobViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView jobTextView;
-        private Button joinButton;
-        private OnJoinButtonClickListener onJoinButtonClickListener;
+        TextView jobTitle;
+        Button joinButton;
 
-        public JobViewHolder(@NonNull View itemView, OnJoinButtonClickListener onJoinButtonClickListener) {
+        public JobViewHolder(@NonNull View itemView, final OnJoinClickListener onJoinClickListener) {
             super(itemView);
-            jobTextView = itemView.findViewById(R.id.tv_job_name);
-            joinButton = itemView.findViewById(R.id.btn_join);
-            this.onJoinButtonClickListener = onJoinButtonClickListener;
-            joinButton.setOnClickListener(this);
-        }
 
-        @Override
-        public void onClick(View v) {
-            onJoinButtonClickListener.onJoinButtonClick(getAdapterPosition());
+            jobTitle = itemView.findViewById(R.id.job_title); // replace with actual ID
+            joinButton = itemView.findViewById(R.id.join_button); // replace with actual ID
+
+            joinButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(onJoinClickListener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            onJoinClickListener.onJoinClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }

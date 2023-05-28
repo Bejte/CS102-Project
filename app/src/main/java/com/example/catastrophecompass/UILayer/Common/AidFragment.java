@@ -11,26 +11,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.List;
 
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.catastrophecompass.R;
 import com.example.catastrophecompass.UILayer.OutsideVolunteer.OVAidActivity;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class AidFragment extends Fragment {
 
@@ -52,12 +37,12 @@ public class AidFragment extends Fragment {
         };
 
 
-        AidAdapter aidAdapter = new AidAdapter(aidItems, position -> {
+        AidItemAdapter aidItemAdapter = new AidItemAdapter(aidItems, position -> {
             Intent intent = new Intent(getActivity(), OVAidActivity.class);
             startActivity(intent);
         });
 
-        recyclerView.setAdapter(aidAdapter);
+        recyclerView.setAdapter(aidItemAdapter);
 
         return view;
     }
