@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.example.catastrophecompass.DataLayer.Model.WorkplaceWeather;
 import com.google.gson.Gson;
@@ -62,7 +63,7 @@ public class WeatherAPI {
     }
 
     private static WorkplaceWeather weatherDataToWorkplaceWeather(WeatherData data){
-        HashMap<String, String> hourlyTemperature = new HashMap<>();
+        LinkedHashMap<String, String> hourlyTemperature = new LinkedHashMap<>();
         WeatherData.HourlyWeather[] hourlyWeathers = data.hourly;
         String currentTemp = "" + Math.round(hourlyWeathers[0].temp);
         String currentWeatherType = hourlyWeathers[0].weather[0].description;
@@ -71,7 +72,10 @@ public class WeatherAPI {
         {
             WeatherData.HourlyWeather hourly = hourlyWeathers[i];
             Date date = new Date(hourly.dt*1000);
-            String hour = date.getHours() + ".00";
+            String hour = "";
+            if (date.getHours() < 10)
+                hour = "0";
+            hour += date.getHours() + ".00";
             String temp = Math.round(hourly.temp) + "°C";
             hourlyTemperature.put(hour, temp);
         }
