@@ -2,6 +2,7 @@ package com.example.catastrophecompass.DomainLayer.Domain;
 
 import android.util.Log;
 
+import com.example.catastrophecompass.DataLayer.LocalRepository.LogisticMissionLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
 
