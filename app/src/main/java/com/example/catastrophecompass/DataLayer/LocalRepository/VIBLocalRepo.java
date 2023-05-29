@@ -34,9 +34,9 @@ public class VIBLocalRepo {
     private VIBTLProfilePicL vibtlProfilePicL;
 
     @Inject
-    public VIBLocalRepo(LocalDB db, VIBDao vibDao, VIBTLProfilePicL vibtlProfilePicL) {
+    public VIBLocalRepo(LocalDB db, VIBTLProfilePicL vibtlProfilePicL) {
         this.db = db;
-        this.vibDao = vibDao;
+        this.vibDao = db.vibDao();
         this.vibtlProfilePicL = vibtlProfilePicL;
     }
 
@@ -200,7 +200,7 @@ public class VIBLocalRepo {
                 });
 
         return status.get();
-        
+
     }
 
 

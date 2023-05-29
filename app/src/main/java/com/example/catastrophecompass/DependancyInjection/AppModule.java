@@ -13,6 +13,8 @@ import com.example.catastrophecompass.DataLayer.Dao.MissionDao;
 import com.example.catastrophecompass.DataLayer.Dao.TLJobLocalDao;
 import com.example.catastrophecompass.DataLayer.Dao.VIBDao;
 import com.example.catastrophecompass.DataLayer.LocalDB;
+import com.example.catastrophecompass.DataLayer.LocalRepository.VIBAreaLocalRepo;
+import com.example.catastrophecompass.DataLayer.LocalRepository.VIBLocalRepo;
 
 import javax.inject.Singleton;
 
@@ -81,6 +83,17 @@ public class AppModule {
 
     // DI FOR LOCAL REPOs
 
+    @Provides
+    @Singleton
+    public VIBLocalRepo provideVibLocalRepo(LocalDB db, VIBTLProfilePicL vibtlProfilePicL) {
+        return new VIBLocalRepo(db, vibtlProfilePicL);
+    }
+
+    @Provides
+    @Singleton
+    public VIBAreaLocalRepo orıvideVibAreaLocalRepo(LocalDB db) {
+        return new VIBAreaLocalRepo(db);
+    }
 
 
 
