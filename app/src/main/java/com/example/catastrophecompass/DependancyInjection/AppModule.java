@@ -13,6 +13,7 @@ import com.example.catastrophecompass.DataLayer.Dao.MissionDao;
 import com.example.catastrophecompass.DataLayer.Dao.TLJobLocalDao;
 import com.example.catastrophecompass.DataLayer.Dao.VIBDao;
 import com.example.catastrophecompass.DataLayer.LocalDB;
+import com.example.catastrophecompass.DataLayer.LocalRepository.ChatFragmentLocalRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.FieldOrganizationInfoLocalRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.LogisticMissionLocalRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.TLJobLocalRepo;
@@ -114,6 +115,12 @@ public class AppModule {
     @Singleton
     public LogisticMissionLocalRepo provideLogisticMissionLocalRepo(LocalDB db) {
         return new LogisticMissionLocalRepo(db);
+    }
+
+    @Provides
+    @Singleton
+    public ChatFragmentLocalRepo provideChatFragmentLocalRepo(LocalDB db) {
+        return new ChatFragmentLocalRepo(db);
     }
 
 
