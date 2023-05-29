@@ -1,5 +1,7 @@
 package com.example.catastrophecompass.DomainLayer.Domain;
 
+import android.util.Log;
+
 import com.example.catastrophecompass.DataLayer.Model.Credentials;
 import com.example.catastrophecompass.DataLayer.Model.TeamInfo;
 
@@ -27,17 +29,19 @@ public class TLJobInfoDomain {
                     @Override
                     public void onNext(TeamInfo teamInfo) {
                         teamInfoInterface.setDisplay(teamInfo);
+                        Log.d("TLJobInfoDomain", "getTeamInfo() onNext() called");
                     }
 
                     @Override
                     public void onError(Throwable t) {
                         t.printStackTrace();
                         teamInfoInterface.warnUser();
+                        Log.d("TLJobInfoDomain", "getTeamInfo() onError() called");
                     }
 
                     @Override
                     public void onComplete() {
-
+                        Log.d("TLJobInfoDomain", "getTeamInfo() onComplete() called");
                     }
                 });
     }

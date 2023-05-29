@@ -1,5 +1,7 @@
 package com.example.catastrophecompass.DomainLayer.Domain;
 
+import android.util.Log;
+
 import com.example.catastrophecompass.DataLayer.Model.Credentials;
 import com.example.catastrophecompass.DataLayer.Model.RecentChatItem;
 
@@ -27,17 +29,19 @@ public class ChatFragmentDomain {
                     @Override
                     public void onNext(RecentChatItem recentChatItem) {
                         chatFragmentInterface.setDisplay(recentChatItem);
+                        Log.d("ChatFragmentDomain", "getRecentChats() onNext() called");
                     }
 
                     @Override
                     public void onError(Throwable t) {
                         t.printStackTrace();
                         chatFragmentInterface.warnUser();
+                        Log.d("ChatFragmentDomain", "getRecentChats() onError() called");
                     }
 
                     @Override
                     public void onComplete() {
-
+                        Log.d("ChatFragmentDomain", "getRecentChats() onComplete() called");
                     }
                 });
     }

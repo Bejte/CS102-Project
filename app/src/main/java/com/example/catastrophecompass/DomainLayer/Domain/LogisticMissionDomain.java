@@ -1,5 +1,7 @@
 package com.example.catastrophecompass.DomainLayer.Domain;
 
+import android.util.Log;
+
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
 
@@ -31,11 +33,13 @@ public class LogisticMissionDomain {
                     public void onSuccess(@NonNull String s) {
                         driverName = s;
                         FBRepo.getLogisticInfo(driverName);
+                        Log.d("LogisticMissionDomain", "getDriverName() onSuccess() called");
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
                         logisticMissionInterface.warnUserForNoConnection();
+                        Log.d("LogisticMissionDomain", "getDriverName() onError() called");
                     }
                 });
     }
@@ -48,17 +52,19 @@ public class LogisticMissionDomain {
                     public void onNext(LogisticInfo logisticInfo) {
                         inventory = logisticInfo.getInventoryList();
                         logisticMissionInterface.display(logisticInfo);
+                        Log.d("LogisticMissionDomain", "getLogisticInfo() onNext() called");
                     }
 
                     @Override
                     public void onError(Throwable t) {
                         t.printStackTrace();
                         logisticMissionInterface.warnUser();
+                        Log.d("LogisticMissionDomain", "getLogisticInfo() onError() called");
                     }
 
                     @Override
                     public void onComplete() {
-
+                        Log.d("LogisticMissionDomain", "getLogisticInfo() onComplete() called");
                     }
                 });
     }

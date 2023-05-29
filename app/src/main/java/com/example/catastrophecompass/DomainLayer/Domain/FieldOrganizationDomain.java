@@ -1,7 +1,10 @@
 package com.example.catastrophecompass.DomainLayer.Domain;
 
+import android.util.Log;
+
 import com.example.catastrophecompass.DataLayer.Model.DemographicInfo;
 import com.example.catastrophecompass.DataLayer.Model.HousingInfo;
+import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.User;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -30,17 +33,19 @@ public class FieldOrganizationDomain {
                     @Override
                     public void onNext(DemographicInfo demographicInfo) {
                         demographicInterface.setDisplay(demographicInfo);
+                        Log.d("FieldOrganizationDomain", "getDemographicInfo() onNext() called");
                     }
 
                     @Override
                     public void onError(Throwable t) {
                         t.printStackTrace();
                         demographicInterface.warnUser();
+                        Log.d("FieldOrganizationDomain", "getDemographicInfo() onError() called");
                     }
 
                     @Override
                     public void onComplete() {
-
+                        Log.d("FieldOrganizationDomain", "getDemographicInfo() onComplete() called");
                     }
                 });
     }
@@ -52,17 +57,19 @@ public class FieldOrganizationDomain {
                     @Override
                     public void onNext(HousingInfo housingInfo) {
                         housingInterface.setDisplay(housingInfo);
+                        Log.d("FieldOrganizationDomain", "getHousingInfo() onNext() called");
                     }
 
                     @Override
                     public void onError(Throwable t) {
                         t.printStackTrace();
                         housingInterface.warnUser();
+                        Log.d("FieldOrganizationDomain", "getHousingInfo() onError() called");
                     }
 
                     @Override
                     public void onComplete() {
-
+                        Log.d("FieldOrganizationDomain", "getHousingInfo() onComplete() called");
                     }
                 });
     }
@@ -74,16 +81,18 @@ public class FieldOrganizationDomain {
                     @Override
                     public void onNext(InventoryList inventoryList) {
                         inventoryInterface.setDisplay(inventoryList);
+                        Log.d("FieldOrganizationDomain", "getInventoryInfo() onNext() called");
                     }
 
                     @Override
                     public void onError(Throwable t) {
                         t.printStackTrace();
+                        Log.d("FieldOrganizationDomain", "getInventoryInfo() onError() called");
                     }
 
                     @Override
                     public void onComplete() {
-
+                        Log.d("FieldOrganizationDomain", "getInventoryInfo() onComplete() called");
                     }
                 });
     }
@@ -95,16 +104,18 @@ public class FieldOrganizationDomain {
                     @Override
                     public void onNext(Inventory inventory) {
                         arrivingInterface.setDisplay(inventory);
+                        Log.d("FieldOrganizationDomain", "getArrivingInfo() onNext() called");
                     }
 
                     @Override
                     public void onError(Throwable t) {
                         t.printStackTrace();
+                        Log.d("FieldOrganizationDomain", "getArrivingInfo() onError() called");
                     }
 
                     @Override
                     public void onComplete() {
-
+                        Log.d("FieldOrganizationDomain", "getArrivingInfo() onComplete() called");
                     }
                 });
     }
