@@ -2,8 +2,12 @@ package com.example.catastrophecompass.DependancyInjection;
 
 
 import android.content.Context;
+import android.os.AsyncTask;
 
+import androidx.annotation.NonNull;
 import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.catastrophecompass.DataLayer.Dao.ChatActivityDao;
 import com.example.catastrophecompass.DataLayer.Dao.ChatFragmentDao;
@@ -20,7 +24,9 @@ import com.example.catastrophecompass.DataLayer.LocalRepository.LogisticMissionL
 import com.example.catastrophecompass.DataLayer.LocalRepository.TLJobLocalRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.VIBAreaLocalRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.VIBLocalRepo;
+import com.example.catastrophecompass.DataLayer.Model.ChatItem;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -34,15 +40,7 @@ import dagger.hilt.components.SingletonComponent;
 public class AppModule {
 
 
-    // DI FOR LocalDB & DAOs
-
-    @Provides
-    @Singleton
-    public LocalDB provideDB(@ApplicationContext Context context) {
-        return Room.databaseBuilder(context.getApplicationContext(),
-                LocalDB.class, "LocalDB").fallbackToDestructiveMigration()
-                .build();
-    }
+    // DI FOR DAOs
 
     @Provides
     @Singleton
@@ -127,7 +125,7 @@ public class AppModule {
     @Provides
     @Singleton
     public ChatActivityLocalRepo provideChatActivityLocalRepo(ChatPictureLocalStorage pictureLocal, LocalDB db) {
-        return new ChatActivityLocalRepo(ChatPictureLocalStorage pictureLocal, LocalDB db);
+        return new ChatActivityLocalRepo(pictureLocal, db);
     }
 
 
