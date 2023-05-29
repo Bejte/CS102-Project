@@ -43,7 +43,7 @@ import dagger.hilt.components.SingletonComponent;
 public abstract class LocalDB extends RoomDatabase {
 
 
-    private static LocalDB instance;
+    private static volatile LocalDB instance;
 
     public abstract ChatActivityDao chatActivityDao();
     public abstract ChatFragmentDao chatFragmentDao();
