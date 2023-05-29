@@ -1,5 +1,6 @@
 package com.example.catastrophecompass.DomainLayer.Domain;
 
+import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -12,7 +13,7 @@ public class LogisticMissionDomain {
     private LogisticMissionLocalRepo localRepo;
     private LogisticMissionFBRepo FBRepo;
     private String driverName;
-    private Inventory inventory;
+    private InventoryList inventory;
     private CloudRestAPI restAPI;
 
     public LogisticMissionDomain(LogisticMissionLocalRepo localRepo, LogisticMissionFBRepo FBRepo, CloudRestAPI restAPI) {
@@ -45,7 +46,7 @@ public class LogisticMissionDomain {
                 .subscribe(new DisposableSubscriber<LogisticInfo>() {
                     @Override
                     public void onNext(LogisticInfo logisticInfo) {
-                        inventory = logisticInfo.getInventory();
+                        inventory = logisticInfo.getInventoryList();
                         logisticMissionInterface.display(logisticInfo);
                     }
 
