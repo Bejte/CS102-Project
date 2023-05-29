@@ -3,8 +3,11 @@ package com.example.catastrophecompass.DomainLayer.Domain;
 import android.util.Log;
 
 import com.example.catastrophecompass.DataLayer.Dao.CurrentUserDao;
+import com.example.catastrophecompass.DataLayer.FBRepository.ManagerLoginFBRepo;
 import com.example.catastrophecompass.DataLayer.Model.User;
 import com.example.catastrophecompass.DataLayer.Model.UserLogin;
+
+import java.util.concurrent.ExecutionException;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -22,7 +25,12 @@ public class ManagerLoginUC {
     }
 
     public String validateLogin(UserLogin userLogin){
-        User user = FBRepo.validateLogin(userLogin);
+        User user = null;
+        try {
+            user = FBRepo.validateLogin(userLogin);
+        } catch (ExecutionException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         if (user!=null)
         {
             currentUserDao.recordUser(user)

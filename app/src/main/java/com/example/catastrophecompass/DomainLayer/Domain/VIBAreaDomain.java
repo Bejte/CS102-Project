@@ -2,6 +2,7 @@ package com.example.catastrophecompass.DomainLayer.Domain;
 
 import android.util.Log;
 
+import com.example.catastrophecompass.DataLayer.FBRepository.VIBFBRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.VIBLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.WorkplaceWeather;
 import com.example.catastrophecompass.DataLayer.RemoteDataRepository.WeatherRepository.WeatherAPI;
