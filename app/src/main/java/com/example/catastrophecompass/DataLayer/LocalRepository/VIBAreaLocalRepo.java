@@ -10,7 +10,7 @@ import io.reactivex.rxjava3.core.Flowable;
 
 public class VIBAreaLocalRepo {
 
-    private LocalDB db;
+    private final LocalDB db;
     private VIBDao vibDao;
 
     @Inject
