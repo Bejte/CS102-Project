@@ -1,5 +1,7 @@
 package com.example.catastrophecompass.DomainLayer.Domain;
 
+import android.util.Log;
+
 import com.example.catastrophecompass.DataLayer.Model.ChatItem;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -26,17 +28,19 @@ public class ChatActivityDomain {
                     @Override
                     public void onNext(ChatItem chatItem) {
                         chatActivityInterface.setDisplay(chatItem);
+                        Log.d("ChatActivityDomain", "getMessages() onNext() called");
                     }
 
                     @Override
                     public void onError(Throwable t) {
                         t.printStackTrace();
                         chatActivityInterface.warnUser();
+                        Log.d("ChatActivityDomain", "getMessages() onError() is called");
                     }
 
                     @Override
                     public void onComplete() {
-
+                        Log.d("ChatActivityDomain", "getMessages() onComplete() called");
                     }
                 });
     }

@@ -1,5 +1,7 @@
 package com.example.catastrophecompass.DomainLayer.Domain;
 
+import android.util.Log;
+
 import com.example.catastrophecompass.DataLayer.Dao.CurrentUserDao;
 import com.example.catastrophecompass.DataLayer.Model.User;
 import com.example.catastrophecompass.DataLayer.Model.UserLogin;
@@ -28,17 +30,17 @@ public class ManagerLoginUC {
                     .subscribe(new CompletableObserver() { // TODO Complete methods
                         @Override
                         public void onSubscribe(@NonNull Disposable d) {
-
+                            Log.d("ManagerLogin", "recordUser() onSubscribe() called");
                         }
 
                         @Override
                         public void onComplete() {
-
+                            Log.d("ManagerLogin", "recordUser() onComplete() called");
                         }
 
                         @Override
                         public void onError(@NonNull Throwable e) {
-
+                            Log.d("ManagerLogin", "recordUser() onError() called");
                         }
                     });
             return user.getUserType();

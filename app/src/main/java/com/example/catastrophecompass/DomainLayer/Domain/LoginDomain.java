@@ -44,33 +44,35 @@ public class LoginDomain {
                                                 returnType[0] = false;
                                             else
                                                 returnType[0] = true;
+                                            Log.d("LoginDomain", "vibDao.getIdAsList() onNext() called");
                                         }
 
                                         @Override
                                         public void onError(Throwable t) {
                                             t.printStackTrace();
-                                            Log.d("LoginDomain", "vibDao.getCurrentUser() onError()");
+                                            Log.d("LoginDomain", "vibDao.getCurrentUser() onError() called");
                                         }
 
                                         @Override
                                         public void onComplete() {
-
+                                            Log.d("LoginDomain", "vibDao.getIdAsList() onComplete() called");
                                         }
                                     });
                         }
                         else
                             returnType[0] = true;
+                        Log.d("LoginDomain", "currentUserDao.getCurrentUser() onNext() called");
                     }
 
                     @Override
                     public void onError(Throwable t) {
                         t.printStackTrace();
-                        Log.d("LoginDomain", "currentUserDao.getCurrentUser() onError()");
+                        Log.d("LoginDomain", "currentUserDao.getCurrentUser() onError() called");
                     }
 
                     @Override
                     public void onComplete() {
-
+                        Log.d("LoginDomain", "currentUserDao.getCurrentUser() onComplete() called");
                     }
                 });
         return returnType[0];

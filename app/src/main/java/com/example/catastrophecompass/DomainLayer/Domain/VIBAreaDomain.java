@@ -1,7 +1,11 @@
 package com.example.catastrophecompass.DomainLayer.Domain;
 
+import android.util.Log;
+
+import com.example.catastrophecompass.DataLayer.LocalRepository.VIBLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.WorkplaceWeather;
 import com.example.catastrophecompass.DataLayer.RemoteDataRepository.WeatherRepository.WeatherAPI;
+import com.example.catastrophecompass.UILayer.Common.VIBAreaInterface;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -25,17 +29,19 @@ public class VIBAreaDomain {
                     @Override
                     public void onNext(VIBAreaInfo vibAreaInfo) {
                         vibAreaInterface.setDisplay(vibAreaInfo);
+                        Log.d("VIBAreaDomain", "getAreaInfo() onNext() called");
                     }
 
                     @Override
                     public void onError(Throwable t) {
                         t.printStackTrace();
                         vibAreaInterface.warnUser();
+                        Log.d("VIBAreaDomain", "getAreaInfo() onError() called");
                     }
 
                     @Override
                     public void onComplete() {
-
+                        Log.d("VIBAreaDomain", "getAreaInfo() onComplete() called");
                     }
                 });
         return weather.getWeatherInfo(Common.location); //TODO Don't forget Common Class
