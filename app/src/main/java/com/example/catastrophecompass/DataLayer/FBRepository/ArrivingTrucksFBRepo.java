@@ -1,6 +1,7 @@
 package com.example.catastrophecompass.DataLayer.FBRepository;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.catastrophecompass.DataLayer.Model.TruckItem;
 import com.google.firebase.database.DataSnapshot;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class ArrivingTrucksFBRepo
 {
-    public List<TruckItem> getArrivingTrucks(String organizationName)
+    public List<TruckItem> getArrivingTrucks(String organizationName) throws NullPointerException
     {
         List<TruckItem>[] trucks = new ArrayList[1];
 

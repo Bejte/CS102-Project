@@ -9,16 +9,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
-public class RecordAidRequestTruckFBRepo
-{
-    public boolean makeRequest(String organizationName, TruckRequest request)
-    {
-        boolean[] status = new boolean[1];
-        status[0] = true;
+public class RecordAidRequestTruckFBRepo {
+    public boolean makeRequest(String organizationName, TruckRequest request) {
         DatabaseReference orgRef = FirebaseDatabase.getInstance().getReference("Organizations").child(organizationName);
         DatabaseReference requestsRef = orgRef.child("requests");
+        boolean[] status = new boolean[1];
         requestsRef.child("totalRequested").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -29,22 +24,24 @@ public class RecordAidRequestTruckFBRepo
                     totalRequested += 1;
                 }
                 requestsRef.child("totalRequested").setValue(totalRequested);
+                status[0] = true;
+            }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                }
-            });
-
-        String truckReqKey = requestsRef.push().getKey();
-        requestsRef.child(truckReqKey).child("size").setValue(request.getSize(), (error, ref) -> {
-            if(error != null)
-            {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
                 status[0] = false;
             }
         });
-        requestsRef.child(truckReqKey).child("Collections").setValue(request.getInventoryList(), (error, ref) -> {
-            if(error != null)
-            {
+
+        String truckReqKey = requestsRef.push().getKey();
+        DatabaseReference truckReqRef = requestsRef.child(truckReqKey);
+        truckReqRef.child("size").setValue(request.getSize(), (error, ref) -> {
+            if (error != null) {
+                status[0] = false;
+            }
+        });
+        truckReqRef.child("Collections").setValue(request.getInventoryList(), (error, ref) -> {
+            if (error != null) {
                 status[0] = false;
             }
         });

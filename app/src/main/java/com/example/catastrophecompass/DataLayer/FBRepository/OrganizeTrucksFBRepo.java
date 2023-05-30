@@ -2,6 +2,9 @@ package com.example.catastrophecompass.DataLayer.FBRepository;
 
 import androidx.annotation.NonNull;
 
+import com.example.catastrophecompass.DataLayer.Model.DriverItem;
+import com.example.catastrophecompass.DataLayer.Model.InventoryList;
+import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -45,9 +48,9 @@ public class OrganizeTrucksFBRepo {
         DatabaseReference driver = databaseRef.child(driverName);
         boolean[] deletionStatus = {false};
 
-        driver.child("getStatus").setValue(null);
-        driver.child("getAdress").setValue(null);
         String name  = driver.child("getName").getValue(String.class);
+        driver.child("getName").setValue(null);
+        driver.child("getAdress").setValue(null);
 
         DatabaseReference orgRef = FirebaseDatabase.getInstance().getReference("Organizations").child(name).child("arrivingTruckList").child(driverName);
 
@@ -67,7 +70,7 @@ public class OrganizeTrucksFBRepo {
 
         DatabaseReference reqRef = FirebaseDatabase.getInstance().getReference("Organizations").child(name).child("requests").child(driverName);
         reqRef.child("requestSize").setValue(driver.child("TruckSize"));
-        reqRef.child("collected").setValue(driver.child("Inevtory").child("list"));
+        reqRef.child("collected").setValue(driver.child("Inventory").child("list"));
 
         return deletionStatus[0];
     }
@@ -76,8 +79,34 @@ public class OrganizeTrucksFBRepo {
     {
         //TODO
         DatabaseReference driver = databaseRef.child(driverName);
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("FieldOrganizations").child(driver.child("dropName").getValue(String.class).child("ArrivingAid"));
+        boolean[] status = new boolean[1];
+        status[0] = false;
+        String name = driver.child("dropName").getValue(String.class);
+        driver.child("dropName").setValue(null);
+        driver.child("dropAddress").setValue(null);
 
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(name);
+
+        int food = driver.child("Inventory").getValue().getFood();
+        int heater = driver.child("Inventory").getValue().getHeater();
+        int manCloth = driver.child("Inventory").getValue().getManCloth();
+        int womanCloth = driver.child("Inventory").getValue().getWomanCloth();
+        int childCloth = driver.child("Inventory").getValue().getChildCloth();
+        int hygene = driver.child("Inventory").getValue().getHygene();
+        int kitchenMaterial = driver.child("Inventory").getValue().getgetKitchenMaterial();
+        int powerbank = driver.child("Inventory").getValue().getPowerbank();
+
+        InventoryList list = new InventoryList(0, food, heater,manCloth, womanCloth, childCloth, hygene, kitchenMaterial, powerbank);
+        ref.child("arrivingAid").setValue(list).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                status[0] = true;
+                LogisticInfo driverItem = new LogisticInfo(driver.child("getName").getValue(String.class), driver.child("getAddress").getValue(String.class), driver.child("dropName").getValue(String.class), driver.child("dropAddress").getValue(String.class), driver.child("status").getValue(String.class), driver.child("pictureUrl").getValue(String.class));
+                syncVectorDB(driverItem, ref.getKey().toString());
+            }
+        });
+
+        return status[0];
     }
 
 }

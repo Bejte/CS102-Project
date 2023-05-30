@@ -1,5 +1,11 @@
 package com.example.catastrophecompass.DataLayer.FBRepository;
 
+import android.net.Credentials;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.example.catastrophecompass.DataLayer.LocalRepository.VIBLocalRepo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -7,86 +13,49 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class VIBFBRepo {
-    //TODO
+
+    private VIBLocalRepo localRepo;
+
+    public VIBFBRepo(VIBLocalRepo localRepo) {
+        this.localRepo = localRepo;
+    }
+
     public void updateFoodInfo(String city, String place, String team, String newFoodInfo) {
         DatabaseReference teamRef = FirebaseDatabase.getInstance().getReference()
                 .child("Teams").child(city).child(place).child(team).child("foodInfo");
 
-        teamRef.setValue(newFoodInfo, new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-
-            }
-        });
+        teamRef.setValue(newFoodInfo);
     }
 
-        public void attachToVolunteerList(String city, String place, String id) {
-            DatabaseReference volunteerListRef = FirebaseDatabase.getInstance().getReference()
-                    .child("Teams").child(city).child(place).child("volunteerList");
-
-            volunteerListRef.child("id").setValue(id);
-        }
-
-    public void attachToTeam(String city, String place, String teamName) {//?
-        DatabaseReference teamRef = FirebaseDatabase.getInstance().getReference()
-                .child("Teams").child(city).child(place).child(teamName);
-
-        teamRef.addListenerForSingleValueEvent(new ValueEventListener() {
+    public String attachToVolunteerList(String city, String place,String id)
+    {
+        DatabaseReference volunteerListRef = FirebaseDatabase.getInstance().getReference("Teams").child(city).child(place).child("VolunteerList");
+        String[] teamName = new String[1];
+        teamName[0] = volunteerListRef.child(id).getValue();
+        volunteerListRef.child(id).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // Retrieve the necessary data from dataSnapshot and push locally
-                String areaInfo = dataSnapshot.child("areaInfo").getValue(String.class);
-                String jobInfo = dataSnapshot.child("jobInfo").getValue(String.class);
-                String teamLeaderName = dataSnapshot.child("teamLeaderName").getValue(String.class);
-                String foodInfo = dataSnapshot.child("foodInfo").getValue(String.class);
-
-                VIBLocalRepo repo = new VIBLocalRepo();
-                repo.pushToLocal(jobInfo);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-    }
-
-    DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
-    public void deleteUser(String userID) {
-        DatabaseReference userRef = databaseRef.child("users").child(userID);
-        userRef.removeValue();
-        updateNodes(userID);
-        removeFromDataStructures(userID);
-    }
-
-    private void updateNodes(String userID) {
-        DatabaseReference teamsRef = databaseRef.child("Teams");
-
-        teamsRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot citySnapshot : dataSnapshot.getChildren()) {
-                    for (DataSnapshot placeSnapshot : citySnapshot.getChildren()) {
-                        for (DataSnapshot teamSnapshot : placeSnapshot.getChildren()) {
-                            DatabaseReference teamRef = teamSnapshot.getRef();
-
-                            teamRef.child("volunteerList").child(userID).removeValue();
-                            teamRef.child("teamLeaderID").setValue(null);
-
-                        }
-                    }
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists())
+                {
+                    teamName[0] = snapshot.getValue(String.class);
+                    attachToTeam(city, place, teamName[0]);
                 }
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+        return teamName[0];
     }
 
-    private void removeFromDataStructures(String userID) {
+    public void attachToTeam(String city, String place, String teamName)
+    {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Teams").child(city).child(place).child(teamName);
 
+        VIBJobInfo info = new VIBJobInfo(teamName, ref.getValue().getTeamDescription(), ref.getValue().getTeamLeaderName(), ref.getValue().getAreaInfo(), ref.getValue().getFoodInfo(), ref.getValue().getLocation(), ref.getValue().getTeamLeaderPicUrl(), ref.getValue().getDispatch());
+        localRepo.pushToLocal(info);
     }
 }
 
