@@ -1,4 +1,6 @@
 package com.example.catastrophecompass.UILayer.Logistics;
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
 import com.example.catastrophecompass.DomainLayer.Domain.LogisticMissionDomain;
@@ -12,29 +14,26 @@ public class LogisticMissionVM extends ViewModel {
 
 
 
-    private LogisticMissionDomain logdomain;
+    private LogisticMissionDomain domain;
 
     @Inject
-    public LogisticMissionVM(LogisticMissionDomain logdomain) {
-        this.logdomain = logdomain;
+    public LogisticMissionVM(LogisticMissionDomain domain) {
+        this.domain = domain;
     }
 
-    public void setUpDB(LogisticMissionInterface loginterface) {
-        //Log.d(TAG, " here ");
-        logdomain.setupDB(loginterface);
-        //Log.d(TAG, "here too");
+    public void setupDB(LogisticMissionInterface logisticMissionInterface) {
+        Log.d("LogisticMissionVM", "setupDB() called");
+        domain.setupDB(logisticMissionInterface);
     }
-    public void getLogisticInfo(LogisticMissionInterface loginterface) {
-        //Log.d(TAG, " here ");
-        logdomain.getLogisticInfo(loginterface);
-        //Log.d(TAG, "here too");
+    public void getLogisticInfo(LogisticMissionInterface logisticMissionInterface) {
+        Log.d("LogisticMissionVM", "getLogisticInfo() called");
+        domain.getLogisticInfo(logisticMissionInterface);
     }
-    public void getChecked(LogisticMissionInterface loginterface) {
-        //Log.d(TAG, " here ");
-        logdomain.getChecked(loginterface);
-        //Log.d(TAG, "here too");
+    public void getChecked(LogisticMissionInterface logisticMissionInterface) {
+        Log.d("LogisticMissionVM", "getChecked() called");
+        domain.getChecked(logisticMissionInterface);
     }
-    public void dropClicked() {
-        logdomain.dropClicked();
+    public void dropClicked(LogisticMissionInterface logisticMissionInterface) {
+        domain.dropClicked(logisticMissionInterface);
     }
 }

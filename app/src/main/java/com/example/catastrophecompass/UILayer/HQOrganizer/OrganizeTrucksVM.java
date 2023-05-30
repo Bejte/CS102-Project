@@ -1,6 +1,10 @@
 package com.example.catastrophecompass.UILayer.HQOrganizer;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
+
+import com.example.catastrophecompass.DataLayer.FBRepository.OrganizeTrucksFBRepo;
 
 import javax.inject.Inject;
 
@@ -11,20 +15,21 @@ public class OrganizeTrucksVM extends ViewModel {
 
     private OrganizeTrucksFBRepo organizeTrucksFBRepo;
 
-
-
     @Inject
     public OrganizeTrucksVM(OrganizeTrucksFBRepo organizeTrucksFBRepo) {
         this.organizeTrucksFBRepo = organizeTrucksFBRepo;
     }
     public void getAvailableDrivers ( OrganizeTrucksInterface organizeTrucksInterface, String organizationName){
+        Log.d("OrganizeTrucksVM", "getAvailableDrivers() called");
         organizeTrucksFBRepo.getAvailableDrivers(organizeTrucksInterface,organizationName);
     }
     public boolean reassignGET (String driverName) {
+        Log.d("OrganizeTrucksVM", "reassignGET() called");
        return organizeTrucksFBRepo.reassignGET(driverName);
     }
     public boolean reassignDROP (String driverName) {
-        return organizeTrucksFBRepo.reassignDROP(driverName);
+        Log.d("OrganizeTrucksVM", "reassignDrop() called");
+        return organizeTrucksFBRepo.reassignDrop(driverName);
     }
 
 

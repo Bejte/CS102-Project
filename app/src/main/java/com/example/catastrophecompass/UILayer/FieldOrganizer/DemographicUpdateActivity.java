@@ -6,24 +6,16 @@ import android.os.Bundle;
 
 import com.example.catastrophecompass.DataLayer.Model.DemographicInfo;
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.UpdateDemographicsAdapter;
 
 
 import android.widget.Button;
 
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.Arrays;
-import java.util.List;
-
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import androidx.appcompat.app.AppCompatActivity;
 
-public class DemographicUpdateActivity extends AppCompatActivity implements demographicInterface {
+public class DemographicUpdateActivity extends AppCompatActivity implements DemographicInterface {
     private EditText male08EditText;
     private EditText female08EditText;
     private EditText male814EditText;
@@ -91,7 +83,7 @@ public class DemographicUpdateActivity extends AppCompatActivity implements demo
     }
 
     @Override
-    public void getDemographicInfo(demographicInterface demoInt) {
+    public void getDemographicInfo(DemographicInterface demoInt) {
         // Implementation for the demographicInterface
     }
 }

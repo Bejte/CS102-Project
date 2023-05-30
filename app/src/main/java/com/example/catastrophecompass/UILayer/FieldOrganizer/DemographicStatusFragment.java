@@ -15,34 +15,13 @@ import android.view.ViewGroup;
 
 import com.example.catastrophecompass.R;
 
-import android.graphics.Color;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-
-import java.util.ArrayList;
-
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.catastrophecompass.R;
-
-public class DemographicStatusFragment extends Fragment implements demographicInterface, housingInterface {
+public class DemographicStatusFragment extends Fragment implements DemographicInterface, HousingInterface {
     private DemographicVM DVM;
     private ActivityResultLauncher<Intent> demographicUpdateActivityLauncher;
     private ActivityResultLauncher<Intent> housingUpdateActivityLauncher;
@@ -99,12 +78,12 @@ public class DemographicStatusFragment extends Fragment implements demographicIn
     }
 
     @Override
-    public void getDemographicInfo(demographicInterface demoint) {
+    public void getDemographicInfo(DemographicInterface demoint) {
         DVM.getDemographicInfo(this);
     }
 
     @Override
-    public void getHousingInfo(housingInterface houseint) {
+    public void getHousingInfo(HousingInterface houseint) {
         DVM.getHousingInfo(this);
     }
 }

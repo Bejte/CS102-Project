@@ -8,10 +8,10 @@ public class TeamInfo {
 
     @PrimaryKey
     private String teamName;
-    private String teamDescription, TeamLeaderName, areaInfo, foodInfo, location;
+    private String teamDescription, TeamLeaderName, areaInfo, foodInfo, location, url;
     private VolunteerInfo volunteerInfo;
 
-    public TeamInfo(String teamName, String teamDescription, String teamLeaderName, String areaInfo, String foodInfo, String location, VolunteerInfo volunteerInfo) {
+    public TeamInfo(String teamName, String teamDescription, String teamLeaderName, String areaInfo, String foodInfo, String location, VolunteerInfo volunteerInfo, String url) {
         this.teamName = teamName;
         this.teamDescription = teamDescription;
         TeamLeaderName = teamLeaderName;
@@ -19,6 +19,7 @@ public class TeamInfo {
         this.foodInfo = foodInfo;
         this.location = location;
         this.volunteerInfo = volunteerInfo;
+        this.url = url;
     }
 
     public TeamInfo() {
@@ -78,5 +79,13 @@ public class TeamInfo {
 
     public void setVolunteerInfo(VolunteerInfo volunteerInfo) {
         this.volunteerInfo = volunteerInfo;
+    }
+
+    public String getUrl(){
+        return this.url;
+    }
+
+    public void setUrl(String url){
+        this.url = url;
     }
 }

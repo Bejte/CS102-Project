@@ -4,29 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.catastrophecompass.DataLayer.Model.DemographicInfo;
 import com.example.catastrophecompass.DataLayer.Model.HousingInfo;
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.HousingItemAdapter;
 
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Editable;
-import android.util.Log;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import androidx.appcompat.app.AppCompatActivity;
 
-public class HousingUpdateActivity extends AppCompatActivity implements housingInterface {
+public class HousingUpdateActivity extends AppCompatActivity implements HousingInterface {
     private EditText noHouseEditText;
     private EditText ContainerEditText;
     private EditText HasHouseEditText;
@@ -79,7 +66,7 @@ public class HousingUpdateActivity extends AppCompatActivity implements housingI
     }
 
     @Override
-    public void getHousingInfo(housingInterface houseInt) {
+    public void getHousingInfo(HousingInterface houseInt) {
         // Implementation for the housingInterface
     }
 }
