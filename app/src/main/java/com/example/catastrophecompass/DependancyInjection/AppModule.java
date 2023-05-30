@@ -1,10 +1,6 @@
 package com.example.catastrophecompass.DependancyInjection;
 
 
-import android.content.Context;
-
-import androidx.room.Room;
-
 import com.example.catastrophecompass.DataLayer.Dao.ChatActivityDao;
 import com.example.catastrophecompass.DataLayer.Dao.ChatFragmentDao;
 import com.example.catastrophecompass.DataLayer.Dao.CurrentUserDao;
@@ -13,11 +9,16 @@ import com.example.catastrophecompass.DataLayer.Dao.MissionDao;
 import com.example.catastrophecompass.DataLayer.Dao.TLJobLocalDao;
 import com.example.catastrophecompass.DataLayer.Dao.VIBDao;
 import com.example.catastrophecompass.DataLayer.LocalDB;
+import com.example.catastrophecompass.DataLayer.LocalRepository.ChatActivityLocalRepo;
+import com.example.catastrophecompass.DataLayer.LocalRepository.ChatFragmentLocalRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.FieldOrganizationInfoLocalRepo;
+import com.example.catastrophecompass.DataLayer.LocalRepository.LogisticMissionLocalRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.TLJobLocalRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.VIBAreaLocalRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.VIBLocalRepo;
+import com.example.catastrophecompass.DataLayer.Model.ChatItem;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -31,15 +32,7 @@ import dagger.hilt.components.SingletonComponent;
 public class AppModule {
 
 
-    // DI FOR LocalDB & DAOs
-
-    @Provides
-    @Singleton
-    public LocalDB provideDB(@ApplicationContext Context context) {
-        return Room.databaseBuilder(context.getApplicationContext(),
-                LocalDB.class, "LocalDB").fallbackToDestructiveMigration()
-                .build();
-    }
+    // DI FOR DAOs
 
     @Provides
     @Singleton
@@ -108,6 +101,26 @@ public class AppModule {
     public FieldOrganizationInfoLocalRepo provideFieldOrganizationInfoLocalRepo(LocalDB db) {
         return new FieldOrganizationInfoLocalRepo(db);
     }
+
+    @Provides
+    @Singleton
+    public LogisticMissionLocalRepo provideLogisticMissionLocalRepo(LocalDB db) {
+        return new LogisticMissionLocalRepo(db);
+    }
+
+    @Provides
+    @Singleton
+    public ChatFragmentLocalRepo provideChatFragmentLocalRepo(LocalDB db) {
+        return new ChatFragmentLocalRepo(db);
+    }
+
+    @Provides
+    @Singleton
+    public ChatActivityLocalRepo provideChatActivityLocalRepo(ChatPictureLocalStorage pictureLocal, LocalDB db) {
+        return new ChatActivityLocalRepo(pictureLocal, db);
+    }
+
+
 
 
 

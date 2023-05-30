@@ -13,7 +13,7 @@ public class ChatItem {
     @PrimaryKey
     private int time;
 
-    private String message, pictureUrl, sender;
+    private String message, pictureUrl, sender, picturePath;
 
     @Ignore
     private Uri pictureAsUri;
@@ -97,5 +97,13 @@ public class ChatItem {
 
     public void setPicture(boolean picture) {
         isPicture = picture;
+    }
+
+    public String getPicturePath() {
+        return picturePath;
+    }
+
+    public void setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
     }
 }

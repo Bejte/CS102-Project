@@ -13,7 +13,7 @@
         android:text="Label"
         android:textSize="18sp"
         android:fontFamily="sans-serif"
-        android:textColor="@color/colorPrimary" />
+       />
 
     <EditText
         android:id="@+id/edt_enter_value_de_up_it"
@@ -22,6 +22,6 @@
         android:inputType="text"
         android:hint="Enter value"
         android:fontFamily="sans-serif"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary" />
+
+        />
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.catastrophecompass.UILayer.Common;
+package com.example.catastrophecompass.UILayer.OutsideVolunteer;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.room.Insert;
 
 import com.example.catastrophecompass.DataLayer.Model.WorkplaceWeather;
+import com.example.catastrophecompass.DataLayer.RemoteDataRepository.WeatherRepository.WeatherAPI;
 
 import javax.inject.Inject;
 
@@ -24,15 +25,14 @@ import io.reactivex.rxjava3.disposables.Disposable;
 @HiltViewModel
 public class OVWorkforceVM extends ViewModel {
 
-    private UC uc;
-    private REPO FBRepo;
-    private WorkplaceWeather wp;
+    private WeatherAPI weatherAPI;
 
     @Inject
-    public OVWorkforceVM(UC uc) {
-        this.uc = uc;
+    public OVWorkforceVM(WeatherAPI weatherAPI) {
+        this.weatherAPI = weatherAPI;
     }
+
     public WorkplaceWeather getWeatherInfo(String location){
-        return FBRepo.getWeatherInfo(location);
+        return weatherAPI.getWeatherInfo(location);
     }
 }

@@ -2,6 +2,7 @@ package com.example.catastrophecompass.DomainLayer.Domain;
 
 import android.util.Log;
 
+import com.example.catastrophecompass.DataLayer.LocalRepository.FieldOrganizationInfoLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.DemographicInfo;
 import com.example.catastrophecompass.DataLayer.Model.HousingInfo;
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
@@ -12,11 +13,11 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subscribers.DisposableSubscriber;
 
 public class FieldOrganizationDomain {
-    private FieldOrganizationLocalRepo localRepo;
+    private FieldOrganizationInfoLocalRepo localRepo;
     private FieldOrganizationFBRepo FBRepo;
     private VectorDatabaseRepo vectorRepo;
 
-    public FieldOrganizationDomain(FieldOrganizationLocalRepo localRepo, FieldOrganizationFBRepo FBRepo, VectorDatabaseRepo vectorRepo) {
+    public FieldOrganizationDomain(FieldOrganizationInfoLocalRepo localRepo, FieldOrganizationFBRepo FBRepo, VectorDatabaseRepo vectorRepo) {
         this.localRepo = localRepo;
         this.FBRepo = FBRepo;
         this.vectorRepo = vectorRepo;

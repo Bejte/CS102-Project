@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+       android:name=".DependancyInjection.App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,66 +13,66 @@
         android:theme="@style/Theme.CatastropheCompass"
         tools:targetApi="31">
         <activity
-            android:name=".RecordAidRequestTruckLogisticsActivity"
+            android:name=".UILayer.TeamOrganizor.RecordAidRequestTruckLogisticsActivity"
             android:exported="false" />
         <activity
-            android:name=".AddEditMemberActivity"
+            android:name=".UILayer.HQOrganizer.Admin.AddEditMemberActivity"
             android:exported="false" />
         <activity
-            android:name=".AddEditOrganizationActivity"
+            android:name=".UILayer.HQOrganizer.Admin.AddEditOrganizationActivity"
             android:exported="false" />
         <activity
-            android:name=".AssignToGetActivity"
+            android:name=".UILayer.HQOrganizer.AssignToGetActivity"
             android:exported="false" />
         <activity
-            android:name=".HQOrganizerMainActivity"
+            android:name=".UILayer.HQOrganizer.HQOrganizerMainActivity"
             android:exported="false" />
         <activity
-            android:name=".UpdateAidStatusActivity"
+            android:name=".UILayer.FieldOrganizer.UpdateAidStatusActivity"
             android:exported="false" />
         <activity
-            android:name=".HousingUpdateActivity"
+            android:name=".UILayer.FieldOrganizer.HousingUpdateActivity"
             android:exported="false" />
         <activity
-            android:name=".DemographicUpdateActivity"
+            android:name=".UILayer.FieldOrganizer.DemographicUpdateActivity"
             android:exported="false" />
         <activity
-            android:name=".FieldOrganizorMainActivity"
+            android:name=".UILayer.FieldOrganizer.FieldOrganizerMainActivity"
             android:exported="false" />
         <activity
-            android:name=".TeamOrganizorAddEditActivity"
+            android:name=".UILayer.TeamOrganizor.TeamOrganizorAddEditActivity"
             android:exported="false" />
         <activity
-            android:name=".TeamOrganizorMainActivity"
+            android:name=".UILayer.TeamOrganizor.TeamOrganizorMainActivity"
             android:exported="false" />
         <activity
-            android:name=".TeamLeaderMainActivity"
+            android:name=".UILayer.TeamLeader.TeamLeaderMainActivity"
             android:exported="false" />
         <activity
-            android:name=".LogisticsMainActivity"
+            android:name=".UILayer.Logistics.LogisticsMainActivity"
             android:exported="false" />
         <activity
-            android:name=".ChatFragment"
+            android:name=".UILayer.Common.Chat.ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".VIBHomeActivity"
+            android:name=".UILayer.VolunteerInBase.VIBHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".VIBStartActivity"
+            android:name=".UILayer.VolunteerInBase.VIBStartActivity"
             android:exported="false"
             android:label="@string/title_activity_vibstart"
             android:theme="@style/Theme.CatastropheCompass.NoActionBar" />
         <activity
-            android:name=".OVWorkforceActivity"
+            android:name=".UILayer.OutsideVolunteer.OVWorkforceActivity"
             android:exported="false" />
         <activity
-            android:name=".OVAidActivity"
+            android:name=".UILayer.OutsideVolunteer.OVAidActivity"
             android:exported="false" />
         <activity
-            android:name=".OVMainActivity"
+            android:name=".UILayer.OutsideVolunteer.OVMainActivity"
             android:exported="false" />
         <activity
-            android:name=".OVFirstActivity"
+            android:name=".UILayer.OutsideVolunteer.OVFirstActivity"
             android:exported="false" />
         <activity
             android:name=".UILayer.Login.ManagerLoginActivity"

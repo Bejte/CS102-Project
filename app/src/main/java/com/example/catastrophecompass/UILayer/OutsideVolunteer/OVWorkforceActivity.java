@@ -6,19 +6,11 @@ import android.os.Bundle;
 
 import com.example.catastrophecompass.DataLayer.Model.WorkplaceWeather;
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.OVWorkforceVM;
 import com.example.catastrophecompass.UILayer.VolunteerInBase.VIBStartActivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.util.HashMap;
 
 public class OVWorkforceActivity extends AppCompatActivity {
 

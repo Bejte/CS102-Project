@@ -15,8 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.catastrophecompass.R;
 import com.example.catastrophecompass.UILayer.Common.AreaFragment;
 import com.example.catastrophecompass.UILayer.Common.FoodAdapter;
-import com.example.catastrophecompass.UILayer.Common.VIBAreaInterface;
-import com.example.catastrophecompass.UILayer.Common.VIBAreaVM;
 
 import java.util.ArrayList;
 

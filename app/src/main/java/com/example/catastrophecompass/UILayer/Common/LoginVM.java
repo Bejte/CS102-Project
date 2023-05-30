@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.lifecycle.ViewModel;
 import androidx.room.Insert;
 
+import com.example.catastrophecompass.DomainLayer.Domain.LoginDomain;
+
 import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
@@ -18,14 +20,18 @@ import io.reactivex.rxjava3.disposables.Disposable;
 @HiltViewModel
 public class LoginVM extends ViewModel {
 
-    private UC uc;
-    private REPO FBRepo;
+    private LoginDomain loginDomain;
 
     @Inject
-    public LoginVM(UC uc) {
-        this.uc = uc;
+    public LoginVM(LoginDomain loginDomain) {
+        this.loginDomain = loginDomain;
     }
-    public void IsLoggedIn(){
-        FBRepo.IsLoggedIn();
+
+    public boolean IsLoggedIn(){
+        return loginDomain.isLoggedIn();
+    }
+
+    public void killDataFlow(){
+        loginDomain.killDataFlow();
     }
 }

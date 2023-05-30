@@ -44,7 +44,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:inputType="text"
-                        android:textAppearance="@style/TextAppearance.MyApp.EditTextHint"
+
 
                         android:textSize="18sp" />
                 </LinearLayout>
@@ -53,8 +53,15 @@
                     android:id="@+id/btn_truckAssaign_or_tr_it"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/button_color_soft"
+                    android:backgroundTint="@color/button_color"
                     android:text="Assign"
+                    android:textSize="18sp" />
+                <Button
+                    android:id="@+id/btn_truckDrop_or_tr_it"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/button_color_soft"
+                    android:text="Drop"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -82,7 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:inputType="text"
-                        android:textAppearance="@style/TextAppearance.MyApp.EditTextHint"
+
 
                         android:textSize="18sp" />
                 </LinearLayout>
@@ -104,7 +111,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:inputType="text"
-                        android:textAppearance="@style/TextAppearance.MyApp.EditTextHint"
+
 
                         android:textSize="18sp" />
                 </LinearLayout>

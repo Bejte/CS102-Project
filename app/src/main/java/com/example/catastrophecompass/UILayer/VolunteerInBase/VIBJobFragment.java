@@ -15,12 +15,8 @@ import com.example.catastrophecompass.R;
  * Use the {@link VIBJobFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.graphics.Color;
 import android.widget.Button;
 
-import com.example.catastrophecompass.UILayer.Common.VIBJobInfoVM;
 import com.example.catastrophecompass.UILayer.Login.LoginOptionsActivity;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
@@ -28,19 +24,9 @@ import com.example.myapplication.R;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import androidx.fragment.app.Fragment;
+
 import androidx.lifecycle.ViewModelProvider;
 
 public class VIBJobFragment extends Fragment {

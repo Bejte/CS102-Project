@@ -2,9 +2,11 @@ package com.example.catastrophecompass.DomainLayer.Domain;
 
 import android.util.Log;
 
+import com.example.catastrophecompass.DataLayer.FBRepository.VIBFBRepo;
+import com.example.catastrophecompass.DataLayer.LocalRepository.VIBLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.Credentials;
 import com.example.catastrophecompass.DataLayer.Model.VIBJobInfo;
-import com.example.catastrophecompass.UILayer.Common.VIBJobInterface;
+import com.example.catastrophecompass.UILayer.VolunteerInBase.VIBJobInterface;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -24,7 +26,7 @@ public class VIBJobDomain {
     }
 
     public void attachListeners(Credentials credentials){
-        FBRepo.attachToVolunteerList(credentials.getCity(), credentials.getPlace(), credentials.getId());
+        FBRepo.attachToVolunteerList(credentials.getCity(), credentials.getPlace(), credentials.getId() + "");
     }
 
     public void getJobInfo(VIBJobInterface vibJobInterface){

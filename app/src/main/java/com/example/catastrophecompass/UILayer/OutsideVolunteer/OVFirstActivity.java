@@ -5,16 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.ChooseCityViewModel;
+import com.example.catastrophecompass.UILayer.Common.ChooseCityVM;
 import com.example.catastrophecompass.UILayer.Common.CityAdapter;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -23,7 +20,7 @@ import java.util.ArrayList;
 import androidx.appcompat.app.AlertDialog;
 public class OVFirstActivity extends AppCompatActivity {
 
-    private ChooseCityViewModel viewModel;
+    private ChooseCityVM viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
