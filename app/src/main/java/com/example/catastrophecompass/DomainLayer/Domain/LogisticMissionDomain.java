@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.catastrophecompass.DataLayer.LocalRepository.LogisticMissionLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
+import com.example.catastrophecompass.UILayer.Logistics.LogisticMissionInterface;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;

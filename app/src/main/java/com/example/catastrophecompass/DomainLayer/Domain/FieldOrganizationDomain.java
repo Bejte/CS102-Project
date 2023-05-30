@@ -2,12 +2,17 @@ package com.example.catastrophecompass.DomainLayer.Domain;
 
 import android.util.Log;
 
+import com.example.catastrophecompass.DataLayer.FBRepository.FieldOrganizatonInfoFBRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.FieldOrganizationInfoLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.DemographicInfo;
 import com.example.catastrophecompass.DataLayer.Model.HousingInfo;
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.User;
 import com.example.catastrophecompass.RemoteDataRepository.VectorDatabaseRepo.VectorDatabaseRepo;
+import com.example.catastrophecompass.UILayer.FieldOrganizer.ArrivingInterface;
+import com.example.catastrophecompass.UILayer.FieldOrganizer.DemographicInterface;
+import com.example.catastrophecompass.UILayer.FieldOrganizer.HousingInterface;
+import com.example.catastrophecompass.UILayer.FieldOrganizer.InventoryInterface;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -15,10 +20,10 @@ import io.reactivex.rxjava3.subscribers.DisposableSubscriber;
 
 public class FieldOrganizationDomain {
     private FieldOrganizationInfoLocalRepo localRepo;
-    private FieldOrganizationInfoFBRepo FBRepo;
+    private FieldOrganizatonInfoFBRepo FBRepo;
     private VectorDatabaseRepo vectorRepo;
 
-    public FieldOrganizationDomain(FieldOrganizationInfoLocalRepo localRepo, FieldOrganizationInfoFBRepo FBRepo, VectorDatabaseRepo vectorRepo) {
+    public FieldOrganizationDomain(FieldOrganizationInfoLocalRepo localRepo, FieldOrganizatonInfoFBRepo FBRepo, VectorDatabaseRepo vectorRepo) {
         this.localRepo = localRepo;
         this.FBRepo = FBRepo;
         this.vectorRepo = vectorRepo;
@@ -102,10 +107,10 @@ public class FieldOrganizationDomain {
     public void getArrivingInfo(ArrivingInterface arrivingInterface){
         localRepo.getArrivingInfo()
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new DisposableSubscriber<Inventory>() {
+                .subscribe(new DisposableSubscriber<InventoryList>() {
                     @Override
-                    public void onNext(Inventory inventory) {
-                        arrivingInterface.setDisplay(inventory);
+                    public void onNext(InventoryList inventoryList) {
+                        arrivingInterface.setDisplay(inventoryList);
                         Log.d("FieldOrganizationDomain", "getArrivingInfo() onNext() called");
                     }
 
@@ -122,13 +127,13 @@ public class FieldOrganizationDomain {
                 });
     }
 
-    public boolean updateAidStatusInfo(InventoryList inventory){
-        if (FBRepo.updateAidStatusInfo(inventory))
+    public boolean updateAidStatusInfo(InventoryList inventoryList){
+        if (FBRepo.updateAidStatusInfo(inventoryList, FieldOrganizerCommon.organizationName))
         {
-            if (vectorRepo.updateAidStatusInfo(inventory, FieldOrganizerCommon.organizationName))
+            if (vectorRepo.updateAidStatusInfo(inventoryList, FieldOrganizerCommon.organizationName))
                 return true;
             else
-                FBRepo.revertChanges(inventory);
+                FBRepo.revertChanges(inventoryList); // TODO change the argument in FBRepo
         }
         return false;
     }

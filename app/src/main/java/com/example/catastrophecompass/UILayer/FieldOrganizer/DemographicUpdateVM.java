@@ -1,25 +1,28 @@
 package com.example.catastrophecompass.UILayer.FieldOrganizer;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
+import com.example.catastrophecompass.DataLayer.FBRepository.FieldOrganizatonInfoFBRepo;
 import com.example.catastrophecompass.DataLayer.Model.DemographicInfo;
 
-@HiltViewModel
-public class DemographicUpdateVM extends ViewModel implements demographicInterface {
+import javax.inject.Inject;
 
-    private FieldOrganizationInfoFBRepo fo_info_repo;
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
+public class DemographicUpdateVM extends ViewModel {
+
+    private FieldOrganizatonInfoFBRepo FBRepo;
 
     @Inject
-    public DemographicUpdateVM(FieldOrganizationInfoFBRepo fo_info_repo) {
-        this.fo_info_repo = fo_info_repo;
+    public DemographicUpdateVM(FieldOrganizatonInfoFBRepo FBRepo) {
+        this.FBRepo = FBRepo;
     }
 
-    public void updateDemographicInfo(DemographicInfo demoInfo) {
-        fo_info_repo.updateDemographicInfo(demoInfo);
-    }
-
-    @Override
-    public void getDemographicInfo(demographicInterface demoint) {
-        fo_info_repo.getDemographicInfo(this);
+    public boolean updateDemographicInfo(DemographicInfo demoInfo) {
+        Log.d("DemographicUpdateVM", "updateDemographicInfo() called");
+        return FBRepo.updateDemographicInfo(demoInfo, FieldOrganizationCommon.organizationName);
     }
 }

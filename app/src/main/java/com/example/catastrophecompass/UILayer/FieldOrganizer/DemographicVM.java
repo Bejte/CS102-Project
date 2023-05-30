@@ -1,32 +1,37 @@
 package com.example.catastrophecompass.UILayer.FieldOrganizer;
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
 import com.example.catastrophecompass.DataLayer.Model.User;
+import com.example.catastrophecompass.DomainLayer.Domain.FieldOrganizationDomain;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
-public class DemographicVM extends ViewModel implements demographicInterface {
+public class DemographicVM extends ViewModel {
 
-    private FieldOrganizationInfoDomain fo_info_do;
+    private FieldOrganizationDomain domain;
 
     @Inject
-    public DemographicVM(FieldOrganizationInfoDomain fo_info_do) {
-        this.fo_info_do = fo_info_do;
+    public DemographicVM(FieldOrganizationDomain domain) {
+        this.domain = domain;
     }
 
     public void setupDatabaseConnection(User user) {
-        fo_info_do.setupDatabaseConnection(user);
+        Log.d("DemographicVM", "setupDatabaseConnection() called");
+        domain.setupDatabaseConnection(user);
     }
 
-    @Override
-    public void getDemographicInfo(demographicInterface demoint) {
-        fo_info_do.getDemographicInfo(this);
+    public void getDemographicInfo(DemographicInterface demographicInterface) {
+        Log.d("DemographicVM", "getDemographicInfo() called");
+        domain.getDemographicInfo(demographicInterface);
     }
 
-    public void getHousingInfo(housingInterface houseint) {
-        fo_info_do.getHousingInfo(houseint);
+    public void getHousingInfo(HousingInterface housingInterface) {
+        Log.d("DemographicVM", "getHousingInfo() called");
+        domain.getHousingInfo(housingInterface);
     }
 }
