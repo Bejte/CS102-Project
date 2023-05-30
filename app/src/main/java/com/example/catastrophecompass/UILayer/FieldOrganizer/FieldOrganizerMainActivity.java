@@ -1,6 +1,8 @@
 package com.example.catastrophecompass.UILayer.FieldOrganizer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
@@ -12,86 +14,65 @@ import com.example.catastrophecompass.R;
 
 import android.content.Intent;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.catastrophecompass.UILayer.Common.Chat.ChatActivity;
+import com.example.catastrophecompass.UILayer.Common.Chat.PeopleFragment;
+import com.example.catastrophecompass.UILayer.OutsideVolunteer.OVMainActivity;
 import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class FieldOrganizerMainActivity extends AppCompatActivity {
-    private Button updateDemographicsButton;
-    private BottomAppBar bottomAppBar;
-    private ImageButton icon1, icon2, icon3, icon4, icon5;
-    private Button updateHousingButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_field_organizor_main);
-        TextView headline = findViewById(R.id.headline);
-        headline.setText("FIELD ORGANIZER");
 
-        updateDemographicsButton = findViewById(R.id.btn_update_ac_fi_or_ma_ac);
+        BottomNavigationView bottomNav = findViewById(R.id.app_bar_logistic);
+        bottomNav.setOnItemSelectedListener(navListener);
 
-        updateDemographicsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, DemographicUpdateActivity.class);
-            startActivity(intent);
-        });
-        updateHousingButton = findViewById(R.id.btn_updatebig_housing_chart_ac_fi_or_ma_ac);
-
-        updateHousingButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, DemographicUpdateActivity.class);
-            startActivity(intent);
-        });
-
-        bottomAppBar = findViewById(R.id.bar_field_organizer_ac_fi_or_ma_ac);
-        icon1 = findViewById(R.id.ic_icon1_of_appbar_fieldorga_main_ac);
-        icon2 = findViewById(R.id.ic_icon2_of_appbar_fieldorga_main_ac);
-        icon3 = findViewById(R.id.ic_icon3_of_appbar_fieldorga_main_ac);
-        icon4 = findViewById(R.id.ic_icon4_of_appbar_fieldorga_main_ac);
-        icon5 = findViewById(R.id.ic_icon5_of_appbar_fieldorga_main_ac);
-
-        icon1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(FieldOrganizerMainActivity.this, ChatActivity.class);
-                startActivity(intent);
-            }
-        });
-        icon2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(FieldOrganizerMainActivity.this, PeopleActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        icon3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //// Intent intent = new Intent(FieldOrganizerMain.this, ThirdActivity.class);
-                // startActivity(intent);
-            }
-        });
-
-        icon4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Intent intent = new Intent(FieldOrganizerMain.this, FourthActivity.class);
-                //startActivity(intent);
-            }
-        });
-
-        icon5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Intent intent = new Intent(FieldOrganizerMain.this, FifthActivity.class);
-                //  startActivity(intent);
-            }
-        });
-
-        // Set up the remaining icons with their respective listeners here
+        // Start with the first fragment
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_field_organizer, new DemographicStatusFragment()).commit();
     }
+
+    private BottomNavigationView.OnItemSelectedListener navListener =
+            new BottomNavigationView.OnItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Fragment selectedFragment = null;
+
+                    switch (item.getItemId()) {
+                        case R.id.fieldorg_bar_demog_icon:
+                            selectedFragment = new DemographicStatusFragment();
+                            break;
+                        case R.id.fieldorg_bar_aid_icon:
+                            Intent intent = new Intent(FieldOrganizerMainActivity.this, AidStatusActivity.class);
+                            startActivity(intent);
+                            break;
+                        case R.id.fieldorg_bar_chat_icon:
+                            intent = new Intent(FieldOrganizerMainActivity.this, ChatActivity.class);
+                            startActivity(intent); // Use Fragment here
+                            break;
+                        case R.id.fieldorg_bar_people_icon:
+                            selectedFragment = new PeopleFragment();
+                            break;
+                        case R.id.fieldorg_bar_help_icon:
+                          intent = new Intent(FieldOrganizerMainActivity.this, OVMainActivity.class);
+                            startActivity(intent);
+                            return true;
+                    }
+
+                    // If selectedFragment is not null, replace the fragment
+                    if (selectedFragment != null) {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_field_organizer, selectedFragment).commit();
+                    }
+
+                    return true;
+                }
+            };
 }

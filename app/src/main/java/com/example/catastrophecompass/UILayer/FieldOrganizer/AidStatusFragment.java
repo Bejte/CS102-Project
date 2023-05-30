@@ -48,54 +48,55 @@ import com.github.mikephil.charting.data.BarEntry;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import androidx.appcompat.app.AppCompatActivity;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import androidx.fragment.app.Fragment;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
+
 public class AidStatusFragment extends Fragment {
 
-
-    private HorizontalBarChart chart;
+    private HorizontalBarChart aidStatsChart;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_aid_stats, container, false);
-        chart = view.findViewById(R.id.aid_stats_chart);
 
-        setData();
+        aidStatsChart = view.findViewById(R.id.aid_stats_chart);
+        Button updateButton = view.findViewById(R.id.button);
+
+        // Set up your chart here
+        // ...
+
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an Intent to start UpdateAidStatusActivity
+                Intent intent = new Intent(getActivity(), UpdateAidStatusActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
-    }
-
-    private void setData(){
-        ArrayList<BarEntry> dayLeft = new ArrayList<>();
-        dayLeft.add(new BarEntry(0, 8));
-        dayLeft.add(new BarEntry(1, 3));
-        dayLeft.add(new BarEntry(2, 7));
-        dayLeft.add(new BarEntry(3, 5));
-
-        BarDataSet barDataSet = new BarDataSet(dayLeft, "INVENTORY");
-        barDataSet.setColor(Color.BLUE);
-
-        BarData data = new BarData(barDataSet);
-        chart.setData(data);
-
-        String[] inventory = new String[] {"Water", "Food Supply", "Hygiene Needs", "Energy"};
-        XAxis xAxis = chart.getXAxis();
-        chart.getAxisLeft().setAxisMinimum(0);
-
-        chart.getDescription().setEnabled(false);
-        chart.getLegend().setEnabled(false);
-        chart.getAxisLeft().setAxisMinimum(0f);
-        chart.getAxisRight().setAxisMinimum(0f);
-        chart.getXAxis().setDrawGridLines(false);
-        chart.getAxisLeft().setDrawGridLines(false);
-        chart.getAxisRight().setDrawGridLines(false);
-
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        setData();
     }
 }
