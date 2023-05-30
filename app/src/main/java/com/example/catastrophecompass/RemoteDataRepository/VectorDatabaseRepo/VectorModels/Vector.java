@@ -16,6 +16,9 @@ public class Vector {
         this.values = values;
     }
 
+    public Vector() {
+    }
+
     public String getId() {
         return id;
     }

@@ -6,9 +6,16 @@ import android.util.Log;
 import com.example.catastrophecompass.DataLayer.Model.FieldOrganization;
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
+import com.example.catastrophecompass.DataLayer.RemoteDataRepository.CloudFunctionRepo.CloudRestApi;
 import com.example.catastrophecompass.RemoteDataRepository.VectorDatabaseRepo.VectorModels.PineconeUpsertFailedResponse;
 import com.example.catastrophecompass.RemoteDataRepository.VectorDatabaseRepo.VectorModels.PineconeUpsertSucceedResponse;
+import com.example.catastrophecompass.RemoteDataRepository.VectorDatabaseRepo.VectorModels.Vector;
 import com.example.catastrophecompass.RemoteDataRepository.VectorDatabaseRepo.VectorModels.VectorUpsertRequest;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -18,18 +25,21 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class VectorDatabaseRepo {
 
-    VectorDatabaseApiService apiService;
+    VectorDatabaseApiService vectorDatabaseApiService;
+    CloudRestApi cloudRestApi;
 
-    public VectorDatabaseRepo() {
-        this.apiService = RetrofitClientForVectorDB.createService();
+    @Inject
+    public VectorDatabaseRepo(CloudRestApi cloudRestApi) {
+        this.vectorDatabaseApiService = RetrofitClientForVectorDB.createService();
+        this.cloudRestApi = cloudRestApi;
     }
 
     @SuppressLint("CheckResult")
-    public boolean updateAidStatusInfo(InventoryList list) {
-        VectorUpsertRequest request = parseRequest(list);
+    public boolean updateAidStatusInfo(InventoryList list, String organizationName) {
+        VectorUpsertRequest request = parseRequest(list, organizationName);
         final boolean[] status = {false};
 
-        apiService.upsertVectors(request)
+        vectorDatabaseApiService.upsertVectors(request)
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleObserver<Object>() {
 
@@ -62,9 +72,34 @@ public class VectorDatabaseRepo {
         return status[0];
     }
 
-    public VectorUpsertRequest parseRequest(InventoryList list) {
-        return null;
-        // ToDo
+    public VectorUpsertRequest parseRequest(InventoryList list, String name) {
+
+        // create Vector object
+        Vector vector = new Vector();
+
+        List<Float> values = new ArrayList<>(8);
+        values.add( (float) list.getFood() );
+        values.add( (float) list.getHeater() );
+        values.add( (float) list.getManCloth() );
+        values.add( (float) list.getWomanCloth() );
+        values.add( (float) list.getChildCloth() );
+        values.add( (float) list.getHygene() );
+        values.add( (float) list.getKitchenMaterial() );
+        values.add( (float) list.getPowerbank() );
+
+        vector.setValues(values);
+        vector.setId(name);
+
+        // create request
+
+        VectorUpsertRequest request = new VectorUpsertRequest();
+
+        List<Vector> vectors = new ArrayList<>(1);
+        vectors.add(vector);
+
+        request.setVectors(vectors);
+
+        return request;
     }
 
     public boolean syncVectorDB(LogisticInfo driver, FieldOrganization dropPlace, InventoryList fieldList) {
@@ -94,5 +129,12 @@ public class VectorDatabaseRepo {
 
         int powerBank = fieldList.getPowerbank() - driver.getInventoryList().getPowerbank();
         newList.setPowerbank(powerBank);
+
+        updateAidStatusInfo(newList, dropPlace.getName());
+        Log.d("VectorDatabaseRepo", "syncVectorDB: it reaches to the statement after of updateAidStatusInfo, sequential nature works properly. ");
+
+        boolean status = cloudRestApi.decideDropPlace(driver.getInventoryList(), driver.getGetName());
+
+        return status;
     }
 }
