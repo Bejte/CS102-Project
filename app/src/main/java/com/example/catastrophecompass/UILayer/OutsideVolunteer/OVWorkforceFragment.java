@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 
 import com.example.catastrophecompass.DataLayer.Model.WItem;
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.OVWorkforceListVM;
 import com.example.catastrophecompass.UILayer.Common.WorkforceAdapter;
 import com.example.catastrophecompass.UILayer.Common.WorkforceItemAdapter;
 

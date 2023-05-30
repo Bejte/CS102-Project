@@ -7,7 +7,7 @@ import com.example.catastrophecompass.DataLayer.LocalRepository.VIBAreaLocalRepo
 import com.example.catastrophecompass.DataLayer.Model.VIBJobInfo;
 import com.example.catastrophecompass.DataLayer.Model.WorkplaceWeather;
 import com.example.catastrophecompass.DataLayer.RemoteDataRepository.WeatherRepository.WeatherAPI;
-import com.example.catastrophecompass.UILayer.Common.VIBAreaInterface;
+import com.example.catastrophecompass.UILayer.VolunteerInBase.VIBAreaInterface;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;

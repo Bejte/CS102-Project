@@ -1,4 +1,4 @@
-package com.example.catastrophecompass.UILayer.Common;
+package com.example.catastrophecompass.UILayer.VolunteerInBase;
 
 import androidx.lifecycle.ViewModel;
 

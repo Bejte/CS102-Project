@@ -1,4 +1,4 @@
-package com.example.catastrophecompass.UILayer.Common;
+package com.example.catastrophecompass.UILayer.VolunteerInBase;
 
 import com.example.catastrophecompass.DataLayer.Model.VIBJobInfo;
 

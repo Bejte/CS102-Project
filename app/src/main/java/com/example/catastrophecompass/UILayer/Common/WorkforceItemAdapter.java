@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.catastrophecompass.R;
+import com.example.catastrophecompass.UILayer.OutsideVolunteer.OVWorkforceListVM;
 
 public class WorkforceItemAdapter extends RecyclerView.Adapter<WorkforceItemAdapter.WorkforceViewHolder> {
     private List<WItem> wItemList;

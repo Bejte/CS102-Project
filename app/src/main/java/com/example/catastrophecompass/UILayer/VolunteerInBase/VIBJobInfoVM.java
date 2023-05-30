@@ -1,10 +1,10 @@
-package com.example.catastrophecompass.UILayer.Common;
+package com.example.catastrophecompass.UILayer.VolunteerInBase;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.catastrophecompass.DataLayer.Model.Credentials;
 import com.example.catastrophecompass.DomainLayer.Domain.VIBJobDomain;
+import com.example.catastrophecompass.UILayer.VolunteerInBase.VIBJobInterface;
 
 import javax.inject.Inject;
 
