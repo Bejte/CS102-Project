@@ -59,7 +59,6 @@ public class GeneralInfoFBRepo
     private void fetchTeamInformation(DataSnapshot teamSnapshot, VolunteerInfo volunteerInfo) {
         String teamName = teamSnapshot.getKey();
 
-        // Assuming the team information is stored under the "Teams" node
         DatabaseReference teamRef = FirebaseDatabase.getInstance().getReference("Teams")
                 .child(teamSnapshot.child("city").getValue(String.class))
                 .child(teamSnapshot.child("place").getValue(String.class))

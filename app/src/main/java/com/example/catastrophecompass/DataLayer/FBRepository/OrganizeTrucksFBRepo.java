@@ -49,8 +49,8 @@ public class OrganizeTrucksFBRepo {
         boolean[] deletionStatus = {false};
 
         String name  = driver.child("getName").getValue(String.class);
-        driver.child("getName").setValue(null);
-        driver.child("getAdress").setValue(null);
+        driver.child("getName").setValue("");
+        driver.child("getAdress").setValue("");
 
         DatabaseReference orgRef = FirebaseDatabase.getInstance().getReference("Organizations").child(name).child("arrivingTruckList").child(driverName);
 
@@ -77,7 +77,6 @@ public class OrganizeTrucksFBRepo {
 
     public boolean reassignDrop(String driverName)
     {
-        //TODO
         DatabaseReference driver = databaseRef.child(driverName);
         boolean[] status = new boolean[1];
         status[0] = false;
