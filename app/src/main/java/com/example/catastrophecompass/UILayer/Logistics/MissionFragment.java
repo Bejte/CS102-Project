@@ -10,57 +10,61 @@ import android.view.ViewGroup;
 
 import com.example.catastrophecompass.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MissionFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.viewModels;
+import androidx.lifecycle.ViewModelProvider;
+
+import dagger.hilt.android.AndroidEntryPoint;
+import your.package.name.R;
+
+@AndroidEntryPoint
 public class MissionFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public MissionFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MissionFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MissionFragment newInstance(String param1, String param2) {
-        MissionFragment fragment = new MissionFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private TextView logisticGet;
+    private CheckBox getCheckbox, dropCheckbox;
+    private LogisticMissionVM viewModel;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_mission, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Instantiate your ViewModel using the 'by viewModels()' Kotlin property delegate
+        viewModel = new ViewModelProvider(this).get(LogisticMissionVM.class);
+
+        logisticGet = view.findViewById(R.id.logistic_get);
+        getCheckbox = view.findViewById(R.id.getCheckbox);
+        dropCheckbox = view.findViewById(R.id.dropCheckbox);
+
+        viewModel.getLogisticInfo(new LogisticMissionInterface() {
+            logisticGet.setText(getAddressInfo());
+            //TO DO:
+        });
+
+        getCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                viewModel.getChecked(new LogisticMissionInterface() {
+                    // TO DO
+                });
+            }
+        });
+
+        dropCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                viewModel.dropClicked();
+            }
+        });
     }
 }

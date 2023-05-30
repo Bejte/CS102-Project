@@ -8,7 +8,13 @@ import android.os.Bundle;
 
 import com.example.catastrophecompass.DataLayer.Model.UserLogin;
 import com.example.catastrophecompass.R;
+import com.example.catastrophecompass.UILayer.Common.ManagerLoginVM;
 import com.example.catastrophecompass.UILayer.Common.ManagerLoginViewModel;
+import com.example.catastrophecompass.UILayer.FieldOrganizer.FieldOrganizerMainActivity;
+import com.example.catastrophecompass.UILayer.HQOrganizer.HQOrganizerMainActivity;
+import com.example.catastrophecompass.UILayer.Logistics.LogisticsMainActivity;
+import com.example.catastrophecompass.UILayer.TeamLeader.TeamLeaderMainActivity;
+import com.example.catastrophecompass.UILayer.TeamOrganizor.TeamOrganizorMainActivity;
 
 
 import android.view.View;
@@ -19,7 +25,7 @@ import android.widget.Toast;
 
 public class ManagerLoginActivity extends AppCompatActivity {
 
-    private ManagerLoginViewModel viewModel;
+    private ManagerLoginVM viewModel;
     private EditText edtUsername, edtPassword;
     private Button btnLogin;
     private ProgressBar progressBar;
@@ -29,7 +35,7 @@ public class ManagerLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_login);
 
-        viewModel = new ViewModelProvider(this).get(ManagerLoginViewModel.class);
+        viewModel = new ViewModelProvider(this).get(ManagerLoginVM.class);
 
         edtUsername = findViewById(R.id.edt_username_manager_login);
         edtPassword = findViewById(R.id.edt_password_manager_login);
@@ -60,8 +66,26 @@ public class ManagerLoginActivity extends AppCompatActivity {
     }
 
     private void navigateToMainPage(String userType) {
-        Intent intent = new Intent(this, LoginOptionsActivity.class);
-        intent.putExtra("userType", userType);
+        Intent intent = null;
+        switch (userType) {
+            case "Logistic":
+                intent = new Intent(this, LogisticsMainActivity.class);
+                break;
+            case "Field Organizer":
+                intent = new Intent(this, FieldOrganizerMainActivity.class);
+                break;
+            case "Head Quarter":
+                intent = new Intent(this, HQOrganizerMainActivity.class);
+                break;
+            case "Team Organizer":
+                intent = new Intent(this, TeamOrganizorMainActivity.class);
+                break;
+            case "Team Leader":
+                intent = new Intent(this, TeamLeaderMainActivity.class);
+                break;
+            default:
+                finish();
+        }
         startActivity(intent);
     }
 

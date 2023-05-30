@@ -1,7 +1,12 @@
 package com.example.catastrophecompass.UILayer.FieldOrganizer;
 
+import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -24,76 +29,82 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.util.ArrayList;
 
-public class DemographicStatusFragment extends Fragment {
 
-    private BarChart barChart;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.catastrophecompass.R;
+
+public class DemographicStatusFragment extends Fragment implements demographicInterface, housingInterface {
+    private DemographicVM DVM;
+    private ActivityResultLauncher<Intent> demographicUpdateActivityLauncher;
+    private ActivityResultLauncher<Intent> housingUpdateActivityLauncher;
+
+    public DemographicStatusFragment() {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_demographic_status, container, false);
-        barChart = view.findViewById(R.id.demogratic_chart);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_field_organizer_first, container, false);
+        DVM = new ViewModelProvider(this).get(DemographicVM.class);
 
-        setData();
+        Button button = view.findViewById(R.id.button);
+        Button button2 = view.findViewById(R.id.button2);
+
+        demographicUpdateActivityLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            // Handle the result from DemographicUpdateActivity here
+                        }
+                    }
+                });
+
+        housingUpdateActivityLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            // Handle the result from HousingUpdateActivity here
+                        }
+                    }
+                });
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DemographicUpdateActivity.class);
+                demographicUpdateActivityLauncher.launch(intent);
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), HousingUpdateActivity.class);
+                housingUpdateActivityLauncher.launch(intent);
+            }
+        });
 
         return view;
     }
 
-    private void setData() {
-        ArrayList<BarEntry> men = new ArrayList<>();
-        men.add(new BarEntry(0, 40));
-        men.add(new BarEntry(8, 23));
-        men.add(new BarEntry(15,60));
-        men.add(new BarEntry(65, 30));
-
-        ArrayList<BarEntry> women = new ArrayList<>();
-        women.add(new BarEntry(0, 30));
-        women.add(new BarEntry(8, 49));
-        women.add(new BarEntry(15, 55));
-        women.add(new BarEntry(65, 13));
-
-        BarDataSet barDataSet1 = new BarDataSet(men, "MEN");
-        barDataSet1.setColor(Color.BLUE);
-        BarDataSet barDataSet2 = new BarDataSet(women, "WOMEN");
-        barDataSet2.setColor(Color.RED);
-
-        BarData data = new BarData(barDataSet1, barDataSet2);
-        barChart.setData(data);
-
-        String[] ageGap = new String[] { "0-3", "4-14", "15-64", "65+"};
-        XAxis xAxis = barChart.getXAxis();
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(ageGap));
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setGranularity(1);
-        xAxis.setGranularityEnabled(true);
-
-        barChart.setDragEnabled(true);
-
-        float barSpace = 0.08f;
-        float groupSpace = 0.44f;
-        data.setBarWidth(0.10f);
-
-        barChart.getXAxis().setAxisMinimum(0);
-        barChart.getXAxis().setAxisMaximum(0+barChart.getBarData().getGroupWidth(groupSpace, barSpace)*4);
-        barChart.getAxisLeft().setAxisMinimum(0);
-        barChart.groupBars(0, groupSpace, barSpace);
-
-        barChart.invalidate();
-
-        barChart.getDescription().setEnabled(false);
-        barChart.getLegend().setEnabled(false);
-        barChart.getAxisLeft().setAxisMinimum(0f);
-        barChart.getAxisRight().setAxisMinimum(0f);
-        barChart.getXAxis().setDrawGridLines(false);
-        barChart.getAxisLeft().setDrawGridLines(false);
-        barChart.getAxisRight().setDrawGridLines(false);
+    @Override
+    public void getDemographicInfo(demographicInterface demoint) {
+        DVM.getDemographicInfo(this);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        setData();
+    public void getHousingInfo(housingInterface houseint) {
+        DVM.getHousingInfo(this);
     }
 }

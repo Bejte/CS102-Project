@@ -44,7 +44,8 @@ public class RecyclerViewAdapterForPlace extends RecyclerView.Adapter<ViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onPlaceItemClickListener.onPlaceItemClick(position);
+                assign(Logistics,Request,this);
+                //TODO logistic commona atılacak dendi
             }
         });
     }

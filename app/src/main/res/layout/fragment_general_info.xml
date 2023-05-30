@@ -19,9 +19,12 @@
         android:layout_width="104dp"
         android:layout_height="86dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginTop="348dp"
-        android:layout_marginBottom="349dp"
         android:text="Volunteer:\nTeam:\nOrganization:" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/organization_recycler_view_hq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView12" />
 </RelativeLayout>
