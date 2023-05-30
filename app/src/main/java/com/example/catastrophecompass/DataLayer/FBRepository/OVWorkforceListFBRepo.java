@@ -15,12 +15,11 @@ public class OVWorkforceListFBRepo {
     DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("PlacesAidWork");
 
     public List<WItemFB> getWItemList(String city) {
-        CompletableFuture<List<WItemFB>> future = new CompletableFuture<>();
+        ArrayList<WItemFB>[] WItemList = new ArrayList[1];
 
         databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<WItemFB> placesList = new ArrayList<>();
 
                 for (DataSnapshot citySnapshot : dataSnapshot.getChildren()) {
                     if (city.equals(citySnapshot.getKey())) {
@@ -33,28 +32,19 @@ public class OVWorkforceListFBRepo {
                             String workUrgency = placeDataSnapshot.child("workUrgency").getValue(String.class);
 
                             WItemFB wItem = new WItemFB(place, workUrgency, address, location);
-                            placesList.add(wItem);
+                            WItemList[0].add(wItem);
                         }
                         break;
                     }
                 }
-
-                future.complete(placesList);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                future.completeExceptionally(databaseError.toException());
             }
         });
 
-        try {
-            return future.get(); // Wait for the future to complete and return the result
-        } catch (Exception e) {
-            // Handle any exceptions that occur
-            e.printStackTrace();
-            return new ArrayList<WItemFB>(); // Return an empty list if an exception occurs
-        }
+        return WItemList[0];
     }
 
 }

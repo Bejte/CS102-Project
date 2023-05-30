@@ -17,12 +17,11 @@ public class AidPlacesListFBRepo {
 
     public List<AItem> getAItemList(String city)
     {
-        CompletableFuture<List<AItem>> future = new CompletableFuture<>();
+        ArrayList<AItem>[] AItemList = new ArrayList[1];
 
         databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<AItem> placesList = new ArrayList<>();
 
                 for (DataSnapshot citySnapshot : dataSnapshot.getChildren()) {
                     if(city.equals(citySnapshot.getKey())) {
@@ -34,27 +33,18 @@ public class AidPlacesListFBRepo {
                             String mostUrgent = placeDataSnapshot.child("mostUrgent").getValue(String.class);
 
                             AItem AItem = new AItem(name, address, mostUrgent);
-                            placesList.add(AItem);
+                            AItemList[0].add(AItem);
                         }
                         break;
                     }
                 }
-
-                future.complete(placesList);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                future.completeExceptionally(databaseError.toException());
             }
         });
 
-        try {
-            return future.get(); // Wait for the future to complete and return the result
-        } catch (Exception e) {
-            // Handle any exceptions that occur
-            e.printStackTrace();
-            return new ArrayList<AItem>(); // Return an empty list if an exception occurs
-        }
+        return AItemList[0];
     }
 }

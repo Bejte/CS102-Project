@@ -20,32 +20,30 @@ public class JobListFBRepo {
     DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("TeamListUrgency");
     DatabaseReference databaseRef2 = FirebaseDatabase.getInstance().getReference().child("Teams");
 
-    public CompletableFuture<List<Job>> fetchJobList(String city, String place) {
-        CompletableFuture<List<Job>> future = new CompletableFuture<>();
+    public List<Job> fetchJobList(String city, String place) {
+        ArrayList<Job>[] jobs = new ArrayList[1];
 
         databaseRef.child(city).child(place).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<Job> jobs = new ArrayList<>();
 
                 for (DataSnapshot teamSnapshot : dataSnapshot.getChildren()) {
                     for (DataSnapshot urgencySnapshot : teamSnapshot.getChildren()) {
                         int urgency = urgencySnapshot.getValue(Integer.class);
                         String teamName = teamSnapshot.getKey();
                         Job job = new Job(teamName, urgency);
-                        jobs.add(job);
+                        jobs[0].add(job);
                     }
                 }
-                future.complete(jobs);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                future.completeExceptionally(error.toException());
+
             }
         });
 
-        return future;
+        return jobs[0];
     }
 
     public boolean updateJobUrgency(String city, String place, String teamName)

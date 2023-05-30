@@ -8,15 +8,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public interface VolunteerInfoCallback {
-    void onVolunteerInfoLoaded(VolunteerInfo volunteerInfo);
-    void onCancelled(DatabaseError databaseError);
-}
-
 public class TLJobFBRepo {
-    public void getVolunteerInfo(String city, String place, String team, VolunteerInfoCallback callback) {
+    public VolunteerInfo getVolunteerInfo(String city, String place, String team) {
         DatabaseReference teamRef = FirebaseDatabase.getInstance().getReference().child("Teams").child(city).child(place).child(team);
-
+        VolunteerInfo[] volunteerInfo = new VolunteerInfo[1];
         teamRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -28,27 +23,22 @@ public class TLJobFBRepo {
                     int unnecessary = volunteerInfoSnapshot.child("unnecessary").getValue(Integer.class);
                     int need = volunteerInfoSnapshot.child("need").getValue(Integer.class);
 
-                    VolunteerInfo volunteerInfo = new VolunteerInfo(crucial, helpful, unnecessary, need);
-
-                    callback.onVolunteerInfoLoaded(volunteerInfo);
+                    volunteerInfo[0] = new VolunteerInfo(crucial, helpful, unnecessary, need);
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Invoke the callback with the database error
-                callback.onCancelled(databaseError);
             }
         });
+
+        return volunteerInfo[0];
     }
 
-    public interface TeamInfoCallback {
-        void onTeamInfoReceived(TeamInfo teamInfo);
-    }
-
-    public void getTeamInfo(String city, String place, String team, final TeamInfoCallback callback) {
+    public TeamInfo getTeamInfo(String city, String place, String team) {
         DatabaseReference teamRef = FirebaseDatabase.getInstance().getReference().child("Teams").child(city).child(place).child(team);
-
+        TeamInfo[] teamInfo = new TeamInfo[1];
         teamRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -65,20 +55,17 @@ public class TLJobFBRepo {
                     int need = volunteerInfoSnapshot.child("need").getValue(Integer.class);
 
                     VolunteerInfo volunteerInfo = new VolunteerInfo(crucial, helpful, unnecessary, need);
-                    TeamInfo teamInfo = new TeamInfo(volunteerInfo, areaInfo, jobInfo, teamLeaderName, foodInfo);
+                    teamInfo[] = new TeamInfo(volunteerInfo, areaInfo, jobInfo, teamLeaderName, foodInfo);
 
-                    callback.onTeamInfoReceived(teamInfo);
-                } else {
-                    callback.onTeamInfoReceived(null);  // or handle the case when data doesn't exist
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle the error case
-                callback.onTeamInfoReceived(null);
             }
         });
+
+        return teamInfo[0];
     }
 
 

@@ -32,7 +32,7 @@ public class GeneralInfoFBRepo
             return volunteerInfo;
         }
 
-        VolunteerInfo all = new VolunteerInfo(0,0,0,0);
+        VolunteerInfo all = new VolunteerInfo(0,0,0,0,0);//id?
         for(VolunteerInfo info : volunteerInfoList)
         {
             all.setNeed(all.getNeed()+info.getNeed());
@@ -73,8 +73,6 @@ public class GeneralInfoFBRepo
                     VolunteerInfo volunteerInfo = dataSnapshot.child("volunteerInfo").getValue();
 
                     volunteerInfoList.add(volunteerInfo);
-
-                } else {
 
                 }
             }

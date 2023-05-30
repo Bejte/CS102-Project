@@ -14,38 +14,26 @@ public class ChooseCityFBRepo
 {
     DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("City");
 
-    public CompletableFuture<ArrayList<String>> getCitiesCompletable() {
-        CompletableFuture<ArrayList<String>> future = new CompletableFuture<>();
+    public ArrayList<String> getCities() {
+        ArrayList<String>[] cities = new ArrayList[1];
 
         databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<String> cities = new ArrayList<>();
 
                 for (DataSnapshot citySnapshot : dataSnapshot.getChildren()) {
                     String city = citySnapshot.getKey();
-                    cities.add(city);
+                    cities[0].add(city);
                 }
-
-                future.complete(cities);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                future.completeExceptionally(databaseError.toException());
             }
         });
 
-        return future;
+        return cities[0];
     }
-
-    public ArrayList<String> getCities() throws ExecutionException, InterruptedException {
-        CompletableFuture<ArrayList<String>> citiesArray = getCitiesCompletable();
-        ArrayList<String> cities = citiesArray.get();
-
-        return cities;
-    }
-
 
 }
 

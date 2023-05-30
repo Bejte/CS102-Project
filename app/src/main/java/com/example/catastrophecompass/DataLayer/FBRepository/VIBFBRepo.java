@@ -19,35 +19,15 @@ public class VIBFBRepo {
             }
         });
     }
-        public interface AttachListenerCallback {
-            void onTeamNameRetrieved(String teamName);
-        }
 
-        public void attachToVolunteerList(String city, String place, String id, AttachListenerCallback callback) {
+        public void attachToVolunteerList(String city, String place, String id) {
             DatabaseReference volunteerListRef = FirebaseDatabase.getInstance().getReference()
                     .child("Teams").child(city).child(place).child("volunteerList");
 
-            volunteerListRef.orderByChild("id").equalTo(id).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        for (DataSnapshot teamSnapshot : dataSnapshot.getChildren()) {
-                            String teamName = teamSnapshot.getKey();
-                            callback.onTeamNameRetrieved(teamName);
-                        }
-                    } else {
-                        callback.onTeamNameRetrieved(null);
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
+            volunteerListRef.child("id").setValue(id);
         }
 
-    public void attachToTeam(String city, String place, String teamName) {
+    public void attachToTeam(String city, String place, String teamName) {//?
         DatabaseReference teamRef = FirebaseDatabase.getInstance().getReference()
                 .child("Teams").child(city).child(place).child(teamName);
 
@@ -66,8 +46,6 @@ public class VIBFBRepo {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle the cancellation or error case
-                // ...
             }
         });
     }
@@ -81,22 +59,20 @@ public class VIBFBRepo {
     }
 
     private void updateNodes(String userID) {
-        // Step 2: Update or remove the user's ID from other nodes
         DatabaseReference teamsRef = databaseRef.child("Teams");
 
         teamsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Iterate through the teams
+
                 for (DataSnapshot citySnapshot : dataSnapshot.getChildren()) {
                     for (DataSnapshot placeSnapshot : citySnapshot.getChildren()) {
                         for (DataSnapshot teamSnapshot : placeSnapshot.getChildren()) {
                             DatabaseReference teamRef = teamSnapshot.getRef();
 
-                            // Update or remove the user's ID from the team node
                             teamRef.child("volunteerList").child(userID).removeValue();
                             teamRef.child("teamLeaderID").setValue(null);
-                            // ...
+
                         }
                     }
                 }
@@ -104,14 +80,13 @@ public class VIBFBRepo {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle the error case
+
             }
         });
     }
 
     private void removeFromDataStructures(String userID) {
-        // Step 3: Update or remove the user's ID from relevant data structures in your application
-        // ...
+
     }
 }
 

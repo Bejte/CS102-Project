@@ -16,7 +16,7 @@ public class ArrivingTrucksFBRepo
 {
     public List<TruckItem> getArrivingTrucks(String organizationName)
     {
-        List<TruckItem> trucks = new ArrayList<TruckItem>();
+        List<TruckItem>[] trucks = new ArrayList[1];
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Organizations").child(organizationName).child("arrivingTruckList");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -25,7 +25,7 @@ public class ArrivingTrucksFBRepo
 
                 for (DataSnapshot truckSnapshot : dataSnapshot.getChildren()) {
                     TruckItem truck = new TruckItem(truckSnapshot.getKey(), truckSnapshot.child("size").getValue(String.class));
-                    trucks.add(truck);
+                    trucks[0].add(truck);
                 }
     }
 
@@ -34,6 +34,6 @@ public class ArrivingTrucksFBRepo
 
             }
         });
-        return trucks;
+        return trucks[0];
     }
 }

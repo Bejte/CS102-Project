@@ -16,14 +16,12 @@ public class AidPlaceFBRepo
 {
     DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("AidList");
 
-    public List<ClipData.Item> getItemList(String place)
+    public List<Item> getItemList(String place)
     {
-        CompletableFuture<List<ClipData.Item>> future = new CompletableFuture<>();
-
+        ArrayList<Item>[] itemList = new ArrayList[1];
         databaseRef.child(place).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<ClipData.Item> placesList = new ArrayList<>();
 
                     for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
 
@@ -56,26 +54,17 @@ public class AidPlaceFBRepo
                         if(key.equals("kitchenMaterial"))
                             kitchenMaterial = value;
 
-                        ClipData.Item Item = new Item(food, childCloth, womenCloth, menCloth, powerbank, heater, hygiene, kitchenMaterial);
-                        placesList.add(Item);
+                        Item Item = new Item(food, childCloth, womenCloth, menCloth, powerbank, heater, hygiene, kitchenMaterial);
+                        itemList[0].add(Item);
                     }
 
-
-                future.complete(placesList);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                future.completeExceptionally(databaseError.toException());
             }
         });
 
-        try {
-            return future.get(); // Wait for the future to complete and return the result
-        } catch (Exception e) {
-            // Handle any exceptions that occur
-            e.printStackTrace();
-            return new ArrayList<ClipData.Item>(); // Return an empty list if an exception occurs
-        }
+        return itemList[0];
     }
 }

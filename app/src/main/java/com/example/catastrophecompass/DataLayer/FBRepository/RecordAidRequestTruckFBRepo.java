@@ -15,7 +15,8 @@ public class RecordAidRequestTruckFBRepo
 {
     public boolean makeRequest(String organizationName, TruckRequest request)
     {
-        AtomicBoolean status = new AtomicBoolean(true);
+        boolean[] status = new boolean[1];
+        status[0] = true;
         DatabaseReference orgRef = FirebaseDatabase.getInstance().getReference("Organizations").child(organizationName);
         DatabaseReference requestsRef = orgRef.child("requests");
         requestsRef.child("totalRequested").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -27,35 +28,27 @@ public class RecordAidRequestTruckFBRepo
                 } else {
                     totalRequested += 1;
                 }
-                requestsRef.child("totalRequested").setValue(totalRequested, (error, ref) -> {
-                    if (error != null) {
-                        // Handle the error
-                    } else {
-                        // The operations succeeded
-                    }
-                });
-            }
+                requestsRef.child("totalRequested").setValue(totalRequested);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle any errors
-            }
-        });
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            });
 
         String truckReqKey = requestsRef.push().getKey();
         requestsRef.child(truckReqKey).child("size").setValue(request.getSize(), (error, ref) -> {
             if(error != null)
             {
-                status.set(false);
+                status[0] = false;
             }
         });
         requestsRef.child(truckReqKey).child("Collections").setValue(request.getInventoryList(), (error, ref) -> {
             if(error != null)
             {
-                status.set(false);
+                status[0] = false;
             }
         });
 
-        return status.get();
+        return status[0];
     }
 }
