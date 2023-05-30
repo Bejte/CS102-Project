@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.AidActivityVM;
 import com.example.catastrophecompass.UILayer.Common.NeedItem;
 import com.example.catastrophecompass.UILayer.Common.NeedItemAdapter;
 

@@ -8,7 +8,6 @@ import android.os.Bundle;
 
 import com.example.catastrophecompass.DataLayer.Model.UserLogin;
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.ManagerLoginVM;
 import com.example.catastrophecompass.UILayer.Common.ManagerLoginViewModel;
 import com.example.catastrophecompass.UILayer.FieldOrganizer.FieldOrganizerMainActivity;
 import com.example.catastrophecompass.UILayer.HQOrganizer.HQOrganizerMainActivity;

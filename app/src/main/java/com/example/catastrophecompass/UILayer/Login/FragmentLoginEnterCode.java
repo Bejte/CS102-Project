@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.EnterCodeVM;
 import com.example.catastrophecompass.UILayer.VolunteerInBase.VIBStartActivity;
 
 public class FragmentLoginEnterCode extends Fragment {

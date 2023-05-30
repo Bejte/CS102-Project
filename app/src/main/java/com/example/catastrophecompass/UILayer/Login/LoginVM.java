@@ -1,4 +1,4 @@
-package com.example.catastrophecompass.UILayer.Common;
+package com.example.catastrophecompass.UILayer.Login;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

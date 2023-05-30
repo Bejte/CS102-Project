@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import com.example.catastrophecompass.R;
 import com.example.catastrophecompass.UILayer.Common.AidItem;
 import com.example.catastrophecompass.UILayer.Common.AidItemAdapter;
-import com.example.catastrophecompass.UILayer.Common.AidPlacesListVM;
 
 import java.util.List;
 

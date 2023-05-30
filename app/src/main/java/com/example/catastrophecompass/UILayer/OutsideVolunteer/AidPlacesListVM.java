@@ -1,8 +1,9 @@
-package com.example.catastrophecompass.UILayer.Common;
+package com.example.catastrophecompass.UILayer.OutsideVolunteer;
 
 import androidx.lifecycle.ViewModel;
 
 import com.example.catastrophecompass.DataLayer.FBRepository.AidPlacesListFBRepo;
+import com.example.catastrophecompass.UILayer.Common.AidItem;
 
 import java.util.List;
 
