@@ -1,7 +1,12 @@
 package com.example.catastrophecompass.DomainLayer.Domain;
 
+import android.util.Log;
+
+import com.example.catastrophecompass.DataLayer.FBRepository.VIBFBRepo;
+import com.example.catastrophecompass.DataLayer.LocalRepository.VIBLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.Credentials;
 import com.example.catastrophecompass.DataLayer.Model.VIBJobInfo;
+import com.example.catastrophecompass.UILayer.Common.VIBJobInterface;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -21,7 +26,7 @@ public class VIBJobDomain {
     }
 
     public void attachListeners(Credentials credentials){
-        FBRepo.attachToVolunteerList(credentials.getCity(), credentials.getPlace(), credentials.getId());
+        FBRepo.attachToVolunteerList(credentials.getCity(), credentials.getPlace(), credentials.getId() + "");
     }
 
     public void getJobInfo(VIBJobInterface vibJobInterface){
@@ -31,17 +36,19 @@ public class VIBJobDomain {
                     @Override
                     public void onNext(VIBJobInfo vibJobInfo) {
                         vibJobInterface.setDisplay(vibJobInfo);
+                        Log.d("VIBJobDomain", "getJobInfo() onNext() called");
                     }
 
                     @Override
                     public void onError(Throwable t) {
                         t.printStackTrace();
                         vibJobInterface.warnUser();
+                        Log.d("VIBJobDomain", "getJobInfo() onError() called");
                     }
 
                     @Override
                     public void onComplete() {
-
+                        Log.d("VIBJobDomain", "getJobInfo() onComplete() called");
                     }
                 });
         localRepo.getPicturePath()
@@ -50,17 +57,19 @@ public class VIBJobDomain {
                     @Override
                     public void onNext(String picturePath) {
                         vibJobInterface.displayTLPicture(picturePath);
+                        Log.d("VIBJobDomain", "getPicturePath() onNext() called");
                     }
 
                     @Override
                     public void onError(Throwable t) {
                         t.printStackTrace();
                         vibJobInterface.warnUser();
+                        Log.d("VIBJobDomain", "getPicturePath() onError() called");
                     }
 
                     @Override
                     public void onComplete() {
-
+                        Log.d("VIBJobDomain", "getPicturePath() onComplete() called");
                     }
                 });
     }

@@ -13,6 +13,7 @@ import java.util.List;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Single;
 
 @Dao
 public interface VIBDao {
@@ -32,14 +33,17 @@ public interface VIBDao {
     @Query("SELECT * FROM VIBJobInfo")
     Flowable<VIBJobInfo> getJobInfo();
 
-    @Query("SELECT * FROM FilePath")
-    Flowable<FilePath> getPicturePath();
+    @Query("SELECT filePath FROM FilePath")
+    Flowable<String> getPicturePath();
 
     @Query("DELETE FROM VIBJobInfo")
     Completable deleteVIBJobInfo();
 
     @Query("DELETE FROM FilePath")
     Completable deleteTLPicPath();
+
+    @Query("SELECT * FROM Credentials")
+    Single<Credentials> getCredentials();
 
 
 

@@ -1,13 +1,13 @@
 package com.example.catastrophecompass.DataLayer.Model;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class WorkplaceWeather {
 
     private String currentTemp, currentWeatherType;
-    private HashMap<String, String> hour;
+    private LinkedHashMap<String, String> hour;
 
-    public WorkplaceWeather(String currentTemp, String currentWeatherType, HashMap<String, String> hour) {
+    public WorkplaceWeather(String currentTemp, String currentWeatherType, LinkedHashMap<String, String> hour) {
         this.currentTemp = currentTemp;
         this.currentWeatherType = currentWeatherType;
         this.hour = hour;
@@ -29,11 +29,11 @@ public class WorkplaceWeather {
         this.currentWeatherType = currentWeatherType;
     }
 
-    public HashMap<String, String> getHour() {
+    public LinkedHashMap<String, String> getHour() {
         return hour;
     }
 
-    public void setHour(HashMap<String, String> hour) {
+    public void setHour(LinkedHashMap<String, String> hour) {
         this.hour = hour;
     }
 }

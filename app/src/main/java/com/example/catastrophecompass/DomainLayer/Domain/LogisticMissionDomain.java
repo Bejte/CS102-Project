@@ -1,5 +1,9 @@
 package com.example.catastrophecompass.DomainLayer.Domain;
 
+import android.util.Log;
+
+import com.example.catastrophecompass.DataLayer.LocalRepository.LogisticMissionLocalRepo;
+import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -12,7 +16,7 @@ public class LogisticMissionDomain {
     private LogisticMissionLocalRepo localRepo;
     private LogisticMissionFBRepo FBRepo;
     private String driverName;
-    private Inventory inventory;
+    private InventoryList inventory;
     private CloudRestAPI restAPI;
 
     public LogisticMissionDomain(LogisticMissionLocalRepo localRepo, LogisticMissionFBRepo FBRepo, CloudRestAPI restAPI) {
@@ -30,11 +34,13 @@ public class LogisticMissionDomain {
                     public void onSuccess(@NonNull String s) {
                         driverName = s;
                         FBRepo.getLogisticInfo(driverName);
+                        Log.d("LogisticMissionDomain", "getDriverName() onSuccess() called");
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
                         logisticMissionInterface.warnUserForNoConnection();
+                        Log.d("LogisticMissionDomain", "getDriverName() onError() called");
                     }
                 });
     }
@@ -45,19 +51,21 @@ public class LogisticMissionDomain {
                 .subscribe(new DisposableSubscriber<LogisticInfo>() {
                     @Override
                     public void onNext(LogisticInfo logisticInfo) {
-                        inventory = logisticInfo.getInventory();
+                        inventory = logisticInfo.getInventoryList();
                         logisticMissionInterface.display(logisticInfo);
+                        Log.d("LogisticMissionDomain", "getLogisticInfo() onNext() called");
                     }
 
                     @Override
                     public void onError(Throwable t) {
                         t.printStackTrace();
                         logisticMissionInterface.warnUser();
+                        Log.d("LogisticMissionDomain", "getLogisticInfo() onError() called");
                     }
 
                     @Override
                     public void onComplete() {
-
+                        Log.d("LogisticMissionDomain", "getLogisticInfo() onComplete() called");
                     }
                 });
     }
