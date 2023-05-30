@@ -38,9 +38,7 @@ public class AddEditOrganizationActivity extends AppCompatActivity {
         radioGroup = findViewById(R.id.rdg_organizationType_ac_ad_ed_or_ac);
 
         List<Organization> sampleOrganizations = new ArrayList<>();
-        sampleOrganizations.add(new Organization("Organization A", "Disaster Area"));
-        sampleOrganizations.add(new Organization("Organization B", "Aid Collection"));
-        sampleOrganizations.add(new Organization("Organization C", "HeadQuarter"));
+
 
         adapter = new OrganizationAdapter(sampleOrganizations);
 
