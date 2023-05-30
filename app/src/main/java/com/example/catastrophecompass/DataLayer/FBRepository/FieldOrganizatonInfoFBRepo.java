@@ -2,15 +2,22 @@ package com.example.catastrophecompass.DataLayer.FBRepository;
 
 import androidx.annotation.NonNull;
 
+import com.example.catastrophecompass.DataLayer.LocalRepository.FieldOrganizationInfoLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.DemographicInfo;
 import com.example.catastrophecompass.DataLayer.Model.HousingInfo;
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
+import com.example.catastrophecompass.DataLayer.Model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class FieldOrganizatonInfoFBRepo
 {
+    FieldOrganizationInfoLocalRepo localRepo;
+    public FieldOrganizatonInfoFBRepo(FieldOrganizationInfoLocalRepo localRepo) {
+        this.localRepo = localRepo;
+    }
+
     public boolean updateDemographicInfo(DemographicInfo demographicInfo, String organizationName)
     {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(organizationName).child("demographic");
@@ -52,13 +59,11 @@ public class FieldOrganizatonInfoFBRepo
         });
         return success[0];
     }
-
+    InventoryList currentList;
     public boolean updateAidStatusInfo(InventoryList inventoryList, String organizationName)
     {
-        private int food, heater, manCloth, womanCloth, childCloth, hygene, kitchenMaterial, powerbank;
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(organizationName).child("currentInventory");
-        //child?????????????????
-
+        currentList = FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(organizationName).child("currentInventory").getValue();
         final boolean[] success = {true};
 
 
@@ -80,8 +85,13 @@ public class FieldOrganizatonInfoFBRepo
 
     }
 
-    public void revertChanges(DemographicInfo demographicInfo)
+    public void revertChanges(String organizationName)
     {
-        //TODO
+        FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(organizationName).child("currentInventory").setValue(currentList);
+    }
+
+    public void attachListeners(User user)
+    {
+
     }
 }

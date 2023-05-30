@@ -1,11 +1,11 @@
 package com.example.catastrophecompass.DataLayer.FBRepository;
 
-import android.net.Credentials;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.catastrophecompass.DataLayer.LocalRepository.VIBLocalRepo;
+import com.example.catastrophecompass.DataLayer.Model.Credentials;
+import com.example.catastrophecompass.DataLayer.Model.VIBJobInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,5 +57,11 @@ public class VIBFBRepo {
         VIBJobInfo info = new VIBJobInfo(teamName, ref.getValue().getTeamDescription(), ref.getValue().getTeamLeaderName(), ref.getValue().getAreaInfo(), ref.getValue().getFoodInfo(), ref.getValue().getLocation(), ref.getValue().getTeamLeaderPicUrl(), ref.getValue().getDispatch());
         localRepo.pushToLocal(info);
     }
+
+    public void deleteUserFB(Credentials credentials)
+    {
+        //TODO
+    }
+
 }
 
