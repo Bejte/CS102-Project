@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.AidActivityViewModel;
+import com.example.catastrophecompass.UILayer.Common.AidActivityVM;
 import com.example.catastrophecompass.UILayer.Common.NeedItem;
 import com.example.catastrophecompass.UILayer.Common.NeedItemAdapter;
 
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OVAidActivity extends AppCompatActivity {
-    private AidActivityViewModel viewModel;
+    private AidActivityVM viewModel;
     private RecyclerView recyclerView;
     private NeedItemAdapter needItemAdapter;
 
@@ -31,7 +31,7 @@ public class OVAidActivity extends AppCompatActivity {
         needItemAdapter = new NeedItemAdapter(new ArrayList<>());
         recyclerView.setAdapter(needItemAdapter);
 
-        viewModel = new ViewModelProvider(this).get(AidActivityViewModel.class);
+        viewModel = new ViewModelProvider(this).get(AidActivityVM.class);
 
         // Get the placeName from the Intent extras
         String placeName = getIntent().getStringExtra("aidPlaceName");

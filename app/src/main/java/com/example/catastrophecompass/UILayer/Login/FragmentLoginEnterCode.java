@@ -16,19 +16,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.EnterCodeViewModel;
-import com.example.catastrophecompass.UILayer.OutsideVolunteer.OVMainActivity;
+import com.example.catastrophecompass.UILayer.Common.EnterCodeVM;
 import com.example.catastrophecompass.UILayer.VolunteerInBase.VIBStartActivity;
 
 public class FragmentLoginEnterCode extends Fragment {
 
-    private EnterCodeViewModel viewModel;
+    private EnterCodeVM viewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login_enter_code, container, false);
-        viewModel = new ViewModelProvider(this).get(EnterCodeViewModel.class);
+        viewModel = new ViewModelProvider(this).get(EnterCodeVM.class);
 
         EditText etCode = view.findViewById(R.id.et_code);
         Button btnSubmitCode = view.findViewById(R.id.btn_submit_code);

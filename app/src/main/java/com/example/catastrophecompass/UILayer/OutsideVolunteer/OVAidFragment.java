@@ -17,20 +17,20 @@ import android.view.ViewGroup;
 import com.example.catastrophecompass.R;
 import com.example.catastrophecompass.UILayer.Common.AidItem;
 import com.example.catastrophecompass.UILayer.Common.AidItemAdapter;
-import com.example.catastrophecompass.UILayer.Common.AidPlacesListViewModel;
+import com.example.catastrophecompass.UILayer.Common.AidPlacesListVM;
 
 import java.util.List;
 
 public class OVAidFragment extends Fragment {
 
-    private AidPlacesListViewModel viewModel;
+    private AidPlacesListVM viewModel;
     private RecyclerView recyclerView;
     private AidItemAdapter adapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(AidPlacesListViewModel.class);
+        viewModel = new ViewModelProvider(this).get(AidPlacesListVM.class);
     }
 
     @Nullable
