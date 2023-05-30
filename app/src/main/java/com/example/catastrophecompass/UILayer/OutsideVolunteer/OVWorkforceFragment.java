@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.catastrophecompass.DataLayer.Model.WItem;
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.OVWorkforceListViewModel;
+import com.example.catastrophecompass.UILayer.Common.OVWorkforceListVM;
 import com.example.catastrophecompass.UILayer.Common.WorkforceAdapter;
 import com.example.catastrophecompass.UILayer.Common.WorkforceItemAdapter;
 
@@ -32,14 +32,14 @@ import androidx.annotation.NonNull;
 
 public class OVWorkforceFragment extends Fragment {
 
- private OVWorkforceListViewModel viewModel;
+ private OVWorkforceListVM viewModel;
  private RecyclerView recyclerView;
  private WorkforceItemAdapter adapter;
 
  @Override
  public void onCreate(@Nullable Bundle savedInstanceState) {
   super.onCreate(savedInstanceState);
-  viewModel = new ViewModelProvider(this).get(OVWorkforceListViewModel.class);
+  viewModel = new ViewModelProvider(this).get(OVWorkforceListVM.class);
  }
 
  @Nullable

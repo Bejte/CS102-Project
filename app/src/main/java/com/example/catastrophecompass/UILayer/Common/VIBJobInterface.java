@@ -1,7 +1,10 @@
 package com.example.catastrophecompass.UILayer.Common;
 
+import com.example.catastrophecompass.DataLayer.Model.VIBJobInfo;
+
 public interface VIBJobInterface {
-    void setupDBConnection();
-    void getJobInfo(VIBJobInterface jobınt);
-    void quit();
+    void setDisplay(VIBJobInfo jobInfo);
+    void warnUser();
+    void displayTLPic(String picturePath);
+    void warnUserNoPicture();
 }

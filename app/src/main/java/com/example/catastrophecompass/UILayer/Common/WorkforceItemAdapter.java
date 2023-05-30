@@ -16,7 +16,7 @@ import com.example.catastrophecompass.R;
 
 public class WorkforceItemAdapter extends RecyclerView.Adapter<WorkforceItemAdapter.WorkforceViewHolder> {
     private List<WItem> wItemList;
-    OVWorkforceListViewModel ovvm;
+    OVWorkforceListVM ovvm;
     private OnWorkforceItemClickListener onWorkforceItemClickListener;
 
     public WorkforceItemAdapter(List<WItem> wItemList, OnWorkforceItemClickListener listener) {

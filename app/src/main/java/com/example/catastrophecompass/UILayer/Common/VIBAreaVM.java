@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.room.Insert;
 
 import com.example.catastrophecompass.DataLayer.Model.WItem;
+import com.example.catastrophecompass.DataLayer.Model.WorkplaceWeather;
 import com.example.catastrophecompass.DomainLayer.Domain.VIBAreaDomain;
 
 import javax.inject.Inject;
@@ -25,20 +26,19 @@ import io.reactivex.rxjava3.disposables.Disposable;
 @HiltViewModel
 public class VIBAreaVM extends ViewModel {
 
-    private UC uc;
 
-    private VIBAreaDomain vıbdomain;
+    private VIBAreaDomain vibAreaDomain;
 
     @Inject
-    public VIBAreaVM(UC uc) {
-        this.uc = uc;
+    public VIBAreaVM(VIBAreaDomain vibAreaDomain) {
+        this.vibAreaDomain = vibAreaDomain;
     }
     public void updateFoodInfo (String food){
-      VIBAreaDomain.updateFoodInfo(food);
+       vibAreaDomain.updateFoodInfo(food);
     }
-    public void getAreaInfo(VIBAreaInterface VIBinterface) {
+    public WorkplaceWeather getAreaInfo(VIBAreaInterface VIBinterface) {
         //Log.d(TAG, " here ");
-        uc.getAreaInfo(VIBinterface);
+        return vibAreaDomain.getAreaInfo(VIBinterface);
         //Log.d(TAG, "here too");
     }
 }
