@@ -56,14 +56,14 @@ public class VIBJobDomain {
                 .subscribe(new DisposableSubscriber<String>() {
                     @Override
                     public void onNext(String picturePath) {
-                        vibJobInterface.displayTLPicture(picturePath);
+                        vibJobInterface.displayTLPic(picturePath);
                         Log.d("VIBJobDomain", "getPicturePath() onNext() called");
                     }
 
                     @Override
                     public void onError(Throwable t) {
                         t.printStackTrace();
-                        vibJobInterface.warnUser();
+                        vibJobInterface.warnUserNoPicture();
                         Log.d("VIBJobDomain", "getPicturePath() onError() called");
                     }
 

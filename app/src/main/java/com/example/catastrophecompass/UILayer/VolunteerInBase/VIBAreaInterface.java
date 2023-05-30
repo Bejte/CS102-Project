@@ -6,4 +6,6 @@ public interface VIBAreaInterface {
 
     void setDisplay(VIBJobInfo vibJobInfo);
 
+    void warnUser();
+
 }

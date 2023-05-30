@@ -2,6 +2,7 @@ package com.example.catastrophecompass.DomainLayer.Domain;
 
 import android.util.Log;
 
+import com.example.catastrophecompass.DataLayer.FBRepository.LogisticMissionFBRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.LogisticMissionLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
@@ -75,7 +76,7 @@ public class LogisticMissionDomain {
         if (FBRepo.getChecked(driverName))
         {
             if (restAPI.decideDropPlace(inventory, driverName))
-                logisticMissionInterface.notifyGetSucces();
+                logisticMissionInterface.notifyGetSuccess();
             else
                 logisticMissionInterface.notifyGetFailed();
         }

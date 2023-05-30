@@ -1,5 +1,9 @@
 package com.example.catastrophecompass.UILayer.FieldOrganizer;
 
+import com.example.catastrophecompass.DataLayer.Model.DemographicInfo;
+
 public interface DemographicInterface {
-    void getDemographicInfo(DemographicInterface houseınt);
+    void setDisplay(DemographicInfo demographicInfo);
+
+    void warnUser();
 }

@@ -30,7 +30,7 @@ public class FieldOrganizationDomain {
     }
 
     public void setupDatabaseConnection(User user){
-        FBRepo.attachListeners(user);
+        FBRepo.attachListeners(user, FieldOrganizerCommon.organizationName);
     }
 
     public void getDemographicInfo(DemographicInterface demographicInterface){

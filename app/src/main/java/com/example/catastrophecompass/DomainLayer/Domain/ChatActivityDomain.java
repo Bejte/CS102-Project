@@ -2,6 +2,7 @@ package com.example.catastrophecompass.DomainLayer.Domain;
 
 import android.util.Log;
 
+import com.example.catastrophecompass.DataLayer.FBRepository.ChatActivityFBRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.ChatActivityLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.ChatItem;
 

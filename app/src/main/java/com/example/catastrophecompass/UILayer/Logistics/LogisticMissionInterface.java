@@ -1,9 +1,12 @@
 package com.example.catastrophecompass.UILayer.Logistics;
 
-public interface LogisticMissionInterface {
-    void setUpDB(LogisticMissionInterface logisticinterDB);
-    void getLogisticInfo(LogisticMissionInterface logisticgetInfo);
-    void getChecked (LogisticMissionInterface logChecked);
-    void dropClicked ();
+import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
 
+public interface LogisticMissionInterface {
+    void display(LogisticInfo logisticInfo);
+    void warnUser();
+    void notifyGetSuccess();
+    void notifyGetFailed();
+    void notifyDropSuccess();
+    void notifyDropFailed();
 }

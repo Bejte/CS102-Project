@@ -1,5 +1,9 @@
 package com.example.catastrophecompass.UILayer.FieldOrganizer;
 
-public interface ArrivingInterface {
+import com.example.catastrophecompass.DataLayer.Model.HousingInfo;
 
+public interface ArrivingInterface {
+    void setDisplay(HousingInfo housingInfo);
+
+    void warnUser();
 }
