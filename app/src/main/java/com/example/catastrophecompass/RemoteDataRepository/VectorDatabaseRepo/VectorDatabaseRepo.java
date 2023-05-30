@@ -3,7 +3,9 @@ package com.example.catastrophecompass.RemoteDataRepository.VectorDatabaseRepo;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
+import com.example.catastrophecompass.DataLayer.Model.FieldOrganization;
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
+import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
 import com.example.catastrophecompass.RemoteDataRepository.VectorDatabaseRepo.VectorModels.PineconeUpsertFailedResponse;
 import com.example.catastrophecompass.RemoteDataRepository.VectorDatabaseRepo.VectorModels.PineconeUpsertSucceedResponse;
 import com.example.catastrophecompass.RemoteDataRepository.VectorDatabaseRepo.VectorModels.VectorUpsertRequest;
@@ -62,5 +64,35 @@ public class VectorDatabaseRepo {
 
     public VectorUpsertRequest parseRequest(InventoryList list) {
         return null;
+        // ToDo
+    }
+
+    public boolean syncVectorDB(LogisticInfo driver, FieldOrganization dropPlace, InventoryList fieldList) {
+        //Todo: reduce driver list from dropPlace
+        InventoryList newList = new InventoryList();
+
+        int food = fieldList.getFood() - driver.getInventoryList().getFood();
+        newList.setFood(food);
+
+        int heater = fieldList.getHeater() - driver.getInventoryList().getHeater();
+        newList.setHeater(heater);
+
+        int manCloth = fieldList.getManCloth() - driver.getInventoryList().getManCloth();
+        newList.setManCloth(manCloth);
+
+        int womanCloth = fieldList.getWomanCloth() - driver.getInventoryList().getWomanCloth();
+        newList.setWomanCloth(womanCloth);
+
+        int childCloth = fieldList.getChildCloth() - driver.getInventoryList().getChildCloth();
+        newList.setChildCloth(childCloth);
+
+        int hygene = fieldList.getHygene() - driver.getInventoryList().getHygene();
+        newList.setHygene(hygene);
+
+        int kitchenMaterial = fieldList.getKitchenMaterial() - driver.getInventoryList().getKitchenMaterial();
+        newList.setKitchenMaterial(kitchenMaterial);
+
+        int powerBank = fieldList.getPowerbank() - driver.getInventoryList().getPowerbank();
+        newList.setPowerbank(powerBank);
     }
 }

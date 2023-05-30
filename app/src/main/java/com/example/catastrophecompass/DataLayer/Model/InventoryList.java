@@ -25,6 +25,9 @@ public class InventoryList {
         this.id = id;
     }
 
+    public InventoryList() {
+    }
+
     public int getId() {
         return id;
     }
