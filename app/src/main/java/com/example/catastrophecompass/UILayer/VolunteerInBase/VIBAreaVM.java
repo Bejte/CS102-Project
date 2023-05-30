@@ -1,5 +1,7 @@
 package com.example.catastrophecompass.UILayer.VolunteerInBase;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
 import com.example.catastrophecompass.DataLayer.Model.WorkplaceWeather;
@@ -20,11 +22,11 @@ public class VIBAreaVM extends ViewModel {
         this.vibAreaDomain = vibAreaDomain;
     }
     public void updateFoodInfo (String food){
+        Log.d("VIBAreaVM", "updateFoodInfo() called");
        vibAreaDomain.updateFoodInfo(food);
     }
     public WorkplaceWeather getAreaInfo(VIBAreaInterface VIBinterface) {
-        //Log.d(TAG, " here ");
+        Log.d("VIBAreaVM", "getAreaInfo() called");
         return vibAreaDomain.getAreaInfo(VIBinterface);
-        //Log.d(TAG, "here too");
     }
 }

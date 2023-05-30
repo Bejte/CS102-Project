@@ -1,5 +1,7 @@
 package com.example.catastrophecompass.UILayer.OutsideVolunteer;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
 import com.example.catastrophecompass.DataLayer.FBRepository.AidPlaceFBRepo;
@@ -20,6 +22,7 @@ public class AidActivityVM extends ViewModel {
         this.FBRepo = FBRepo;
     }
     public List<InventoryList> getItemList(String place){
+        Log.d("AidActivityVM", "getItemList() called");
         return FBRepo.getItemList(place);
         // TODO convert Item to InventoryList
     }

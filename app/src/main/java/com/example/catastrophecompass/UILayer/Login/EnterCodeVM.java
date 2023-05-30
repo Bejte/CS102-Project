@@ -1,5 +1,7 @@
 package com.example.catastrophecompass.UILayer.Login;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
 import com.example.catastrophecompass.DataLayer.FBRepository.EnterCodeFBRepo;
@@ -21,10 +23,7 @@ public class EnterCodeVM extends ViewModel {
     }
 
     public String validateCode(String code){
-        try {
-            return FBRepo.validateCode(code);
-        } catch (ExecutionException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        Log.d("EnterCodeVM", "validateCode() called");
+        return FBRepo.validateCode(code);
     }
 }

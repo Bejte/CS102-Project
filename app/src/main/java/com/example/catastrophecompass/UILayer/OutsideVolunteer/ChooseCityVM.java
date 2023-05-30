@@ -1,4 +1,6 @@
-package com.example.catastrophecompass.UILayer.Login;
+package com.example.catastrophecompass.UILayer.OutsideVolunteer;
+
+import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
@@ -20,7 +22,8 @@ public class ChooseCityVM extends ViewModel {
     public ChooseCityVM(ChooseCityFBRepo chooseCityFBRepo) {
         this.FBRepo = chooseCityFBRepo;
     }
-    public List<String> getCities(List<String> getCities) throws ExecutionException, InterruptedException {
+    public List<String> getCities(List<String> getCities) {
+        Log.d("ChooseCityVM", "getCities() called");
         return FBRepo.getCities();
     }
 }

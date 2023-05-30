@@ -33,6 +33,7 @@ public class OVWorkforceVM extends ViewModel {
     }
 
     public WorkplaceWeather getWeatherInfo(String location){
+        Log.d("OVWorkforceVM", "getWeatherInfo() called");
         return weatherAPI.getWeatherInfo(location);
     }
 }

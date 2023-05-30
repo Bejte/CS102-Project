@@ -1,6 +1,11 @@
 package com.example.catastrophecompass.UILayer.TeamLeader;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
+
+import com.example.catastrophecompass.DataLayer.Model.Credentials;
+import com.example.catastrophecompass.DomainLayer.Domain.TLJobInfoDomain;
 
 import javax.inject.Inject;
 
@@ -8,21 +13,18 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
 public class TLJobInfoVM extends ViewModel {
-
-
-
-    private TLJobDomain tlJobDomain;
+    private TLJobInfoDomain tlJobDomain;
 
     @Inject
-    public TLJobInfoVM(TLJobDomain tlJobDomain) {
+    public TLJobInfoVM(TLJobInfoDomain tlJobDomain) {
         this.tlJobDomain = tlJobDomain;
     }
-    public void setDBConnection (Credentials cre){
-        tlJobDomain.setDBConnection(cre);
+    public void setupDBConnection (Credentials cre){
+        Log.d("TLJobInfoVM", "setupDBConnection() called");
+        tlJobDomain.setupDBConnection(cre);
     }
     public void getTeamInfo(TeamInfoInterface teamInfoInterface) {
-        //Log.d(TAG, " here ");
+        Log.d("TLJobInfoVM", "getTeamInfo() called");
         tlJobDomain.getTeamInfo(teamInfoInterface);
-        //Log.d(TAG, "here too");
     }
 }

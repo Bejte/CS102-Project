@@ -1,5 +1,7 @@
 package com.example.catastrophecompass.UILayer.OutsideVolunteer;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
 import com.example.catastrophecompass.DataLayer.Model.WItem;
@@ -21,6 +23,7 @@ public class OVWorkforceListVM extends ViewModel {
         this.uc = uc;
     }
     public List<WItem> getWItemList(String cityName){
+        Log.d("OVWorkforceListVM", "getWItemList() called");
         return uc.getWItemList(cityName);
     }
 }

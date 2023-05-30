@@ -1,5 +1,7 @@
 package com.example.catastrophecompass.UILayer.Login;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
 import com.example.catastrophecompass.DataLayer.Model.UserLogin;
@@ -22,6 +24,7 @@ public class ManagerLoginVM extends ViewModel {
         this.ucManager = ucManager;
     }
     public String validateLogin(UserLogin userLogin){
+        Log.d("ManagerLoginVM", "validateLogin() called");
         return ucManager.validateLogin(userLogin);
     }
 }

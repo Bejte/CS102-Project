@@ -1,5 +1,7 @@
 package com.example.catastrophecompass.UILayer.VolunteerInBase;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
 import java.util.List;
@@ -26,17 +28,21 @@ public class VIBJobSelectionVM extends ViewModel {
     }
 
     public List<VIBJobInfo> fetchJobList(String city, String place){
+        Log.d("VIBJobSelectionVM", "fetchJobList() called");
         return FBRepo.fetchJobList(city,place);
     }
     public boolean updateJobUrgency (String city,String place,String teamName){
+        Log.d("VIBJobSelectionVM", "updateJobUrgency() called");
        return FBRepo.updateJobUrgency (city, place, teamName);
     }
 
     public int recordID(){ // TODO return int or String
+        Log.d("VIBJobSelectionVM", "recordID() called");
         return FBRepo.recordID();
     }
 
     public void recordCredentials (Credentials cre){
+        Log.d("VIBJobSelectionVM", "recordCredentials() called");
         localRepo.recordCredentials(cre);
     }
 }

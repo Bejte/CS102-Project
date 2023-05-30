@@ -28,10 +28,12 @@ public class LoginVM extends ViewModel {
     }
 
     public boolean IsLoggedIn(){
+        Log.d("LoginVM", "isLoggedIn() called");
         return loginDomain.isLoggedIn();
     }
 
     public void killDataFlow(){
+        Log.d("LoginVM", "killDataFlow() called");
         loginDomain.killDataFlow();
     }
 }

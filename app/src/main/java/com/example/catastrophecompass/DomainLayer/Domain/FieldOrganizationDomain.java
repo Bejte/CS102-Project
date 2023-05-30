@@ -7,6 +7,7 @@ import com.example.catastrophecompass.DataLayer.Model.DemographicInfo;
 import com.example.catastrophecompass.DataLayer.Model.HousingInfo;
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.User;
+import com.example.catastrophecompass.RemoteDataRepository.VectorDatabaseRepo.VectorDatabaseRepo;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -14,10 +15,10 @@ import io.reactivex.rxjava3.subscribers.DisposableSubscriber;
 
 public class FieldOrganizationDomain {
     private FieldOrganizationInfoLocalRepo localRepo;
-    private FieldOrganizationFBRepo FBRepo;
+    private FieldOrganizationInfoFBRepo FBRepo;
     private VectorDatabaseRepo vectorRepo;
 
-    public FieldOrganizationDomain(FieldOrganizationInfoLocalRepo localRepo, FieldOrganizationFBRepo FBRepo, VectorDatabaseRepo vectorRepo) {
+    public FieldOrganizationDomain(FieldOrganizationInfoLocalRepo localRepo, FieldOrganizationInfoFBRepo FBRepo, VectorDatabaseRepo vectorRepo) {
         this.localRepo = localRepo;
         this.FBRepo = FBRepo;
         this.vectorRepo = vectorRepo;
@@ -121,10 +122,10 @@ public class FieldOrganizationDomain {
                 });
     }
 
-    public boolean updateAidStatusInfo(Inventory inventory){
+    public boolean updateAidStatusInfo(InventoryList inventory){
         if (FBRepo.updateAidStatusInfo(inventory))
         {
-            if (vectorRepo.updateAidStatusInfo(inventory))
+            if (vectorRepo.updateAidStatusInfo(inventory, FieldOrganizerCommon.organizationName))
                 return true;
             else
                 FBRepo.revertChanges(inventory);

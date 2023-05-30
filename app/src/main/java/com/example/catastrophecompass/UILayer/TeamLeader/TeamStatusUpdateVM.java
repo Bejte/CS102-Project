@@ -1,5 +1,10 @@
 package com.example.catastrophecompass.UILayer.TeamLeader;
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
+
+import com.example.catastrophecompass.DataLayer.FBRepository.TeamStatusUpdateFBRepo;
+import com.example.catastrophecompass.DataLayer.Model.VolunteerInfo;
 
 import javax.inject.Inject;
 
@@ -16,8 +21,9 @@ public class TeamStatusUpdateVM extends ViewModel {
     public TeamStatusUpdateVM(TeamStatusUpdateFBRepo tsupdateFB) {
         this.tsupdateFB = tsupdateFB;
     }
-    public void updateVolunteerInfo (VolunteerInfo vinfo) {
-        tsupdateFB.updateVolunteerInfo (vinfo);
+    public boolean updateVolunteerInfo (VolunteerInfo vinfo) {
+        Log.d("TeamStatusUpdateVM", "updateVolunteerInfo() called");
+        return tsupdateFB.updateVolunteerInfo (vinfo); // TODO parameter mismatch
     }
 
 }

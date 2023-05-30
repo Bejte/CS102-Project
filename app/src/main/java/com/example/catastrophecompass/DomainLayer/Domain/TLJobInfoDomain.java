@@ -2,9 +2,11 @@ package com.example.catastrophecompass.DomainLayer.Domain;
 
 import android.util.Log;
 
+import com.example.catastrophecompass.DataLayer.FBRepository.TLJobFBRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.TLJobLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.Credentials;
 import com.example.catastrophecompass.DataLayer.Model.TeamInfo;
+import com.example.catastrophecompass.UILayer.TeamLeader.TeamInfoInterface;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -12,9 +14,9 @@ import io.reactivex.rxjava3.subscribers.DisposableSubscriber;
 
 public class TLJobInfoDomain {
     private TLJobLocalRepo localRepo;
-    private TLJobInfoFBRepo FBRepo;
+    private TLJobFBRepo FBRepo;
 
-    public TLJobInfoDomain(TLJobLocalRepo localRepo, TLJobInfoFBRepo FBRepo){
+    public TLJobInfoDomain(TLJobLocalRepo localRepo, TLJobFBRepo FBRepo){
         this.localRepo = localRepo;
         this.FBRepo = FBRepo;
     }

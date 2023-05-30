@@ -1,5 +1,7 @@
 package com.example.catastrophecompass.UILayer.VolunteerInBase;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
 import com.example.catastrophecompass.DataLayer.Model.Credentials;
@@ -21,16 +23,18 @@ public class VIBJobInfoVM extends ViewModel {
     }
 
     public void setupDBConnection(){
+        Log.d("VIBJobInfoVM", "setupDBConnection() called");
         credentials = vibJobDomain.getCredentials();
         vibJobDomain.attachListeners(credentials);
     }
 
     public void getJobInfo(VIBJobInterface vibjobinterface) {
-        //Log.d(TAG, " here ");
+        Log.d("VIBJobInfoVM", "getJobInfo() called");
         vibJobDomain.getJobInfo(vibjobinterface);
-        //Log.d(TAG, "here too");
+        Log.d("VIBJobInfoVM", "getJobInfo() call finished");
     }
     public void quit(Credentials credentials){
+        Log.d("VIBJobInfoVM", "quit() called");
         vibJobDomain.quit(credentials);
     }
 }

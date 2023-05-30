@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Login.ChooseCityVM;
 import com.example.catastrophecompass.UILayer.Common.CityAdapter;
 
 import android.content.DialogInterface;
