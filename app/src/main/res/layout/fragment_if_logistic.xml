@@ -25,16 +25,19 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/checkbox_small_log"
             android:text="Small" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/checkbox_mid_log"
             android:text="Mid" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/checkbox_large_log"
             android:text="Large" />
 
     </LinearLayout>

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.catastrophecompass.DataLayer.FBRepository.PlacesAvailableFBRepo;
 import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
 import com.example.catastrophecompass.DataLayer.Model.Request;
 

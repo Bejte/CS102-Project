@@ -21,11 +21,13 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/checkbox_admin_hq"
         android:text="Admin" />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/checkbox_not_admin_hq"
         android:text="Not admin" />
 
 </LinearLayout>

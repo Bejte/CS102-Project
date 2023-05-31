@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -19,31 +20,38 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/cloth_radio_button"
             android:text="Cloth" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/food_radio_button"
             android:text="Food" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/heating_radio_button"
             android:text="Heating Material" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/transport_radio_button"
             android:text="Transportation" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hygiene" />
+            android:id="@+id/hyg_radio_button"
+            android:text="Hygiene"
+             />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/custom_radio_button"
             android:text="Custom" />
 
     </RadioGroup>
