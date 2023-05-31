@@ -2,6 +2,7 @@ package com.example.catastrophecompass.DataLayer.FBRepository;
 
 import androidx.annotation.NonNull;
 
+import com.example.catastrophecompass.DataLayer.Model.DemographicInfo;
 import com.example.catastrophecompass.DataLayer.Model.DriverItem;
 import com.example.catastrophecompass.DataLayer.Model.FieldOrganization;
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
@@ -132,7 +133,7 @@ public class OrganizeTrucksFBRepo {
         driver.child("dropName").setValue(null);
         driver.child("dropAddress").setValue(null);
         InventoryList[] fieldList = new InventoryList[1];
-        DemographicInfo demographicInfo = new DemographicInfo[1];
+        DemographicInfo[] demographicInfo = new DemographicInfo[1];
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(name[0]);
 
@@ -182,7 +183,7 @@ public class OrganizeTrucksFBRepo {
             public void onSuccess(Void unused) {
                 success[0] = true;
                 LogisticInfo driverItem = new LogisticInfo(getName[0], getAddress[0], name[0], address[0], status[0], pictureUrl[0], getStatus[0], dropStatus[0], list, size[0]);
-                vectorRepo.syncVectorDB(driverItem, new FieldOrganization(name[0], address[0]), list, fieldList[0}, demographicInfo[0]);
+                vectorRepo.syncVectorDB(driverItem, new FieldOrganization(name[0], address[0]), list, fieldList[0], demographicInfo[0]);
             }
         });
 

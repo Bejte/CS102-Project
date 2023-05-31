@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.example.catastrophecompass.DataLayer.Model.HQO;
 import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
+import com.example.catastrophecompass.DomainLayer.Common.HQOrganizerCommon;
 import com.example.catastrophecompass.R;
 
 
@@ -71,9 +72,9 @@ public class AddEditMemberActivity extends AppCompatActivity {
                         // Call viewModel method for IfFieldOrganizerFragment
                         break;
                     case 1:
-                        LogisticInfo logistics = // Initialize or get your Logistics instance here
-                                String organizationName = // Get your organization name here
-                            viewModel.addLogisticMember(logistics, organizationName);
+                        LogisticInfo logistics = null; // Initialize or get your Logistics instance here
+                                String organizationName = HQOrganizerCommon.organizationName;// Get your organization name here
+                            viewModel.addLogisticMember(logistics, organizationName, HQOrganizerCommon.userLogin);
                         break;
                     case 2:
                         // Call viewModel method for IfTeamLeaderFragment
