@@ -21,9 +21,8 @@ public class AidActivityVM extends ViewModel {
     public AidActivityVM(AidPlaceFBRepo FBRepo) {
         this.FBRepo = FBRepo;
     }
-    public List<InventoryList> getItemList(String place){
+    public InventoryList getItemList(String place){
         Log.d("AidActivityVM", "getItemList() called");
         return FBRepo.getItemList(place);
-        // TODO convert Item to InventoryList
     }
 }

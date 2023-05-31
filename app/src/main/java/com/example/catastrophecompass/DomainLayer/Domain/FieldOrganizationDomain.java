@@ -41,6 +41,7 @@ public class FieldOrganizationDomain {
                     @Override
                     public void onNext(DemographicInfo demographicInfo) {
                         demographicInterface.setDisplay(demographicInfo);
+                        FieldOrganizerCommon.demographicInfo = demographicInfo;
                         Log.d("FieldOrganizationDomain", "getDemographicInfo() onNext() called");
                     }
 
@@ -111,6 +112,7 @@ public class FieldOrganizationDomain {
                 .subscribe(new DisposableSubscriber<InventoryList>() {
                     @Override
                     public void onNext(InventoryList inventoryList) {
+                        FieldOrganizerCommon.arrivingInfo = inventoryList;
                         arrivingInterface.setDisplay(inventoryList);
                         Log.d("FieldOrganizationDomain", "getArrivingInfo() onNext() called");
                     }
@@ -131,7 +133,7 @@ public class FieldOrganizationDomain {
     public boolean updateAidStatusInfo(InventoryList inventoryList){
         if (FBRepo.updateAidStatusInfo(inventoryList, FieldOrganizerCommon.organizationName))
         {
-            if (vectorRepo.updateAidStatusInfo(inventoryList, FieldOrganizerCommon.organizationName))
+            if (vectorRepo.updateAidStatusInfo(inventoryList, FieldOrganizerCommon.organizationName, FieldOrganizerCommon.demographicInfo, FieldOrganizerCommon.arrivingInfo))
                 return true;
             else
                 FBRepo.revertChanges(FieldOrganizerCommon.organizationName);

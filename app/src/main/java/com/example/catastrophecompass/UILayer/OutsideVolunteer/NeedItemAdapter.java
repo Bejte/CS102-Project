@@ -1,4 +1,4 @@
-package com.example.catastrophecompass.UILayer.Common;
+package com.example.catastrophecompass.UILayer.OutsideVolunteer;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.catastrophecompass.DataLayer.Model.NeedItem;
 import com.example.catastrophecompass.R;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class NeedItemAdapter extends RecyclerView.Adapter<NeedItemAdapter.NeedIt
     @NonNull
     @Override
     public NeedItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.need_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ov_aid_type_item, parent, false);
         return new NeedItemViewHolder(view);
     }
 
@@ -45,8 +46,8 @@ public class NeedItemAdapter extends RecyclerView.Adapter<NeedItemAdapter.NeedIt
 
         public NeedItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            typeOfNeed = itemView.findViewById(R.id.need_item_aid_material);
-            urgency = itemView.findViewById(R.id.need_item_urgency);
+            typeOfNeed = itemView.findViewById(R.id.txt_aid_material_ov_ai_ty_it);
+            urgency = itemView.findViewById(R.id.txt_double_dot_ov_ai_ty_it);
         }
     }
 }

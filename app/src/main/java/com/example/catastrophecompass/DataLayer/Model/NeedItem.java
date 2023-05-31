@@ -1,4 +1,4 @@
-package com.example.catastrophecompass.UILayer.Common;
+package com.example.catastrophecompass.DataLayer.Model;
 
 public class NeedItem {
     private String typeOfNeed;

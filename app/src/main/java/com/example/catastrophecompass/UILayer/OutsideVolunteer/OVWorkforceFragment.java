@@ -9,9 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.catastrophecompass.DataLayer.Model.WItem;
+import com.example.catastrophecompass.DomainLayer.Common.OVCommon;
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.WorkforceAdapter;
-import com.example.catastrophecompass.UILayer.Common.WorkforceItemAdapter;
 
 
 //* A simple {@link Fragment} subclass.
@@ -48,7 +47,7 @@ public class OVWorkforceFragment extends Fragment {
   recyclerView = view.findViewById(R.id.rec_workforece_fr_ov_wo_fr);
   recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-  viewModel.getWItemList("CityName").observe(getViewLifecycleOwner(), this::onWorkforceListUpdated);
+  onWorkforceListUpdated(viewModel.getWItemList("CityName"));
 
   return view;
  }
@@ -56,10 +55,9 @@ public class OVWorkforceFragment extends Fragment {
  private void onWorkforceListUpdated(List<WItem> wItemList) {
   adapter = new WorkforceItemAdapter(wItemList, position -> {
    WItem clickedWorkforceItem = wItemList.get(position);
-   viewModel.recordClickedPlace(clickedWorkforceItem);
    // Assuming you will create WorkforceActivity to display details of clicked place
    Intent intent = new Intent(getActivity(), OVWorkforceActivity.class);
-   intent.putExtra("clicked_workforce_item", clickedWorkforceItem);
+   OVCommon.clickedWItem = clickedWorkforceItem;
    startActivity(intent);
   });
   recyclerView.setAdapter(adapter);

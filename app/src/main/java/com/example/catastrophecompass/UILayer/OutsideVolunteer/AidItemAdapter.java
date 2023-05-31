@@ -1,4 +1,4 @@
-package com.example.catastrophecompass.UILayer.Common;
+package com.example.catastrophecompass.UILayer.OutsideVolunteer;
 
 
 import android.view.LayoutInflater;
@@ -8,15 +8,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.catastrophecompass.DataLayer.Model.AItem;
 import com.example.catastrophecompass.R;
 
 import java.util.List;
 
 public class AidItemAdapter extends RecyclerView.Adapter<AidItemAdapter.AidItemViewHolder> {
-    private List<AidItem> aidItemList;
+    private List<AItem> aidItemList;
     private OnAidItemClickListener onAidItemClickListener;
 
-    public AidItemAdapter(List<AidItem> aidItemList, OnAidItemClickListener listener) {
+    public AidItemAdapter(List<AItem> aidItemList, OnAidItemClickListener listener) {
         this.aidItemList = aidItemList;
         this.onAidItemClickListener = listener;
     }
@@ -30,10 +31,10 @@ public class AidItemAdapter extends RecyclerView.Adapter<AidItemAdapter.AidItemV
 
     @Override
     public void onBindViewHolder(@NonNull AidItemViewHolder holder, int position) {
-        AidItem currentItem = aidItemList.get(position);
+        AItem currentItem = aidItemList.get(position);
         holder.placeNameTextView.setText(currentItem.getName());
         holder.addressTextView.setText(currentItem.getAddress());
-        holder.mostUrgentTextView.setText(currentItem.getMostUrgentItem());
+        holder.mostUrgentTextView.setText(currentItem.getMostUrgent());
     }
 
     @Override

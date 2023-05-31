@@ -22,7 +22,7 @@ public class ChooseCityVM extends ViewModel {
     public ChooseCityVM(ChooseCityFBRepo chooseCityFBRepo) {
         this.FBRepo = chooseCityFBRepo;
     }
-    public List<String> getCities(List<String> getCities) {
+    public List<String> getCities() {
         Log.d("ChooseCityVM", "getCities() called");
         return FBRepo.getCities();
     }

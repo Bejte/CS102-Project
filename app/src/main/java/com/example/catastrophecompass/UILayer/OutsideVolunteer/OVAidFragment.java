@@ -14,9 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.catastrophecompass.DataLayer.Model.AItem;
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.AidItem;
-import com.example.catastrophecompass.UILayer.Common.AidItemAdapter;
 
 import java.util.List;
 
@@ -40,20 +39,20 @@ public class OVAidFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rec_aid_fr_ov_aid_fr);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        viewModel.getAidPlacesList("CityName").observe(getViewLifecycleOwner(), this::onAidPlacesListUpdated);
+        //viewModel.getAidPlacesList("CityName").observe(getViewLifecycleOwner(), this::onAidPlacesListUpdated);
 
         return view;
     }
 
-    private void onAidPlacesListUpdated(List<AidItem> aidPlaces) {
+    private void onAidPlacesListUpdated(List<AItem> aidPlaces) {
         adapter = new AidItemAdapter(aidPlaces, position -> {
-            AidItem clickedAidPlace = aidPlaces.get(position);
-            viewModel.recordClickedPlace(clickedAidPlace);
+            AItem clickedAidPlace = aidPlaces.get(position);
+            //viewModel.recordClickedPlace(clickedAidPlace);
 
             Intent intent = new Intent(getActivity(), OVAidActivity.class);
 
 
-            intent.putExtra("aid_place", clickedAidPlace);
+            //intent.putExtra("aid_place", clickedAidPlace);
 
 
             startActivity(intent);

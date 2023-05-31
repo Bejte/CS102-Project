@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.CityAdapter;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.appcompat.app.AlertDialog;
 public class OVFirstActivity extends AppCompatActivity {
@@ -32,16 +32,14 @@ public class OVFirstActivity extends AppCompatActivity {
         recyclerViewCities.setHasFixedSize(true);
         recyclerViewCities.setLayoutManager(new LinearLayoutManager(this));
 
-        CityAdapter cityAdapter = new CityAdapter(new ArrayList<>(), position -> {
-            String cityName = cityAdapter.getCityNameAt(position);
+        CityAdapter[] cityAdapter = new CityAdapter[1];
+        List<String> cityList = viewModel.getCities();
+        cityAdapter[0] = new CityAdapter(cityList, position -> {
+            String cityName = cityAdapter[0].getCityList().get(position);
             showOptionsDialog(cityName);
         });
-        recyclerViewCities.setAdapter(cityAdapter);
+        recyclerViewCities.setAdapter(cityAdapter[0]);
 
-        viewModel.getCities().observe(this, cityNames -> {
-            // Update the adapter with the new city names
-            cityAdapter.updateCityNames(cityNames);
-        });
     }
     private void showOptionsDialog(String cityName) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -81,11 +79,4 @@ public class OVFirstActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
-
-
-
-
-
-
 }

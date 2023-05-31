@@ -8,7 +8,6 @@ import android.os.Bundle;
 
 import com.example.catastrophecompass.DataLayer.Model.UserLogin;
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.ManagerLoginViewModel;
 import com.example.catastrophecompass.UILayer.FieldOrganizer.FieldOrganizerMainActivity;
 import com.example.catastrophecompass.UILayer.HQOrganizer.HQOrganizerMainActivity;
 import com.example.catastrophecompass.UILayer.Logistics.LogisticsMainActivity;
@@ -41,26 +40,19 @@ public class ManagerLoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btn_login_manager_login);
         progressBar = findViewById(R.id.progressBar);
 
+        final String[] userType = new String[1];
+
         btnLogin.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE); // Show the ProgressBar
             String username = edtUsername.getText().toString();
             String password = edtPassword.getText().toString();
             UserLogin userLogin = new UserLogin(username, password);
-            viewModel.validateLogin(userLogin);
-        });
-
-        viewModel.getUser().observe(this, user -> {
-            progressBar.setVisibility(View.GONE); // Hide the ProgressBar
-            if (user != null) {
-                navigateToMainPage(user.getUserType());
-            }
-        });
-
-        viewModel.getLoginFailure().observe(this, failure -> {
-            progressBar.setVisibility(View.GONE); // Hide the ProgressBar
-            if (failure != null && failure) {
+            userType[0] = viewModel.validateLogin(userLogin);
+            progressBar.setVisibility(View.GONE);
+            if (userType[0] == null)
                 warnUser();
-            }
+            else
+                navigateToMainPage(userType[0]);
         });
     }
 

@@ -30,25 +30,19 @@ public class FragmentLoginEnterCode extends Fragment {
 
         EditText etCode = view.findViewById(R.id.et_code);
         Button btnSubmitCode = view.findViewById(R.id.btn_submit_code);
+        final String[] placeName = new String[1];
 
         btnSubmitCode.setOnClickListener(v -> {
             String code = etCode.getText().toString();
-            viewModel.validateCode(code);
-        });
-
-        viewModel.getPlaceName().observe(getViewLifecycleOwner(), placeName -> {
-            if (placeName != null) {
-                navigateToVIBStartPage(placeName);
+            placeName[0] = viewModel.validateCode(code);
+            if (placeName[0] != null) {
+                navigateToVIBStartPage(placeName[0]);
             } else {
                 warnUser();
             }
         });
 
         return view;
-
-        if(List<User> .length == 0){
-
-        }
     }
 
     private void navigateToVIBStartPage(String placeName) {
