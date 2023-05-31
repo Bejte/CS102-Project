@@ -3,6 +3,7 @@ package com.example.catastrophecompass.RemoteDataRepository.VectorDatabaseRepo;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
+import com.example.catastrophecompass.DataLayer.Model.DemographicInfo;
 import com.example.catastrophecompass.DataLayer.Model.FieldOrganization;
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
@@ -35,8 +36,8 @@ public class VectorDatabaseRepo {
     }
 
     @SuppressLint("CheckResult")
-    public boolean updateAidStatusInfo(InventoryList list, String organizationName) {
-        VectorUpsertRequest request = parseRequest(list, organizationName);
+    public boolean updateAidStatusInfo(InventoryList list, String organizationName, DemographicInfo demographicInfo) {
+        VectorUpsertRequest request = parseRequest(list, organizationName, demographicInfo);
         final boolean[] status = {false};
 
         vectorDatabaseApiService.upsertVectors(request)
@@ -72,20 +73,20 @@ public class VectorDatabaseRepo {
         return status[0];
     }
 
-    public VectorUpsertRequest parseRequest(InventoryList list, String name) {
+    public VectorUpsertRequest parseRequest(InventoryList list, String name, DemographicInfo demographicInfo, InventoryList arrivingInfo) {
 
+        List<Float> amountsFor20Days = getTotalAmounts(demographicInfo);
+
+        List<Float> internalsAsAmount = getInternalsAsAmount(list);
+        List<Float> arrivingAsAmount = getInternalsAsAmount(arrivingInfo);
+        // total - list(amount)
         // create Vector object
         Vector vector = new Vector();
 
         List<Float> values = new ArrayList<>(8);
-        values.add( (float) list.getFood() );
-        values.add( (float) list.getHeater() );
-        values.add( (float) list.getManCloth() );
-        values.add( (float) list.getWomanCloth() );
-        values.add( (float) list.getChildCloth() );
-        values.add( (float) list.getHygene() );
-        values.add( (float) list.getKitchenMaterial() );
-        values.add( (float) list.getPowerbank() );
+        for (int i = 0; i < 8; i++) {
+            values.add(amountsFor20Days.get(i) - (internalsAsAmount.get(i) + arrivingAsAmount.get(i)));
+        }
 
         vector.setValues(values);
         vector.setId(name);
@@ -100,6 +101,59 @@ public class VectorDatabaseRepo {
         request.setVectors(vectors);
 
         return request;
+    }
+
+    public List<Float> getTotalAmounts(DemographicInfo info) {
+        List<Float> amounts = new ArrayList<>();
+
+        int population = info.getM0_3() + info.getM3_15() + info.getM15_64() + info.getM65() + info.getW0_3() + info.getW3_15() + info.getW15_64() + info.getW65();
+
+        Float food = (float) (population * 1.2);
+        Float heater = (float) population / 5;
+        Float manCloth = (float) (info.getM15_64() + info.getM65()) / 10;
+        Float womanCloth = (float) (info.getW15_64() + info.getW65()) / 10;
+        Float childCloth = (float) (info.getM0_3() + info.getM3_15() + info.getW0_3() + info.getW3_15()) / 6;
+        Float hygene = (float) population * 1;
+        Float kitchenMaterial = (float) population;
+        Float powerBank = (float) population;
+
+        amounts.add(food);
+        amounts.add(heater);
+        amounts.add(manCloth);
+        amounts.add(womanCloth);
+        amounts.add(childCloth);
+        amounts.add(hygene);
+        amounts.add(kitchenMaterial);
+        amounts.add(powerBank);
+
+        return amounts;
+
+    }
+
+    public List<Float> getInternalsAsAmount(InventoryList list) {
+
+        List<Float> amounts = new ArrayList<>();
+
+        Float food = (float) (list.getFood() * 1.2);
+        Float heater = (float) list.getHeater() / 5;
+        Float manCloth = (float) list.getManCloth() / 10;
+        Float womanCloth = (float) list.getWomanCloth() / 10;
+        Float childCloth = (float) list.getChildCloth() / 6;
+        Float hygene = (float) list.getHygene() * 1;
+        Float kitchenMaterial = (float) list.getKitchenMaterial();
+        Float powerBank = (float)list.getPowerbank();
+
+        amounts.add(food);
+        amounts.add(heater);
+        amounts.add(manCloth);
+        amounts.add(womanCloth);
+        amounts.add(childCloth);
+        amounts.add(hygene);
+        amounts.add(kitchenMaterial);
+        amounts.add(powerBank);
+
+        return amounts;
+
     }
 
     public boolean syncVectorDB(LogisticInfo driver, FieldOrganization dropPlace, InventoryList fieldList) {
