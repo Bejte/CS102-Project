@@ -1,7 +1,23 @@
 package com.example.catastrophecompass.UILayer.HQOrganizer.Admin;
 
-java
-        Copy code
+
+import android.content.Context;
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.catastrophecompass.R;
+import com.example.catastrophecompass.UILayer.Common.Organization;
+
+import java.util.List;
+
+import io.reactivex.rxjava3.annotations.NonNull;
+
 public class OrganizationAdapter extends RecyclerView.Adapter<OrganizationAdapter.OrganizationViewHolder> {
 
     private List<Organization> organizationList;
@@ -45,8 +61,8 @@ public class OrganizationAdapter extends RecyclerView.Adapter<OrganizationAdapte
 
         public OrganizationViewHolder(@NonNull View itemView) {
             super(itemView);
-            organizationName = itemView.findViewById(R.id.organization_name);
-            editButton = itemView.findViewById(R.id.edit_organization_button);
+            organizationName = itemView.findViewById(R.id.txt_organization_name_it_or_it);
+            editButton = itemView.findViewById(R.id.button_edit_organization_type_it_or_it);
         }
     }
 }

@@ -27,4 +27,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView12" />
+    <Button
+        android:id="@+id/add_button_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/organization_recycler_view_hq"
+        android:layout_centerHorizontal="true"
+        android:text="Add" />
+
+
 </RelativeLayout>

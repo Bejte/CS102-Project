@@ -11,10 +11,10 @@
         android:id="@+id/img_profile_photo_ch_pe_it"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/profile_photos_4" />
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/txt_name_people_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

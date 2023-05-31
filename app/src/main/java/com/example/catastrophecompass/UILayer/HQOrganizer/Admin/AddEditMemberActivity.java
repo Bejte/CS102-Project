@@ -23,6 +23,7 @@ public class AddEditMemberActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_member);
+        String contactName = getIntent().getStringExtra("contact_name");
 
         doneButton = findViewById(R.id.btn_doneButton_ac_ad_ed_me_ac);
         Intent intent = getIntent();
@@ -43,6 +44,7 @@ public class AddEditMemberActivity extends AppCompatActivity {
                 break;
             case 3:
                 fragment = new IfHeadQuarterFragment();
+
                 break;
             default:
                 fragment = new IfFieldOrganizerFragment();

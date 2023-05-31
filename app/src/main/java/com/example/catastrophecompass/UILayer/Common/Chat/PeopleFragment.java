@@ -1,5 +1,6 @@
 package com.example.catastrophecompass.UILayer.Common.Chat;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.catastrophecompass.DataLayer.Model.Contact;
 import com.example.catastrophecompass.R;
 
 /**
@@ -17,6 +19,7 @@ import com.example.catastrophecompass.R;
  */
 import android.widget.SearchView;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -24,52 +27,29 @@ import java.util.List;
 
 import com.example.catastrophecompass.UILayer.Common.PeopleAdapter;
 import com.example.catastrophecompass.UILayer.Common.Person;
+import com.example.catastrophecompass.UILayer.HQOrganizer.Admin.AddEditMemberActivity;
 
 public class PeopleFragment extends Fragment {
 
-    private SearchView searchView;
-    private RecyclerView recyclerView;
-    private PeopleAdapter peopleAdapter;
-    private List<Person> peopleList;
-
-    public PeopleFragment() {
-        // Required empty public constructor
-    }
+    private ContactsVM contactsVM;
+    private String organizationName = "YourOrganizationName";
+    private String userName = "YourUserName";
+    private String userType = "YourUserType";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_people, container, false);
 
-        searchView = view.findViewById(R.id.search_view);
-        recyclerView = view.findViewById(R.id.rec_UpdateDemographics_ac_de_up_ac);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView_people);
 
-        initData();
-        peopleAdapter = new PeopleAdapter(peopleList);
+        contactsVM = new ViewModelProvider(this).get(ContactsVM.class);
+
+        List<Contact> contacts = contactsVM.getContacts(organizationName, userName);
+
+        PeopleAdapter peopleAdapter = new PeopleAdapter(contacts, userType, contactsVM, getActivity());
         recyclerView.setAdapter(peopleAdapter);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                // Implement search functionality here if needed
-                return false;
-            }
-        });
 
         return view;
     }
 
-    private void initData() {
-        peopleList = new ArrayList<>();
-        // Add Person objects to the peopleList
-        // You can replace the R.mipmap.ic_launcher with your own profile images
-        peopleList.add(new Person("John Doe", R.mipmap.ic_launcher));
-        peopleList.add(new Person("Jane Smith", R.mipmap.ic_launcher));
-        // ... add more people as needed
-    }
 }
