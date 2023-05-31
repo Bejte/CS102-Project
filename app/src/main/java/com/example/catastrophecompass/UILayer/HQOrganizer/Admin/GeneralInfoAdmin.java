@@ -15,7 +15,8 @@ import com.example.catastrophecompass.R;
 
 
 public class GeneralInfoAdmin extends Fragment {
-    Button btnAdd;
+    Button btnAddOrganization;
+    Button btnAddMember;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,20 +30,26 @@ public class GeneralInfoAdmin extends Fragment {
         View view = inflater.inflate(R.layout.fragment_general_info, container, false);
 
         // find the button from the view
-        btnAdd = view.findViewById(R.id.add_button_admin);
+        btnAddOrganization = view.findViewById(R.id.add_organization_button_admin);
+        btnAddMember=view.findViewById(R.id.add_member_button_admin);
+        btnAddMember.setVisibility(View.VISIBLE);
 
         // set a click listener for the button
-        btnAdd.setOnClickListener(new View.OnClickListener() {
+        btnAddOrganization.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // create an intent to open the activity
                 Intent intent = new Intent(getActivity(), AddEditOrganizationActivity.class);
 
-                // use putExtra to add a key-value pair to the intent
-                // replace "your_key" and "your_value" with your actual key and value
+                startActivity(intent);
+            }
+        });
+        btnAddMember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // create an intent to open the activity
+                Intent intent = new Intent(getActivity(), AddEditMemberActivity.class);
 
-
-                // start the activity
                 startActivity(intent);
             }
         });

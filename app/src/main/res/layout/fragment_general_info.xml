@@ -10,8 +10,8 @@
         android:layout_width="263dp"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="-1dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginStart="-14dp"
+        android:layout_marginEnd="13dp"
         android:layout_toEndOf="@+id/textView12" />
 
     <TextView
@@ -19,7 +19,7 @@
         android:layout_width="104dp"
         android:layout_height="86dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="348dp"
+        android:layout_marginTop="53dp"
         android:text="Volunteer:\nTeam:\nOrganization:" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -28,12 +28,29 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textView12" />
     <Button
-        android:id="@+id/add_button_admin"
+        android:id="@+id/add_organization_button_admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/organization_recycler_view_hq"
         android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/button_color_soft"
         android:text="Add" />
+
+    <Button
+        android:id="@+id/add_member_button_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_organization_button_admin"
+
+        android:layout_alignStart="@+id/add_organization_button_admin"
+        android:layout_alignEnd="@+id/add_organization_button_admin"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="-2dp"
+        android:layout_marginBottom="302dp"
+        android:backgroundTint="@color/button_color_soft"
+        android:text="Add Member"
+        android:visibility="gone" />
 
 
 </RelativeLayout>

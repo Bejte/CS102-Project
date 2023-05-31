@@ -40,6 +40,7 @@
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:id="@+id/teamTypeEditText"
                     android:layout_weight="1" />
 
             </LinearLayout>
@@ -68,6 +69,7 @@
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:id="@+id/descriptionEditText"
                     android:layout_weight="1" />
 
             </LinearLayout>
@@ -95,6 +97,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:id="@+id/teamLeaderEditText"
                 android:layout_weight="1" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -159,6 +162,7 @@
                     android:text="Discard Team"
                     android:backgroundTint="@color/button_color_soft"
                     android:layout_marginTop="20dp"
+                    android:id="@+id/discardButton"
                     android:layout_marginRight="8dp" />
 
                 <Button
@@ -166,6 +170,7 @@
                     android:layout_height="wrap_content"
                     android:text="Add/Update"
                     android:layout_marginTop="20dp"
+                    android:id="@+id/addButton"
                     android:backgroundTint="@color/button_color_soft" />
 
             </LinearLayout>
