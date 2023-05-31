@@ -35,7 +35,7 @@ public class RecordAidRequestTruckFBRepo {
 
         String truckReqKey = requestsRef.push().getKey();
         DatabaseReference truckReqRef = requestsRef.child(truckReqKey);
-        truckReqRef.child("size").setValue(request.getSize(), (error, ref) -> {
+        truckReqRef.child("size").setValue(request.getRequestSize(), (error, ref) -> {
             if (error != null) {
                 status[0] = false;
             }

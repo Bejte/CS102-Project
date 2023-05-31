@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.catastrophecompass.DataLayer.FBRepository.ChatActivityFBRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.ChatActivityLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.ChatItem;
+import com.example.catastrophecompass.UILayer.Common.Chat.ChatActivityInterface;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
@@ -50,7 +51,7 @@ public class ChatActivityDomain {
                 });
     }
 
-    public boolean sendMessage(ChatItem chatItem){
-        return FBRepo.sendMessage(chatItem);
+    public boolean sendMessage(ChatItem chatItem, String userName, String chattedUserName){
+        return FBRepo.sendMessage(chatItem, userName, chattedUserName);
     }
 }

@@ -25,7 +25,7 @@ public class ArrivingTrucksFBRepo
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot truckSnapshot : dataSnapshot.getChildren()) {
-                    TruckItem truck = new TruckItem(truckSnapshot.getKey(), truckSnapshot.child("size").getValue(String.class));
+                    TruckItem truck = new TruckItem(truckSnapshot.getKey(), truckSnapshot.child("size").getValue(Integer.class));
                     trucks[0].add(truck);
                 }
     }

@@ -6,6 +6,7 @@ import com.example.catastrophecompass.DataLayer.FBRepository.LogisticMissionFBRe
 import com.example.catastrophecompass.DataLayer.LocalRepository.LogisticMissionLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
+import com.example.catastrophecompass.DataLayer.RemoteDataRepository.CloudFunctionRepo.CloudRestApi;
 import com.example.catastrophecompass.UILayer.Logistics.LogisticMissionInterface;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -19,9 +20,9 @@ public class LogisticMissionDomain {
     private LogisticMissionFBRepo FBRepo;
     private String driverName;
     private InventoryList inventory;
-    private CloudRestAPI restAPI;
+    private CloudRestApi restAPI;
 
-    public LogisticMissionDomain(LogisticMissionLocalRepo localRepo, LogisticMissionFBRepo FBRepo, CloudRestAPI restAPI) {
+    public LogisticMissionDomain(LogisticMissionLocalRepo localRepo, LogisticMissionFBRepo FBRepo, CloudRestApi restAPI) {
         this.localRepo = localRepo;
         this.FBRepo = FBRepo;
         this.restAPI = restAPI;
@@ -41,7 +42,7 @@ public class LogisticMissionDomain {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        logisticMissionInterface.warnUserForNoConnection();
+                        logisticMissionInterface.warnUserForNoConnection(); // TODO check
                         Log.d("LogisticMissionDomain", "getDriverName() onError() called");
                     }
                 });

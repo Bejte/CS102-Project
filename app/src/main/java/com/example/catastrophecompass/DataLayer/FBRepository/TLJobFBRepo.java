@@ -1,10 +1,10 @@
 package com.example.catastrophecompass.DataLayer.FBRepository;
 
-import android.net.Credentials;
 
 import androidx.annotation.NonNull;
 
 import com.example.catastrophecompass.DataLayer.LocalRepository.TLJobLocalRepo;
+import com.example.catastrophecompass.DataLayer.Model.Credentials;
 import com.example.catastrophecompass.DataLayer.Model.TeamInfo;
 import com.example.catastrophecompass.DataLayer.Model.VolunteerInfo;
 import com.google.firebase.database.DataSnapshot;
@@ -27,7 +27,7 @@ public class TLJobFBRepo {
         databaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                localRepo.pushToLocal(snapshot.getValue());
+                localRepo.pushToLocal(snapshot.getValue(TeamInfo.class));
             }
 
             @Override

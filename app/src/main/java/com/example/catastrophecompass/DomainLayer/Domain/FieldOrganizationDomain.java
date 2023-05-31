@@ -134,7 +134,7 @@ public class FieldOrganizationDomain {
             if (vectorRepo.updateAidStatusInfo(inventoryList, FieldOrganizerCommon.organizationName))
                 return true;
             else
-                FBRepo.revertChanges(inventoryList); // TODO change the argument in FBRepo
+                FBRepo.revertChanges(FieldOrganizerCommon.organizationName);
         }
         return false;
     }

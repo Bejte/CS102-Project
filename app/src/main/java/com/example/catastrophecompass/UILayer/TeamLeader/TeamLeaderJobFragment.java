@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -18,7 +19,7 @@ import io.reactivex.rxjava3.annotations.NonNull;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link TeamLeaderJobFragment#newInstance} factory method to
+ * Use the {@link TeamLeaderJobFragment} factory method to
  * create an instance of this fragment.
  */
 public class TeamLeaderJobFragment extends Fragment {

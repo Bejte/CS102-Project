@@ -8,8 +8,11 @@ import com.example.catastrophecompass.DataLayer.Model.HousingInfo;
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.User;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class FieldOrganizatonInfoFBRepo
 {
@@ -54,7 +57,7 @@ public class FieldOrganizatonInfoFBRepo
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            currentList[0] = dataSnapshot.getValue();
+            currentList[0] = dataSnapshot.getValue(InventoryList.class);
         }
 
         @Override
@@ -87,7 +90,7 @@ public class FieldOrganizatonInfoFBRepo
         path1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                localRepo.recordDemographicInfo(snapshot.getValue());
+                localRepo.recordDemographicInfo(snapshot.getValue(DemographicInfo.class));
             }
 
             @Override
@@ -99,7 +102,7 @@ public class FieldOrganizatonInfoFBRepo
         path2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                localRepo.recordHousingInfo(snapshot.getValue());
+                localRepo.recordHousingInfo(snapshot.getValue(HousingInfo.class));
             }
 
             @Override
@@ -111,7 +114,7 @@ public class FieldOrganizatonInfoFBRepo
         path3.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                localRepo.recordInventoryInfo(snapshot.getValue());
+                localRepo.recordInventoryInfo(snapshot.getValue(InventoryList.class));
             }
 
             @Override
@@ -123,7 +126,7 @@ public class FieldOrganizatonInfoFBRepo
         path4.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                localRepo.recordArrivingAid(snapshot.getValue());
+                localRepo.recordArrivingAid(snapshot.getValue(InventoryList.class));
             }
 
             @Override

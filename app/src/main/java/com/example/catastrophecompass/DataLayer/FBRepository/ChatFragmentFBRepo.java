@@ -1,7 +1,18 @@
 package com.example.catastrophecompass.DataLayer.FBRepository;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.example.catastrophecompass.DataLayer.LocalRepository.ChatFragmentLocalRepo;
+import com.example.catastrophecompass.DataLayer.Model.RecentChatItem;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -62,13 +73,14 @@ public class ChatFragmentFBRepo
                         DataSnapshot recentChat = data;
                         for(DataSnapshot chat: data.getChildren())
                         {
-                            if(smallestTime > chat.child("time").getValue(Integer.class))
+                            if(smallestTime < chat.child("time").getValue(Integer.class))
                             {
                                 smallestTime = chat.child("time").getValue(Integer.class);
                                 recentChat = chat;
                             }
                         }
-                        localRepo.pushToLocal(recentChat.getValue());
+                        Log.d("ChatFragmentFBRepo", "pushToLocal() RecentChatItem.class");
+                        localRepo.pushToLocal(recentChat.getValue(RecentChatItem.class));
                     }
                 }
             }

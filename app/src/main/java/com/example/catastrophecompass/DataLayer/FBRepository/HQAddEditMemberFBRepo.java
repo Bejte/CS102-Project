@@ -9,6 +9,11 @@ import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
 import com.example.catastrophecompass.DataLayer.Model.Member;
 import com.example.catastrophecompass.DataLayer.Model.TeamOrganizator;
 import com.example.catastrophecompass.DataLayer.Model.UserLogin;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class HQAddEditMemberFBRepo
@@ -20,7 +25,7 @@ public class HQAddEditMemberFBRepo
         FirebaseDatabase.getInstance().getReference("UserList").child(userLogin.getUserName()).child("userType").setValue("logistic");
         FirebaseDatabase.getInstance().getReference("UserList").child(userLogin.getUserName()).child("organizationName").setValue(organizationName);
 
-        DatabaseReference logisticsRef = FirebaseDatabase.getInstance().getReference("Logistics").child(logistics.getLogisticDriverName());
+        DatabaseReference logisticsRef = FirebaseDatabase.getInstance().getReference("Logistics").child(userLogin.getUserName());
         logisticsRef.child("id").setValue(id);
         logisticsRef.child("TruckSize").setValue(logistics.getTruckSize());
         logisticsRef.child("getName").setValue(logistics.getGetName());

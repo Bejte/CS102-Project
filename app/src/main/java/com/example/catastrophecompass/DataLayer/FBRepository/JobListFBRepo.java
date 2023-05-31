@@ -2,6 +2,8 @@ package com.example.catastrophecompass.DataLayer.FBRepository;
 
 import androidx.annotation.NonNull;
 
+import com.example.catastrophecompass.DataLayer.Model.Job;
+import com.example.catastrophecompass.DataLayer.Model.TeamInfo;
 import com.example.catastrophecompass.DataLayer.Model.VolunteerInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -54,26 +56,26 @@ public class JobListFBRepo {
         teamRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                int currentCrucial = dataSnapshot.getValue().getVolunteerInfo().getCrucial();
-                int currentHelpful = dataSnapshot.getValue().getVolunteerInfo().getHelpful();
-                int currentUnnecessary = dataSnapshot.getValue().getVolunteerInfo().getUnnecessary();
-                int currentNeed = dataSnapshot.getValue().getVolunteerInfo().getNeed();
+                int currentCrucial = dataSnapshot.getValue(TeamInfo.class).getVolunteerInfo().getCrucial();
+                int currentHelpful = dataSnapshot.getValue(TeamInfo.class).getVolunteerInfo().getHelpful();
+                int currentUnnecessary = dataSnapshot.getValue(TeamInfo.class).getVolunteerInfo().getUnnecessary();
+                int currentNeed = dataSnapshot.getValue(TeamInfo.class).getVolunteerInfo().getNeed();
 
                 if (currentNeed != 0) {
-                    dataSnapshot.getValue().getVolunteerInfo().setNeed(currentNeed - 1);
-                    dataSnapshot.getValue().getVolunteerInfo().setCrucial(currentNeed + 1);
+                    dataSnapshot.getValue(TeamInfo.class).getVolunteerInfo().setNeed(currentNeed - 1);
+                    dataSnapshot.getValue(TeamInfo.class).getVolunteerInfo().setCrucial(currentNeed + 1);
                 } else {
 
                     int smallestValue = Math.min(Math.min(Math.min(currentCrucial, currentHelpful), currentUnnecessary), currentNeed);
 
                     if (smallestValue == currentCrucial) {
-                        dataSnapshot.getValue().getVolunteerInfo().setCrucial(currentNeed + 1);
+                        dataSnapshot.getValue(TeamInfo.class).getVolunteerInfo().setCrucial(currentNeed + 1);
                     } else if (smallestValue == currentHelpful) {
-                        dataSnapshot.getValue().getVolunteerInfo().setHelpful(currentNeed + 1);
+                        dataSnapshot.getValue(TeamInfo.class).getVolunteerInfo().setHelpful(currentNeed + 1);
                     } else if (smallestValue == currentUnnecessary) {
-                        dataSnapshot.getValue().getVolunteerInfo().setUnnecessaryl(currentNeed + 1);
+                        dataSnapshot.getValue(TeamInfo.class).getVolunteerInfo().setUnnecessary(currentNeed + 1);
                     } else {
-                        dataSnapshot.getValue().getVolunteerInfo().setNeed(currentNeed + 1);
+                        dataSnapshot.getValue(TeamInfo.class).getVolunteerInfo().setNeed(currentNeed + 1);
                     }
                 }
             }

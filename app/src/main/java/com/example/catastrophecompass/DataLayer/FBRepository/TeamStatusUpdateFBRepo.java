@@ -1,5 +1,6 @@
 package com.example.catastrophecompass.DataLayer.FBRepository;
 
+import com.example.catastrophecompass.DataLayer.Model.VolunteerInfo;
 import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

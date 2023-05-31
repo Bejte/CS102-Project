@@ -3,8 +3,10 @@ package com.example.catastrophecompass.DataLayer.FBRepository;
 import androidx.annotation.NonNull;
 
 import com.example.catastrophecompass.DataLayer.Model.DriverItem;
+import com.example.catastrophecompass.DataLayer.Model.FieldOrganization;
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
+import com.example.catastrophecompass.RemoteDataRepository.VectorDatabaseRepo.VectorDatabaseRepo;
 import com.example.catastrophecompass.UILayer.HQOrganizer.OrganizeTrucksInterface;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -16,7 +18,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 public class OrganizeTrucksFBRepo {
+    private VectorDatabaseRepo vectorRepo;
+
+    @Inject
+    public OrganizeTrucksFBRepo(VectorDatabaseRepo vectorRepo){
+        this.vectorRepo = vectorRepo;
+    }
     DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("Logistics");
     public void getAvailableDrivers(OrganizeTrucksInterface Interface, String organizationName)
     {
@@ -28,7 +38,7 @@ public class OrganizeTrucksFBRepo {
                 {
                     if(names.child("registeredOrganization").getValue().equals(organizationName) && names.child("status").getValue().equals("available"))
                     {
-                        DriverItem driver = new DriverItem(names.getKey(), names.child("status").getValue(String.class));
+                        DriverItem driver = new DriverItem(names.getKey(), names.child("status").getValue(String.class),names.child("TruckSize").getValue(String.class));
                         drivers.add(driver);
                     }
 
@@ -52,7 +62,7 @@ public class OrganizeTrucksFBRepo {
         driver.addListenerForSingleValueEvent(new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
-            name[0]  = driver.child("getName").getValue(String.class);
+            name[0]  = snapshot.child("getName").getValue(String.class);
         }
 
         @Override
@@ -79,7 +89,7 @@ public class OrganizeTrucksFBRepo {
                 }
             });
 
-        DatabaseReference reqRef = FirebaseDatabase.getInstance().getReference("Organizations").child(name).child("requests").child(driverName);
+        DatabaseReference reqRef = FirebaseDatabase.getInstance().getReference("Organizations").child(name[0]).child("requests").child(driverName);
         reqRef.child("requestSize").setValue(driver.child("TruckSize"));
         reqRef.child("collected").setValue(driver.child("Inventory"));
 
@@ -90,7 +100,7 @@ public class OrganizeTrucksFBRepo {
     {
         DatabaseReference driver = databaseRef.child(driverName);
         boolean[] success = new boolean[1];
-        status[0] = false;
+        success[0] = false;
         String[] name = new String[1];
         String[] address = new String[1];
         String[] getName = new String[1];
@@ -110,9 +120,9 @@ public class OrganizeTrucksFBRepo {
                 getAddress[0] = snapshot.child("getAddress").getValue(String.class);
                 status[0] = snapshot.child("status").getValue(String.class);
                 pictureUrl[0] = snapshot.child("pictureUrl").getValue(String.class);
-                getStatus[0] = snapshot.child("getStatus").getValue();
-                dropStatus[0] = snapshot.child("dropStatus").getValue();
-                size[0] = snapshot.child("TruckSize").getValue();
+                getStatus[0] = snapshot.child("getStatus").getValue(Boolean.class);
+                dropStatus[0] = snapshot.child("dropStatus").getValue(Boolean.class);
+                size[0] = snapshot.child("TruckSize").getValue(Integer.class);
             }
 
             @Override
@@ -147,14 +157,14 @@ public class OrganizeTrucksFBRepo {
         driver.child("Inventory").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                food[0] = snapshot.child("Inventory").getValue().getFood();
-                heater[0] = snapshot.child("Inventory").getValue().getHeater();
-                manCloth[0] = snapshot.child("Inventory").getValue().getManCloth();
-                womanCloth[0] = snapshot.child("Inventory").getValue().getWomanCloth();
-                childCloth[0] = snapshot.child("Inventory").getValue().getChildCloth();
-                hygene[0] = snapshot.child("Inventory").getValue().getHygene();
-                kitchenMaterial[0] = snapshot.child("Inventory").getValue().getgetKitchenMaterial();
-                powerbank[0] = snapshot.child("Inventory").getValue().getPowerbank();
+                food[0] = snapshot.child("Inventory").getValue(InventoryList.class).getFood();
+                heater[0] = snapshot.child("Inventory").getValue(InventoryList.class).getHeater();
+                manCloth[0] = snapshot.child("Inventory").getValue(InventoryList.class).getManCloth();
+                womanCloth[0] = snapshot.child("Inventory").getValue(InventoryList.class).getWomanCloth();
+                childCloth[0] = snapshot.child("Inventory").getValue(InventoryList.class).getChildCloth();
+                hygene[0] = snapshot.child("Inventory").getValue(InventoryList.class).getHygene();
+                kitchenMaterial[0] = snapshot.child("Inventory").getValue(InventoryList.class).getKitchenMaterial();
+                powerbank[0] = snapshot.child("Inventory").getValue(InventoryList.class).getPowerbank();
             }
 
             @Override
@@ -168,7 +178,7 @@ public class OrganizeTrucksFBRepo {
             public void onSuccess(Void unused) {
                 success[0] = true;
                 LogisticInfo driverItem = new LogisticInfo(getName[0], getAddress[0], name[0], address[0], status[0], pictureUrl[0], getStatus[0], dropStatus[0], list, size[0]);
-                syncVectorDB(driverItem, refKey[0]);
+                vectorRepo.syncVectorDB(driverItem, new FieldOrganization(name[0], address[0]), list);
             }
         });
 

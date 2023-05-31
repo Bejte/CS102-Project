@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.catastrophecompass.DataLayer.Model.Job;
 import com.example.catastrophecompass.R;
 
 import androidx.recyclerview.widget.LinearLayoutManager;

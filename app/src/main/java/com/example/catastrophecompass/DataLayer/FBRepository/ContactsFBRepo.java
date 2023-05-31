@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ContactsFBRepo {
 
-    DatabaseReference targetOrgRef;
+    DataSnapshot targetOrgRef;
 
     public List<Contact> getContact(String organizationName)
     {
@@ -78,7 +78,7 @@ public class ContactsFBRepo {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
                     if (childSnapshot.hasChild(targetChildKey)) {
-                        targetOrgRef = childSnapshot.child(targetChildKey).getRef();
+                        targetOrgRef = childSnapshot.child(targetChildKey);
 
                         return;
                     } else {
@@ -105,23 +105,23 @@ public class ContactsFBRepo {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(!dataSnapshot.child("Chatted").child(userName).hasChild(contactName))
                 {
-                    dataSnapshot.child("Chatted").child(userName).child(contactName).setValue("");
+                    dataSnapshot.child("Chatted").child(userName).child(contactName).getRef().setValue("");
                 }
 
                 if(!dataSnapshot.child("Chatted").child(contactName).hasChild(userName))
                 {
-                    dataSnapshot.child("Chatted").child(contactName).child(userName).setValue("");
+                    dataSnapshot.child("Chatted").child(contactName).child(userName).getRef().setValue("");
                 }
 
-                if(!dataSnapshot.child("ChatList").child(contactName + userName) || !dataSnapshot.child("ChatList").child(userName + contactName))
+                if(!dataSnapshot.child("ChatList").hasChild(contactName + userName) || !dataSnapshot.child("ChatList").hasChild(userName + contactName))
                 {
                     if(userName.compareTo(contactName) < 0)
                     {
-                        dataSnapshot.child("ChatList").child(userName + contactName).setValue(null);
+                        dataSnapshot.child("ChatList").child(userName + contactName).getRef().setValue(null);
                     }
                     else
                     {
-                        dataSnapshot.child("ChatList").child(contactName + userName).setValue(null);
+                        dataSnapshot.child("ChatList").child(contactName + userName).getRef().setValue(null);
                     }
                 }
                 status[0] = true;

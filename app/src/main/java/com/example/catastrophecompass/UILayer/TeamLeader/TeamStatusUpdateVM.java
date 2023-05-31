@@ -21,9 +21,9 @@ public class TeamStatusUpdateVM extends ViewModel {
     public TeamStatusUpdateVM(TeamStatusUpdateFBRepo tsupdateFB) {
         this.tsupdateFB = tsupdateFB;
     }
-    public boolean updateVolunteerInfo (VolunteerInfo vinfo) {
+    public boolean updateVolunteerInfo (String city, String place, String team, VolunteerInfo vinfo) {
         Log.d("TeamStatusUpdateVM", "updateVolunteerInfo() called");
-        return tsupdateFB.updateVolunteerInfo (vinfo); // TODO parameter mismatch
+        return tsupdateFB.updateVolunteerInfo (city, place, team, vinfo); // TODO parameter mismatch
     }
 
 }

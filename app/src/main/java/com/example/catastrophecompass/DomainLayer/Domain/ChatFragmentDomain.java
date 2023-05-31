@@ -6,6 +6,7 @@ import com.example.catastrophecompass.DataLayer.FBRepository.ChatFragmentFBRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.ChatFragmentLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.Credentials;
 import com.example.catastrophecompass.DataLayer.Model.RecentChatItem;
+import com.example.catastrophecompass.UILayer.Common.Chat.ChatFragmentInterface;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -20,8 +21,8 @@ public class ChatFragmentDomain {
         this.FBRepo = FBRepo;
     }
 
-    public void setupDBConnection(Credentials credentials){
-        FBRepo.attachListener(credentials);
+    public void setupDBConnection(String userName){
+        FBRepo.setupDBConnection(userName);
     }
 
     public void getRecentChats(ChatFragmentInterface chatFragmentInterface){

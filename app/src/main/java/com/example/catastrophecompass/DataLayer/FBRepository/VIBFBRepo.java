@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 
 import com.example.catastrophecompass.DataLayer.LocalRepository.VIBLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.Credentials;
+import com.example.catastrophecompass.DataLayer.Model.TeamInfo;
 import com.example.catastrophecompass.DataLayer.Model.VIBJobInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,7 +32,18 @@ public class VIBFBRepo {
     {
         DatabaseReference volunteerListRef = FirebaseDatabase.getInstance().getReference("Teams").child(city).child(place).child("VolunteerList");
         String[] teamName = new String[1];
-        teamName[0] = volunteerListRef.child(id).getValue();
+        volunteerListRef.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                teamName[0] = snapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         volunteerListRef.child(id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -64,13 +76,12 @@ public class VIBFBRepo {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot)
         {
-            teamDescription[0] = dataSnapshot.getValue().getTeamDescription();
-            teamLeaderName[0] = dataSnapshot.getValue().getTeamLeaderName();
-            areaInfo[0] = dataSnapshot.getValue().getAreaInfo();
-            foodInfo[0] = dataSnapshot.getValue().getFoodInfo();
-            location[0] = dataSnapshot.getValue().getLocation();
-            teamLeaderPicUrl[0] = dataSnapshot.getValue().getTeamLeaderPicUrl();
-            dispatch[0] = dataSnapshot.getValue().getDispatch();
+            teamDescription[0] = dataSnapshot.getValue(TeamInfo.class).getTeamDescription();
+            teamLeaderName[0] = dataSnapshot.getValue(TeamInfo.class).getTeamLeaderName();
+            areaInfo[0] = dataSnapshot.getValue(TeamInfo.class).getAreaInfo();
+            foodInfo[0] = dataSnapshot.getValue(TeamInfo.class).getFoodInfo();
+            location[0] = dataSnapshot.getValue(TeamInfo.class).getLocation();
+            teamLeaderPicUrl[0] = dataSnapshot.getValue(TeamInfo.class).getUrl();
         }
         @Override
         public void onCancelled(DatabaseError databaseError) {
@@ -78,14 +89,16 @@ public class VIBFBRepo {
         }
     });
 
-        VIBJobInfo info = new VIBJobInfo(teamName, teamDescription[0], teamLeaderName[0], areaInfo[0], foodInfo[0], location[0], teamLeaderPicUrl[0], dispatch[0]);
+        VIBJobInfo info = new VIBJobInfo(teamName, teamDescription[0], teamLeaderName[0], areaInfo[0], foodInfo[0], location[0], teamLeaderPicUrl[0], false);
         localRepo.pushToLocal(info);
     }
 
-    public void deleteUserFB(Credentials credentials)throws NullPointerException
+    public boolean deleteUserFB(Credentials credentials)throws NullPointerException
     {
         DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("Teams").child(credentials.getCity()).child(credentials.getPlace());
         DatabaseReference[] toDeleteRef = new DatabaseReference[1];
+
+        boolean[] returnValue = new boolean[1];
         databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
@@ -107,20 +120,22 @@ public class VIBFBRepo {
                 int smallestValue = findSmallestValue(currentCrucial, currentHelpful, currentNeed, currentUnnecessary);
 
                 if (smallestValue == currentCrucial) {
-                    dataSnapshot.child(credentials.getTeamName()).child("crucial").setValue(currentCrucial - 1);
+                    dataSnapshot.child(credentials.getTeamName()).child("crucial").getRef().setValue(currentCrucial - 1);
                 } else if (smallestValue == currentHelpful) {
-                    dataSnapshot.child(credentials.getTeamName()).setValue(currentHelpful - 1);
+                    dataSnapshot.child(credentials.getTeamName()).getRef().setValue(currentHelpful - 1);
                 } else if (smallestValue == currentUnnecessary) {
-                    dataSnapshot.child(credentials.getTeamName()).setValue(currentUnnecessary - 1);
+                    dataSnapshot.child(credentials.getTeamName()).getRef().setValue(currentUnnecessary - 1);
                 } else {
-                    dataSnapshot.child(credentials.getTeamName()).setValue(currentNeed - 1);
+                    dataSnapshot.child(credentials.getTeamName()).getRef().setValue(currentNeed - 1);
                 }
+                returnValue[0] = true;
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                returnValue[0] = false;
             }
         });
+        return returnValue[0];
     }
 
     public int findSmallestValue(int a, int b, int c, int d) {

@@ -2,6 +2,9 @@ package com.example.catastrophecompass.DataLayer.FBRepository;
 
 import androidx.annotation.NonNull;
 
+import com.example.catastrophecompass.DataLayer.LocalRepository.LogisticMissionLocalRepo;
+import com.example.catastrophecompass.DataLayer.Model.InventoryList;
+import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,31 +22,23 @@ public class LogisticMissionFBRepo
     public void getLogisticInfo(String driverName)
     {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Logistics").child(driverName);
-        String getName = databaseReference.child("getName").getValue(String.class);
-        String getAddress = databaseReference.child("getAddress").getValue(String.class);
-        String dropName = databaseReference.child("dropName").getValue(String.class);
-        String dropAddress = databaseReference.child("dropAddress").getValue(String.class);
-        String status = databaseReference.child("status").getValue(String.class);
-        String pictureUrl = databaseReference.child("pictureURL").getValue(String.class);
-        boolean getStatus = databaseReference.child("getStatus").getValue(boolean.class);
-        boolean dropStatus = databaseReference.child("dropStatus").getValue(boolean.class);
-        InventoryList inventoryList = databaseReference.child("Inventory").getValue() ;
-        LogisticInfo[] info = {new LogisticInfo(getName, getAddress, dropName, dropAddress, status, pictureUrl, getStatus, dropStatus, inventoryList)};
+        LogisticInfo[] info = new LogisticInfo[1];
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String getName = databaseReference.child("getName").getValue(String.class);
-                String getAddress = databaseReference.child("getAddress").getValue(String.class);
-                String dropName = databaseReference.child("dropName").getValue(String.class);
-                String dropAddress = databaseReference.child("dropAddress").getValue(String.class);
-                String status = databaseReference.child("status").getValue(String.class);
-                String pictureUrl = databaseReference.child("pictureURL").getValue(String.class);
-                boolean getStatus = databaseReference.child("getStatus").getValue(boolean.class);
-                boolean dropStatus = databaseReference.child("dropStatus").getValue(boolean.class);
-                InventoryList inventoryList = databaseReference.child("Inventory").getValue() ;
-                info[0] = new LogisticInfo(getName, getAddress, dropName, dropAddress, status, pictureUrl, getStatus, dropStatus, inventoryList);
-                localRepo.pushToLocal(info);
+                String getName = snapshot.child("getName").getValue(String.class);
+                String getAddress = snapshot.child("getAddress").getValue(String.class);
+                String dropName = snapshot.child("dropName").getValue(String.class);
+                String dropAddress = snapshot.child("dropAddress").getValue(String.class);
+                String status = snapshot.child("status").getValue(String.class);
+                String pictureUrl = snapshot.child("pictureURL").getValue(String.class);
+                boolean getStatus = snapshot.child("getStatus").getValue(boolean.class);
+                boolean dropStatus = snapshot.child("dropStatus").getValue(boolean.class);
+                InventoryList inventoryList = snapshot.child("Inventory").getValue(InventoryList.class);
+                int truckSize = snapshot.child("TruckSize").getValue(Integer.class);
+                info[0] = new LogisticInfo(getName, getAddress, dropName, dropAddress, status, pictureUrl, getStatus, dropStatus, inventoryList, truckSize);
+                localRepo.pushToLocal(info[0]);
             }
 
             @Override
@@ -62,14 +57,14 @@ public class LogisticMissionFBRepo
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                dataSnapshot.child("getStatus").setValue(true);
-                dataSnapshot.child("status").setValue("getChecked");
+                dataSnapshot.child("getStatus").getRef().setValue(true);
+                dataSnapshot.child("status").getRef().setValue("getChecked");
                 updateStatus[0] = true;
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                updateStatus[0] = false;
             }
         });
 
@@ -85,14 +80,14 @@ public class LogisticMissionFBRepo
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                dataSnapshot.child("dropStatus").setValue(true);
-                dataSnapshot.child("status").setValue("dropClicked");
+                dataSnapshot.child("dropStatus").getRef().setValue(true);
+                dataSnapshot.child("status").getRef().setValue("dropClicked");
                 updateStatus[0] = true;
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                updateStatus[0] = false;
             }
         });
 

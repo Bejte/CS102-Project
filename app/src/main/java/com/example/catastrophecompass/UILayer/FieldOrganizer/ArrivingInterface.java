@@ -1,9 +1,9 @@
 package com.example.catastrophecompass.UILayer.FieldOrganizer;
 
-import com.example.catastrophecompass.DataLayer.Model.HousingInfo;
+import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 
 public interface ArrivingInterface {
-    void setDisplay(HousingInfo housingInfo);
+    void setDisplay(InventoryList inventoryList);
 
     void warnUser();
 }

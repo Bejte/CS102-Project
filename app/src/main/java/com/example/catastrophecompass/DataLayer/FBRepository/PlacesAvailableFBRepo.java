@@ -2,9 +2,16 @@ package com.example.catastrophecompass.DataLayer.FBRepository;
 
 import androidx.annotation.NonNull;
 
+import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
 import com.example.catastrophecompass.DataLayer.Model.Request;
 import com.example.catastrophecompass.UILayer.HQOrganizer.PlacesAvailableInterface;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +44,7 @@ public class PlacesAvailableFBRepo
                 {
                     if(!req.getKey().equals("totalRequested"))
                     {
-                        Request request = new Request(req.getKey(), orgs.getKey(), req.child("requestSize").getValue(Integer.class), req.child("collected").getValue());
+                        Request request = new Request(req.getKey(), orgs.getKey(), req.child("requestSize").getValue(Integer.class), req.child("collected").getValue(InventoryList.class));
                         requests.add(request);
                     }
                 }
@@ -74,7 +81,7 @@ public class PlacesAvailableFBRepo
 
     public void assign(LogisticInfo info, Request request, PlacesAvailableInterface placesAvailableInterface)
     {
-        DatabaseReference logisticsRef = FirebaseDatabase.getInstance().getReference("Logistics").child();//driverName
+        DatabaseReference logisticsRef = FirebaseDatabase.getInstance().getReference("Logistics").child();// TODO driverName add common
         boolean[] success = {true};
 
         logisticsRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -113,7 +120,7 @@ public class PlacesAvailableFBRepo
             }
         });
 
-        DatabaseReference orgRef = FirebaseDatabase.getInstance().getReference("Organizations").child(request.getPlaceName()).child("requests").child(request.getRequestName()).removeValue();
+        FirebaseDatabase.getInstance().getReference("Organizations").child(request.getPlaceName()).child("requests").child(request.getRequestName()).removeValue();
 
     }
 }

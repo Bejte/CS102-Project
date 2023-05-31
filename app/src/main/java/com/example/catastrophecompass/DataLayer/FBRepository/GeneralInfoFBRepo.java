@@ -1,5 +1,7 @@
 package com.example.catastrophecompass.DataLayer.FBRepository;
 
+import androidx.annotation.NonNull;
+
 import com.example.catastrophecompass.DataLayer.Model.OrganizationAsNode;
 import com.example.catastrophecompass.DataLayer.Model.VolunteerInfo;
 import com.google.firebase.database.DataSnapshot;
@@ -29,10 +31,10 @@ public class GeneralInfoFBRepo
                 all[0] = new VolunteerInfo(0,0,0,0,0);
                 for(VolunteerInfo info : volunteerInfoList)
                 {
-                    all.setNeed(all.getNeed()+info.getNeed());
-                    all.setCrucial(all.getCrucial()+info.getCrucial());
-                    all.setHelpful(all.getHelpful()+info.getHelpful());
-                    all.setUnnecessary(all.getUnnecessary()+info.getUnnecessary());
+                    all[0].setNeed(all[0].getNeed()+info.getNeed());
+                    all[0].setCrucial(all[0].getCrucial()+info.getCrucial());
+                    all[0].setHelpful(all[0].getHelpful()+info.getHelpful());
+                    all[0].setUnnecessary(all[0].getUnnecessary()+info.getUnnecessary());
                 }
             }
             @Override
@@ -67,7 +69,7 @@ public class GeneralInfoFBRepo
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
 
-                    VolunteerInfo volunteerInfo = dataSnapshot.child("volunteerInfo").getValue();
+                    VolunteerInfo volunteerInfo = dataSnapshot.child("volunteerInfo").getValue(VolunteerInfo.class);
 
                     volunteerInfoList.add(volunteerInfo);
 
@@ -84,19 +86,29 @@ public class GeneralInfoFBRepo
     public List<OrganizationAsNode> getSubOrganizations(String organizationName)
     {
         DatabaseReference organizationRef = FirebaseDatabase.getInstance().getReference("OrganizationStructure");
-        DataSnapshot organizationStructureNode = null;
+        DataSnapshot[] organizationStructureNode = new DataSnapshot[1];
 
-        for (DataSnapshot snapshot : organizationRef.getChildren()) {
-            if (snapshot.getKey().equals(organizationName)) {
-                organizationStructureNode = snapshot;
-                break;
+        organizationRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot s : snapshot.getChildren()) {
+                    if (snapshot.getKey().equals(organizationName)) {
+                        organizationStructureNode[0] = s;
+                        break;
+                    }
+                }
             }
-        }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         List<OrganizationAsNode> subOrganizations = new ArrayList<>();
 
-        if (organizationStructureNode.hasChild("downList")) {
-            DataSnapshot downListNode = organizationStructureNode.child("downList");
+        if (organizationStructureNode[0].hasChild("downList")) {
+            DataSnapshot downListNode = organizationStructureNode[0].child("downList");
             for (DataSnapshot subOrgSnapshot : downListNode.getChildren()) {
                 String subOrgName = subOrgSnapshot.getKey();
                 String type = subOrgSnapshot.child("Type").getValue(String.class);

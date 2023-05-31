@@ -30,8 +30,8 @@ public class ChatActivityVM extends ViewModel {
         domain.getMessages(chatActivityInterface);
     }
 
-    public boolean sendMessage(ChatItem chatItem){
+    public boolean sendMessage(ChatItem chatItem, String userName, String chattedUserName){
         Log.d("ChatActivityVM", "sendMessage() called");
-        return domain.sendMessage(chatItem);
+        return domain.sendMessage(chatItem, userName, chattedUserName);
     }
 }

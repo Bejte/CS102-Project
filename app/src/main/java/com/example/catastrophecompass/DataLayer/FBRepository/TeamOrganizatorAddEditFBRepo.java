@@ -65,7 +65,7 @@ public class TeamOrganizatorAddEditFBRepo
                         targetChildRef.removeValue();
                         return;
                     } else {
-                        findAndAddChild(childSnapshot.getRef(), targetChildKey);
+                        findAndDeleteChild(childSnapshot.getRef(), targetChildKey);
                     }
                 }
             }

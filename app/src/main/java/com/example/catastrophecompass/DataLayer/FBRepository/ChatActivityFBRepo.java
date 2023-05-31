@@ -31,7 +31,7 @@ public class ChatActivityFBRepo
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                ChatItem item = snapshot.getValue();
+                ChatItem item = snapshot.getValue(ChatItem.class);
                 localRepo.pushToLocal(item);
             }
 

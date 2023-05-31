@@ -36,11 +36,21 @@ public class AddOrganizationFBRepo
         });
         traverseOrganizationStructure(targetRef[0], downOrgs);
 
-        for(DataSnapshot org : downOrgs)
-        {
-            OrganizationAsNode organization = new OrganizationAsNode(org.getKey().toString(), ref.child(org.getKey().toString()).child("orgType").getValue());
-            organizations.add(organization);
-        }
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot org : downOrgs)
+                {
+                    OrganizationAsNode organization = new OrganizationAsNode(org.getKey().toString(), snapshot.child(org.getKey().toString()).child("orgType").getValue(String.class));
+                    organizations.add(organization);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         return organizations;
     }
@@ -257,7 +267,7 @@ public class AddOrganizationFBRepo
             }
         });
 
-        FirebaseDatabase.getInstance().getReference("Teams").child(org.getCity()).child(org).setValue(0).addOnFailureListener(new OnFailureListener() {
+        FirebaseDatabase.getInstance().getReference("Teams").child(org.getCity()).child(org.getName()).setValue(0).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 status[0] = false;
