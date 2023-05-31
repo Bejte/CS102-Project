@@ -20,21 +20,20 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ChatActivityLocalRepo {
 
-    private ChatPictureLocalStorage pictureLocal;
+    //private ChatPictureLocalStorage pictureLocal;
     private LocalDB localDB;
     private ChatActivityDao chatActivityDao;
 
     @Inject
-    public ChatActivityLocalRepo(ChatPictureLocalStorage pictureLocal, LocalDB localDB) {
-        this.pictureLocal = pictureLocal;
+    public ChatActivityLocalRepo( LocalDB localDB) {
+
         this.localDB = localDB;
         this.chatActivityDao = localDB.chatActivityDao();
     }
 
     @SuppressLint("CheckResult")
     public void pushToLocal(ChatItem chatItem) {
-        String filepath = pictureLocal.putImageToLocal(chatItem.getPictureUrl());
-        chatItem.setPicturePath(filepath);
+
 
         chatActivityDao.pushToLocal(chatItem)
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())

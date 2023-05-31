@@ -17,6 +17,7 @@ import com.example.catastrophecompass.DataLayer.LocalRepository.TLJobLocalRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.VIBAreaLocalRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.VIBLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.ChatItem;
+import com.example.catastrophecompass.DataLayer.RemoteDataRepository.WeatherRepository.WeatherAPI;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -80,8 +81,8 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public VIBLocalRepo provideVibLocalRepo(LocalDB db, VIBTLProfilePicL vibtlProfilePicL) {
-        return new VIBLocalRepo(db, vibtlProfilePicL);
+    public VIBLocalRepo provideVibLocalRepo(LocalDB db) {
+        return new VIBLocalRepo(db);
     }
 
     @Provides
@@ -116,9 +117,18 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public ChatActivityLocalRepo provideChatActivityLocalRepo(ChatPictureLocalStorage pictureLocal, LocalDB db) {
-        return new ChatActivityLocalRepo(pictureLocal, db);
+    public ChatActivityLocalRepo provideChatActivityLocalRepo( LocalDB db) {
+        return new ChatActivityLocalRepo( db);
     }
+
+    @Provides
+    @Singleton
+    public WeatherAPI provideWAPİ() {
+        return new WeatherAPI();
+    }
+
+
+
 
 
 

@@ -31,13 +31,13 @@ public class VIBLocalRepo {
 
     private final LocalDB db;
     private VIBDao vibDao;
-    private VIBTLProfilePicL vibtlProfilePicL;
+
 
     @Inject
-    public VIBLocalRepo(LocalDB db, VIBTLProfilePicL vibtlProfilePicL) {
+    public VIBLocalRepo(LocalDB db) {
         this.db = db;
         this.vibDao = db.vibDao();
-        this.vibtlProfilePicL = vibtlProfilePicL;
+
     }
 
     @SuppressLint("CheckResult")
@@ -96,24 +96,8 @@ public class VIBLocalRepo {
                     public void onComplete() {
 
                         Log.d(TAG, "VIBLocalRepo pushToLocal vibDao.pushToLocal onComplete: ");
-                        String filePath = vibtlProfilePicL.recordTLPicToLocal(vibJobInfo.getTeamLeaderPicUrl());
-                        FilePath fp = new FilePath(filePath);
 
-                        vibDao.recordFilePath(fp).
-                                subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                                .subscribeWith(new DisposableCompletableObserver() {
-                                    @Override
-                                    public void onComplete() {
-                                        Log.d(TAG, "VIBLocalRepo pushToLocal vibDao.recordFilePath onComplete: ");
-                                    }
 
-                                    @Override
-                                    public void onError(@NonNull Throwable e) {
-                                        Log.d(TAG, "VIBLocalRepo pushToLocal vibDao.recordFilePath onError: " + e.getMessage());
-                                        e.printStackTrace();
-
-                                    }
-                                });
                     }
 
                     @Override
@@ -160,7 +144,7 @@ public class VIBLocalRepo {
                                                     public void onComplete() {
                                                         Log.d(TAG, "VIBLocalRepo vibDao.deleteTLPicPath onComplete: ");
 
-                                                        status.set(vibtlProfilePicL.deleteTLPic(filePathAsAtomic.get()));
+
                                                     }
 
                                                     @Override
