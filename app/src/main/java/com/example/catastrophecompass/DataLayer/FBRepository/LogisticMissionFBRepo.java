@@ -55,13 +55,47 @@ public class LogisticMissionFBRepo
 
     public boolean getChecked(String driverName)
     {
-        boolean updateStatus = true;
-        return updateStatus;
+        //status : available, getChecked, dropClicked
+        boolean[] updateStatus = {false};
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Logistics").child(driverName);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                dataSnapshot.child("getStatus").setValue(true);
+                dataSnapshot.child("status").setValue("getChecked");
+                updateStatus[0] = true;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return updateStatus[0];
     }
 
     public boolean dropClicked(String driverName)
     {
-        boolean updateStatus = true;
-        return updateStatus;
+        //status : available, getChecked, dropClicked
+        boolean[] updateStatus = {false};
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Logistics").child(driverName);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                dataSnapshot.child("dropStatus").setValue(true);
+                dataSnapshot.child("status").setValue("dropClicked");
+                updateStatus[0] = true;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return updateStatus[0];
     }
 }

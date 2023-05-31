@@ -90,8 +90,59 @@ public class FieldOrganizatonInfoFBRepo
         FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(organizationName).child("currentInventory").setValue(currentList);
     }
 
-    public void attachListeners(User user)
+    public void attachListeners(User user, String organizationName)
     {
-        //TODO
+        DatabaseReference path1 = FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(organizationName).child("demographic");
+        DatabaseReference path2 = FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(organizationName).child("housing");
+        DatabaseReference path3 = FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(organizationName).child("currentInventory");
+        DatabaseReference path4 = FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(organizationName).child("arrivingInventory");
+
+        path1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                localRepo.recordDemographicInfo(snapshot.getValue());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        path2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                localRepo.recordHousingInfo(snapshot.getValue());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        path3.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                localRepo.recordInventoryInfo(snapshot.getValue());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        path4.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                localRepo.recordArrivingAid(snapshot.getValue());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

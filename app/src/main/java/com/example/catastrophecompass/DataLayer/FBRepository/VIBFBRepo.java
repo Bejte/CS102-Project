@@ -58,9 +58,65 @@ public class VIBFBRepo {
         localRepo.pushToLocal(info);
     }
 
-    public void deleteUserFB(Credentials credentials)
+    public void deleteUserFB(Credentials credentials)throws NullPointerException
     {
-        //TODO
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("Teams").child(credentials.getCity()).child(credentials.getPlace());
+        DatabaseReference[] toDeleteRef = new DatabaseReference[1];
+        databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                for(DataSnapshot idSnapshot : dataSnapshot.child("volunteerList").getChildren())
+                {
+                    if(idSnapshot.getValue(Integer.class) == credentials.getId())
+                    {
+                        toDeleteRef[0] = idSnapshot.getRef();
+                        toDeleteRef[0].removeValue();
+                    }
+                }
+                Integer currentCrucial = mutableData.child("crucial").getValue(Integer.class);
+                Integer currentHelpful = mutableData.child("helpful").getValue(Integer.class);
+                Integer currentUnnecessary = mutableData.child("unnecessary").getValue(Integer.class);
+                Integer currentNeed = mutableData.child("need").getValue(Integer.class);
+
+                int smallestValue = findSmallestValue(currentCrucial, currentHelpful, currentNeed, currentUnnecessary);
+
+                if (smallestValue == currentCrucial) {
+                    mutableData.child("crucial").setValue(currentCrucial - 1);
+                } else if (smallestValue == currentHelpful) {
+                    mutableData.child("helpful").setValue(currentHelpful - 1);
+                } else if (smallestValue == currentUnnecessary) {
+                    mutableData.child("unnecessary").setValue(currentUnnecessary - 1);
+                } else {
+                    mutableData.child("need").setValue(currentNeed - 1);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public int findSmallestValue(int a, int b, int c, int d) {
+        int smallest = Integer.MAX_VALUE;  // Initialize with a large value
+
+        // Compare each variable with the current smallest value
+        if (a != 0 && a < smallest) {
+            smallest = a;
+        }
+        if (b != 0 && b < smallest) {
+            smallest = b;
+        }
+        if (c != 0 && c < smallest) {
+            smallest = c;
+        }
+        if (d != 0 && d < smallest) {
+            smallest = d;
+        }
+
+        return smallest;
     }
 
 }

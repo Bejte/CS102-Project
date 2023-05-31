@@ -99,4 +99,46 @@ public class ContactsFBRepo {
 
         return status[0];
     }
+
+    public boolean startChat(String userName, String contactName)
+    {
+        boolean[] status = {false};
+
+        DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chats");
+
+        chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(!dataSnapshot.child("Chatted").child(userName).hasChild(contactName))
+                {
+                    dataSnapshot.child("Chatted").child(userName).child(contactName).setValue("");
+                }
+
+                if(!dataSnapshot.child("Chatted").child(contactName).hasChild(userName))
+                {
+                    dataSnapshot.child("Chatted").child(contactName).child(userName).setValue("");
+                }
+
+                if(!dataSnapshot.child("ChatList").child(contactName + userName) || !dataSnapshot.child("ChatList").child(userName + contactName))
+                {
+                    if(userName.compareTo(contactName) < 0)
+                    {
+                        dataSnapshot.child("ChatList").child(userName + contactName).setValue(null);
+                    }
+                    else
+                    {
+                        dataSnapshot.child("ChatList").child(contactName + userName).setValue(null);
+                    }
+                }
+                status[0] = true;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return status[0];
+    }
 }
