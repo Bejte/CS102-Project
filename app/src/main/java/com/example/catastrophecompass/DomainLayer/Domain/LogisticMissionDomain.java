@@ -6,7 +6,7 @@ import com.example.catastrophecompass.DataLayer.FBRepository.LogisticMissionFBRe
 import com.example.catastrophecompass.DataLayer.LocalRepository.LogisticMissionLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
-import com.example.catastrophecompass.DataLayer.RemoteDataRepository.CloudFunctionRepo.CloudRestApi;
+import com.example.catastrophecompass.RemoteDataRepository.CloudFunctionRepo.CloudRestApi;
 import com.example.catastrophecompass.UILayer.Logistics.LogisticMissionInterface;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;

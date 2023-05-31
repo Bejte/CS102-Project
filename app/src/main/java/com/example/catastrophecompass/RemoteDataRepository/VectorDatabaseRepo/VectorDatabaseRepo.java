@@ -7,7 +7,7 @@ import com.example.catastrophecompass.DataLayer.Model.DemographicInfo;
 import com.example.catastrophecompass.DataLayer.Model.FieldOrganization;
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
-import com.example.catastrophecompass.DataLayer.RemoteDataRepository.CloudFunctionRepo.CloudRestApi;
+import com.example.catastrophecompass.RemoteDataRepository.CloudFunctionRepo.CloudRestApi;
 import com.example.catastrophecompass.RemoteDataRepository.VectorDatabaseRepo.VectorModels.PineconeUpsertFailedResponse;
 import com.example.catastrophecompass.RemoteDataRepository.VectorDatabaseRepo.VectorModels.PineconeUpsertSucceedResponse;
 import com.example.catastrophecompass.RemoteDataRepository.VectorDatabaseRepo.VectorModels.Vector;
@@ -36,8 +36,8 @@ public class VectorDatabaseRepo {
     }
 
     @SuppressLint("CheckResult")
-    public boolean updateAidStatusInfo(InventoryList list, String organizationName, DemographicInfo demographicInfo) {
-        VectorUpsertRequest request = parseRequest(list, organizationName, demographicInfo);
+    public boolean updateAidStatusInfo(InventoryList list, String organizationName, DemographicInfo demographicInfo, InventoryList arrivingInfo) {
+        VectorUpsertRequest request = parseRequest(list, organizationName, demographicInfo, arrivingInfo);
         final boolean[] status = {false};
 
         vectorDatabaseApiService.upsertVectors(request)
@@ -108,7 +108,7 @@ public class VectorDatabaseRepo {
 
         int population = info.getM0_3() + info.getM3_15() + info.getM15_64() + info.getM65() + info.getW0_3() + info.getW3_15() + info.getW15_64() + info.getW65();
 
-        Float food = (float) (population * 1.2);
+        Float food = (float) (population * 1);
         Float heater = (float) population / 5;
         Float manCloth = (float) (info.getM15_64() + info.getM65()) / 10;
         Float womanCloth = (float) (info.getW15_64() + info.getW65()) / 10;
@@ -134,7 +134,7 @@ public class VectorDatabaseRepo {
 
         List<Float> amounts = new ArrayList<>();
 
-        Float food = (float) (list.getFood() * 1.2);
+        Float food = (float) (list.getFood() * 1);
         Float heater = (float) list.getHeater() / 5;
         Float manCloth = (float) list.getManCloth() / 10;
         Float womanCloth = (float) list.getWomanCloth() / 10;
@@ -156,7 +156,7 @@ public class VectorDatabaseRepo {
 
     }
 
-    public boolean syncVectorDB(LogisticInfo driver, FieldOrganization dropPlace, InventoryList fieldList) {
+    public boolean syncVectorDB(LogisticInfo driver, FieldOrganization dropPlace, InventoryList fieldList, InventoryList fieldPossesedList, DemographicInfo demographicInfo) {
         //Todo: reduce driver list from dropPlace
         InventoryList newList = new InventoryList();
 
@@ -184,7 +184,7 @@ public class VectorDatabaseRepo {
         int powerBank = fieldList.getPowerbank() - driver.getInventoryList().getPowerbank();
         newList.setPowerbank(powerBank);
 
-        updateAidStatusInfo(newList, dropPlace.getName());
+        updateAidStatusInfo(fieldPossesedList, dropPlace.getName(), demographicInfo, newList);
         Log.d("VectorDatabaseRepo", "syncVectorDB: it reaches to the statement after of updateAidStatusInfo, sequential nature works properly. ");
 
         boolean status = cloudRestApi.decideDropPlace(driver.getInventoryList(), driver.getGetName());
