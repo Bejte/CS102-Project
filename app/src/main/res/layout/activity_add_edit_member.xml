@@ -120,6 +120,7 @@
 
                         android:backgroundTint="@color/button_color"
                         />
+
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>

@@ -1,4 +1,5 @@
 package com.example.catastrophecompass.UILayer.TeamOrganizor;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,10 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.catastrophecompass.R;
 import com.example.catastrophecompass.UILayer.Common.ItemAdapterForTeamOrganizator;
 import com.example.catastrophecompass.UILayer.Common.ItemDataForTeamOrganizator;
+import com.example.catastrophecompass.UILayer.HQOrganizer.Admin.AddEditMemberActivity;
+import com.example.catastrophecompass.UILayer.HQOrganizer.Admin.AddEditOrganizationActivity;
+import com.example.catastrophecompass.UILayer.TeamLeader.TeamAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -24,43 +29,38 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class JobInfoForTeamOrganizatorFragment extends Fragment {
+    Button btnAddOrganization;
 
-    private RecyclerView recyclerView;
-    private FloatingActionButton fab;
 
-    public JobInfoForTeamOrganizatorFragment() {
-        // Required empty public constructor
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_job_info_for_team_organizator, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_general_info, container, false);
 
-        // Initialize TeamOrganizatorMainGraph fragment
-        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.replace(R.id.team_organizator_main_graph, new TeamOrganizatorMainGraph());
-        transaction.commit();
+        // find the button from the view
+        btnAddOrganization = view.findViewById(R.id.add_organization_button_admin);
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.organization_recycler_view_hq);
+        TeamAdapter adapter = new TeamAdapter(yourTeamList, this);
+        recyclerView.setAdapter(adapter);
 
-        // Initialize RecyclerView
-        recyclerView = view.findViewById(R.id.recycler_view);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
 
-        // Create a list with some items
-        List<ItemDataForTeamOrganizator> items = new ArrayList<>();
-        items.add(new ItemDataForTeamOrganizator("Item 1"));
-        items.add(new ItemDataForTeamOrganizator("Item 2"));
-        items.add(new ItemDataForTeamOrganizator("Item 3"));
+        // set a click listener for the button
+        btnAddOrganization.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // create an intent to open the activity
+                Intent intent = new Intent(getActivity(), AddEditOrganizationActivity.class);
 
-        // Set the adapter for the RecyclerView
-        ItemAdapterForTeamOrganizator itemAdapterForTeamOrganizator = new ItemAdapterForTeamOrganizator(items);
-        recyclerView.setAdapter(itemAdapterForTeamOrganizator);
-
-        // Initialize FloatingActionButton
-        fab = view.findViewById(R.id.fab_add);
-        fab.setOnClickListener(v -> {
-            // Add item logic
+                startActivity(intent);
+            }
         });
+
 
         return view;
     }
