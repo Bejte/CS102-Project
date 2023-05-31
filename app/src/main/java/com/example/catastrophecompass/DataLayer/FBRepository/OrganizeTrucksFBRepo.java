@@ -131,6 +131,8 @@ public class OrganizeTrucksFBRepo {
         });
         driver.child("dropName").setValue(null);
         driver.child("dropAddress").setValue(null);
+        InventoryList[] fieldList = new InventoryList[1];
+        DemographicInfo demographicInfo = new DemographicInfo[1];
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(name[0]);
 
@@ -138,6 +140,8 @@ public class OrganizeTrucksFBRepo {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 refKey[0] = snapshot.getKey();
+                fieldList[0] = snapshot.child("currentInventory").getValue(InventoryList.class);
+                demographicInfo[0] = snapshot.child("demographic").getValue(DemographicInfo.class);
             }
 
             @Override
@@ -178,7 +182,7 @@ public class OrganizeTrucksFBRepo {
             public void onSuccess(Void unused) {
                 success[0] = true;
                 LogisticInfo driverItem = new LogisticInfo(getName[0], getAddress[0], name[0], address[0], status[0], pictureUrl[0], getStatus[0], dropStatus[0], list, size[0]);
-                vectorRepo.syncVectorDB(driverItem, new FieldOrganization(name[0], address[0]), list);
+                vectorRepo.syncVectorDB(driverItem, new FieldOrganization(name[0], address[0]), list, fieldList[0}, demographicInfo[0]);
             }
         });
 
