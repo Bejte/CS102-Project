@@ -1,6 +1,7 @@
 package com.example.catastrophecompass.DataLayer.FBRepository;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
@@ -50,17 +51,41 @@ public class ChatFragmentFBRepo
             combined[0].add(combinedStr);
         }
 
-        chatListRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        chatListRef.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 for(DataSnapshot data:snapshot.getChildren())
                 {
                     if(combined[0].contains(data.getKey()))
                     {
-                        //getLastMessage pushToLocal??
-                        //TODO
+                        int smallestTime = -1;
+                        DataSnapshot recentChat = data;
+                        for(DataSnapshot chat: data.getChildren())
+                        {
+                            if(smallestTime > chat.child("time").getValue(Integer.class))
+                            {
+                                smallestTime = chat.child("time").getValue(Integer.class);
+                                recentChat = chat;
+                            }
+                        }
+                        localRepo.pushToLocal(recentChat.getValue());
                     }
                 }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
             }
 
             @Override

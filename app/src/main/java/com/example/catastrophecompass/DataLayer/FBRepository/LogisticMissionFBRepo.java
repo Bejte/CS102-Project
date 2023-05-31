@@ -55,7 +55,7 @@ public class LogisticMissionFBRepo
 
     public boolean getChecked(String driverName)
     {
-        //status : available, getChecked, dropClicked
+        //status : available, getChecked, dropClicked, assigned
         boolean[] updateStatus = {false};
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Logistics").child(driverName);
@@ -78,7 +78,7 @@ public class LogisticMissionFBRepo
 
     public boolean dropClicked(String driverName)
     {
-        //status : available, getChecked, dropClicked
+        //status : available, getChecked, dropClicked, assigned
         boolean[] updateStatus = {false};
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Logistics").child(driverName);
