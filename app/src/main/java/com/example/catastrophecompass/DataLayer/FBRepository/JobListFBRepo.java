@@ -2,6 +2,7 @@ package com.example.catastrophecompass.DataLayer.FBRepository;
 
 import androidx.annotation.NonNull;
 
+import com.example.catastrophecompass.DataLayer.Model.VolunteerInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -12,9 +13,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
-import kotlinx.coroutines.Job;
+
 
 public class JobListFBRepo {
     DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("TeamListUrgency");
@@ -46,58 +46,63 @@ public class JobListFBRepo {
         return jobs[0];
     }
 
-    public boolean updateJobUrgency(String city, String place, String teamName)
-    {
-        DatabaseReference teamRef = databaseRef2.child(city).child(place).child(teamName).child("volunteerInfo");
+    public boolean updateJobUrgency(String city, String place, String teamName) {
+        DatabaseReference teamRef = databaseRef2.child(city).child(place).child(teamName);
         DatabaseReference urgencyRef = databaseRef.child(city).child(place).child(teamName);
         boolean[] done = {false};
 
-        teamRef.runTransaction(new Transaction.Handler() {
+        teamRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public Transaction.Result doTransaction(MutableData mutableData) {
-                // Get the current values of the crucial, helpful, unnecessary, and need subnodes
-                Integer currentCrucial = mutableData.child("crucial").getValue(Integer.class);
-                Integer currentHelpful = mutableData.child("helpful").getValue(Integer.class);
-                Integer currentUnnecessary = mutableData.child("unnecessary").getValue(Integer.class);
-                Integer currentNeed = mutableData.child("need").getValue(Integer.class);
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int currentCrucial = dataSnapshot.getValue().getVolunteerInfo().getCrucial();
+                int currentHelpful = dataSnapshot.getValue().getVolunteerInfo().getHelpful();
+                int currentUnnecessary = dataSnapshot.getValue().getVolunteerInfo().getUnnecessary();
+                int currentNeed = dataSnapshot.getValue().getVolunteerInfo().getNeed();
 
                 if (currentNeed != 0) {
-                    mutableData.child("need").setValue(currentNeed - 1);
-                    mutableData.child("crucial").setValue(currentCrucial + 1);
+                    dataSnapshot.getValue().getVolunteerInfo().setNeed(currentNeed - 1);
+                    dataSnapshot.getValue().getVolunteerInfo().setCrucial(currentNeed + 1);
                 } else {
 
                     int smallestValue = Math.min(Math.min(Math.min(currentCrucial, currentHelpful), currentUnnecessary), currentNeed);
 
                     if (smallestValue == currentCrucial) {
-                        mutableData.child("crucial").setValue(currentCrucial + 1);
+                        dataSnapshot.getValue().getVolunteerInfo().setCrucial(currentNeed + 1);
                     } else if (smallestValue == currentHelpful) {
-                        mutableData.child("helpful").setValue(currentHelpful + 1);
+                        dataSnapshot.getValue().getVolunteerInfo().setHelpful(currentNeed + 1);
                     } else if (smallestValue == currentUnnecessary) {
-                        mutableData.child("unnecessary").setValue(currentUnnecessary + 1);
+                        dataSnapshot.getValue().getVolunteerInfo().setUnnecessaryl(currentNeed + 1);
                     } else {
-                        mutableData.child("need").setValue(currentNeed + 1);
+                        dataSnapshot.getValue().getVolunteerInfo().setNeed(currentNeed + 1);
                     }
                 }
-
-                // Return the updated data
-                return Transaction.success(mutableData);
             }
 
             @Override
-            public void onComplete(DatabaseError databaseError, boolean committed, DataSnapshot dataSnapshot) {
-                if (databaseError != null) {
-                    // Handle the error case
-                } else {
-                    int updatedUrgency = 5 * dataSnapshot.child("need").getValue(Integer.class)
-                            + 4 * dataSnapshot.child("crucial").getValue(Integer.class)
-                            + 3 * dataSnapshot.child("helpful").getValue(Integer.class)
-                            + 1 * dataSnapshot.child("unnecessary").getValue(Integer.class);
-
-                    urgencyRef.child("urgency").setValue(updatedUrgency);
-                    done[0] = true;
-                }
+            public void onCancelled(DatabaseError databaseError) {
+                done[0] = false;
             }
         });
+
+        urgencyRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int updatedUrgency = 5 * dataSnapshot.child("need").getValue(Integer.class)
+                        + 4 * dataSnapshot.child("crucial").getValue(Integer.class)
+                        + 3 * dataSnapshot.child("helpful").getValue(Integer.class)
+                        + 1 * dataSnapshot.child("unnecessary").getValue(Integer.class);
+
+                urgencyRef.child("urgency").setValue(updatedUrgency);
+                done[0] = true;
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                done[0] = false;
+            }
+        });
+
         return done[0];
     }
 }

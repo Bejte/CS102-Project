@@ -11,11 +11,12 @@ public class LogisticInfo {
 
     @PrimaryKey
     private int id = 1;
+    private int truckSize;
     private String getName, getAddress, dropName, dropAddress, status, pictureUrl;
     private boolean getStatus, dropStatus;
     private InventoryList inventoryList;
 
-    public LogisticInfo(String getName, String getAddress, String dropName, String dropAddress, String status, String pictureUrl, boolean getStatus, boolean dropStatus, InventoryList inventoryList) {
+    public LogisticInfo(String getName, String getAddress, String dropName, String dropAddress, String status, String pictureUrl, boolean getStatus, boolean dropStatus, InventoryList inventoryList, int truckSize) {
         this.getName = getName;
         this.getAddress = getAddress;
         this.dropName = dropName;
@@ -25,6 +26,15 @@ public class LogisticInfo {
         this.getStatus = getStatus;
         this.dropStatus = dropStatus;
         this.inventoryList = inventoryList;
+        this.truckSize = truckSize;
+    }
+
+    public int getTruckSize() {
+        return truckSize;
+    }
+
+    public void setTruckSize(int truckSize) {
+        this.truckSize = truckSize;
     }
 
     public LogisticInfo() {

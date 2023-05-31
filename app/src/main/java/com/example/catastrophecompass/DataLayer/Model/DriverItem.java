@@ -1,6 +1,6 @@
 package com.example.catastrophecompass.DataLayer.Model;
 
-public class DriverItem {
+public class DriverItem extends Member {
 
     private String driverName, driverStatus,driverSize;
 

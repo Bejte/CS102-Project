@@ -16,32 +16,30 @@ public class GeneralInfoFBRepo
     List<VolunteerInfo> volunteerInfoList = new ArrayList<>();
     public VolunteerInfo getGeneralInformation(String organizationName) {
         DatabaseReference organizationRef = FirebaseDatabase.getInstance().getReference("OrganizationStructure").child(organizationName);
+        VolunteerInfo[] all = new VolunteerInfo[1];
 
+        organizationRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<DataSnapshot> teams = new ArrayList<>();
+                VolunteerInfo volunteerInfo = new VolunteerInfo();
 
-        DataSnapshot organizationSnapshot = organizationRef.getValue();
-        if (organizationSnapshot == null) {
-            return null;
-        }
+                traverseOrganizationStructure(dataSnapshot, teams, volunteerInfo);
 
-        List<DataSnapshot> teams = new ArrayList<>();
-        VolunteerInfo volunteerInfo = new VolunteerInfo();
-
-        traverseOrganizationStructure(organizationSnapshot, teams, volunteerInfo);
-
-        if (teams.isEmpty()) {
-            return volunteerInfo;
-        }
-
-        VolunteerInfo all = new VolunteerInfo(0,0,0,0,0);//id?
-        for(VolunteerInfo info : volunteerInfoList)
-        {
-            all.setNeed(all.getNeed()+info.getNeed());
-            all.setCrucial(all.getCrucial()+info.getCrucial());
-            all.setHelpful(all.getHelpful()+info.getHelpful());
-            all.setUnnecessary(all.getUnnecessary()+info.getUnnecessary());
-        }
-
-        return all;
+                all[0] = new VolunteerInfo(0,0,0,0,0);
+                for(VolunteerInfo info : volunteerInfoList)
+                {
+                    all.setNeed(all.getNeed()+info.getNeed());
+                    all.setCrucial(all.getCrucial()+info.getCrucial());
+                    all.setHelpful(all.getHelpful()+info.getHelpful());
+                    all.setUnnecessary(all.getUnnecessary()+info.getUnnecessary());
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+        return all[0];
     }
 
     private void traverseOrganizationStructure(DataSnapshot node, List<DataSnapshot> teams, VolunteerInfo volunteerInfo) {

@@ -2,6 +2,7 @@ package com.example.catastrophecompass.DataLayer.FBRepository;
 
 import android.content.ClipData;
 
+import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -16,9 +17,9 @@ public class AidPlaceFBRepo
 {
     DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("AidList");
 
-    public List<Item> getItemList(String place)
+    public List<InventoryList> getItemList(String place)
     {
-        ArrayList<Item>[] itemList = new ArrayList[1];
+        ArrayList<InventoryList>[] itemList = new ArrayList[1];
         databaseRef.child(place).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -26,16 +27,16 @@ public class AidPlaceFBRepo
                     for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
 
                         String key = itemSnapshot.getKey();
-                        String value = itemSnapshot.getValue(String.class);
+                        int value = itemSnapshot.getValue(Integer.class);
 
-                        String food = null;
-                        String childCloth = null;
-                        String womenCloth = null;
-                        String menCloth = null;
-                        String powerbank = null;
-                        String heater = null;
-                        String hygiene = null;
-                        String kitchenMaterial = null;
+                        int food = 0;
+                        int childCloth = 0;
+                        int womenCloth = 0;
+                        int menCloth = 0;
+                        int powerbank = 0;
+                        int heater = 0;
+                        int hygiene = 0;
+                        int kitchenMaterial = 0;
 
                         if(key.equals("food"))
                             food = value;
@@ -54,7 +55,7 @@ public class AidPlaceFBRepo
                         if(key.equals("kitchenMaterial"))
                             kitchenMaterial = value;
 
-                        Item Item = new Item(food, childCloth, womenCloth, menCloth, powerbank, heater, hygiene, kitchenMaterial);
+                        InventoryList Item = new InventoryList(0, food, heater, menCloth, womenCloth, childCloth, hygiene, kitchenMaterial, powerbank);
                         itemList[0].add(Item);
                     }
 

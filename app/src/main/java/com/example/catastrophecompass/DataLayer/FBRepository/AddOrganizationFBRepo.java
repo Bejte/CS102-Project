@@ -2,6 +2,8 @@ package com.example.catastrophecompass.DataLayer.FBRepository;
 
 import androidx.annotation.NonNull;
 
+import com.example.catastrophecompass.DataLayer.Model.OrganizationAsNode;
+import com.example.catastrophecompass.DataLayer.Model.TeamOrganization;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -223,7 +225,7 @@ public class AddOrganizationFBRepo
             }
         });
 
-        FirebaseDatabase.getInstance().getReference("Organizations").child(org.getName()).child("address").setValue(org.getAddress()).addOnFailureListener(new OnFailureListener() {
+        FirebaseDatabase.getInstance().getReference("Organizations").child(org.getName()).child("address").setValue(org).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 status[0] = false;
@@ -255,7 +257,7 @@ public class AddOrganizationFBRepo
             }
         });
 
-        FirebaseDatabase.getInstance().getReference("Teams").child(org.getCity()).child(lastClicked).child(org.getName()).setValue(0).addOnFailureListener(new OnFailureListener() {
+        FirebaseDatabase.getInstance().getReference("Teams").child(org.getCity()).child(org).setValue(0).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 status[0] = false;

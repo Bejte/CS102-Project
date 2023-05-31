@@ -2,6 +2,7 @@ package com.example.catastrophecompass.DataLayer.FBRepository;
 
 import androidx.annotation.NonNull;
 
+import com.example.catastrophecompass.DataLayer.Model.Contact;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -91,13 +92,6 @@ public class ContactsFBRepo {
 
             }
         });
-    }
-
-    public boolean startChat(String userName, String contactName)
-    {
-        boolean[] status = {true};
-
-        return status[0];
     }
 
     public boolean startChat(String userName, String contactName)

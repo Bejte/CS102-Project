@@ -57,23 +57,22 @@ public class ManagerLoginFBRepo {
     public static boolean checkCredentials(String username, String password) throws ExecutionException, InterruptedException {
         boolean[] result = new boolean[1];
 
-        boolean[] finalResult = result;
         databaseRef.child(username).child("password").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     String storedPassword = dataSnapshot.getValue(String.class);
                     boolean isPasswordCorrect = storedPassword.equals(password);
-                    finalResult[0] = isPasswordCorrect;
+                    result[0] = isPasswordCorrect;
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                result[0] = false;
             }
         });
 
-        return finalResult[0];
+        return result[0];
     }
 }

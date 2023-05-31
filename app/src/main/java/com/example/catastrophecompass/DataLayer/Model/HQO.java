@@ -1,6 +1,6 @@
 package com.example.catastrophecompass.DataLayer.Model;
 
-public class HQO {
+public class HQO extends Member {
 
     private String name, password, picture, pictureUrl;
     private boolean isAdmin;

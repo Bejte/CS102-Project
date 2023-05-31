@@ -19,8 +19,6 @@ public class TeamOrganizatorAddEditFBRepo
         DatabaseReference teamsRef = FirebaseDatabase.getInstance().getReference("Teams");
         teamsRef.child(city).child(place).child(team.getTeamName()).setValue(team);
         findAndAddChild(FirebaseDatabase.getInstance().getReference("OrganizationStructure"), place, team.getTeamName(), place, city);
-        FirebaseDatabase.getInstance().getReference("Organizations").child(team.getTeamName()).child("arrivingTruckList").setValue(null);
-        FirebaseDatabase.getInstance().getReference("Organizations").child(team.getTeamName()).child("requests").child("totalRequested").setValue(0);
     }
 
     public void findAndAddChild(DatabaseReference parentRef, String targetChildKey, String newChildKey, String place, String city) {
@@ -54,7 +52,6 @@ public class TeamOrganizatorAddEditFBRepo
         userListRef.child(team.getTeamLeaderName()).child("organizationName").setValue("");
         DatabaseReference teamsRef = FirebaseDatabase.getInstance().getReference("Teams");
         teamsRef.child(city).child(place).child(team.getTeamName()).removeValue();
-        FirebaseDatabase.getInstance().getReference("Organizations").child(team.getTeamName()).removeValue();
         findAndDeleteChild(FirebaseDatabase.getInstance().getReference("OrganizationStructure"), team.getTeamName());
     }
 

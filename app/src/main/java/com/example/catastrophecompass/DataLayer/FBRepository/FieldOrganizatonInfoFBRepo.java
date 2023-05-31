@@ -21,18 +21,9 @@ public class FieldOrganizatonInfoFBRepo
     public boolean updateDemographicInfo(DemographicInfo demographicInfo, String organizationName)
     {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(organizationName).child("demographic");
-        //child?????????????????
         final boolean[] success = {true};
 
-        DemographicInfo newInfo = new DemographicInfo(ref.getValue().getM0_3() + demographicInfo.getM0_3(),
-                ref.getValue().getM3_15() + demographicInfo.getM3_15(),
-                ref.getValue().getM15_64() + demographicInfo.getM15_64(),
-                ref.getValue().getM65() + demographicInfo.getM65(),
-                ref.getValue().getW0_3() + demographicInfo.getW0_3(),
-                ref.getValue().getW3_15() + demographicInfo.getW3_15(),
-                ref.getValue().getW15_64() + demographicInfo.getW15_64(),
-                ref.getValue().getW65() + demographicInfo.getW65());
-        ref.setValue(newInfo).addOnFailureListener(new OnFailureListener() {
+        ref.setValue(demographicInfo).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 success[0] = false;
@@ -44,14 +35,9 @@ public class FieldOrganizatonInfoFBRepo
     public boolean updateHousingInfo(HousingInfo housingInfo, String organizationName)
     {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(organizationName).child("housing");
-        //child?????????????????
 
         final boolean[] success = {true};
-
-        HousingInfo newInfo = new HousingInfo(ref.getValue().getHasHouse() + housingInfo.getHasHouse(),
-                ref.getValue().getNoHouse() + housingInfo.getNoHouse(),
-                ref.getValue().getBadCondition() + housingInfo.getBadCondition());
-        ref.setValue(newInfo).addOnFailureListener(new OnFailureListener() {
+        ref.setValue(housingInfo).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 success[0] = false;
@@ -59,23 +45,24 @@ public class FieldOrganizatonInfoFBRepo
         });
         return success[0];
     }
-    InventoryList currentList;
+    InventoryList[] currentList = new InventoryList[1];
     public boolean updateAidStatusInfo(InventoryList inventoryList, String organizationName)
     {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(organizationName).child("currentInventory");
-        currentList = FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(organizationName).child("currentInventory").getValue();
+
         final boolean[] success = {true};
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            currentList[0] = dataSnapshot.getValue();
+        }
 
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+        }
+    });
 
-        InventoryList newList = new InventoryList(1, ref.getValue().getFood() + inventoryList.getFood(),
-                ref.getValue().getHeater() + inventoryList.getHeater(),
-                ref.getValue().getManCloth() + inventoryList.getManCloth(),
-                ref.getValue().getWomenCloth() + inventoryList.getWomanCloth(),
-                ref.getValue().getChildCloth() + inventoryList.getChildCloth(),
-                ref.getValue().getHygene() + inventoryList.getHygene(),
-                ref.getValue().getKitchenMaterial() + inventoryList.getKitchenMaterial(),
-                ref.getValue().getPowerBank() + inventoryList.getPowerbank());
-        ref.setValue(newList).addOnFailureListener(new OnFailureListener() {
+        ref.setValue(inventoryList).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 success[0] = false;
@@ -87,7 +74,7 @@ public class FieldOrganizatonInfoFBRepo
 
     public void revertChanges(String organizationName)
     {
-        FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(organizationName).child("currentInventory").setValue(currentList);
+        FirebaseDatabase.getInstance().getReference("FieldOrganizations").child(organizationName).child("currentInventory").setValue(currentList[0]);
     }
 
     public void attachListeners(User user, String organizationName)

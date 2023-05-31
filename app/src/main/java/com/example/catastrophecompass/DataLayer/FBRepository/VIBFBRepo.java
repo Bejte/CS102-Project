@@ -53,8 +53,32 @@ public class VIBFBRepo {
     public void attachToTeam(String city, String place, String teamName)
     {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Teams").child(city).child(place).child(teamName);
+        String[] teamDescription = new String[1];
+        String[] teamLeaderName = new String[1];
+        String[] areaInfo = new String[1];
+        String[] foodInfo = new String[1];
+        String[] location = new String[1];
+        String[] teamLeaderPicUrl = new String[1];
+        boolean[] dispatch = new boolean[1];
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot)
+        {
+            teamDescription[0] = dataSnapshot.getValue().getTeamDescription();
+            teamLeaderName[0] = dataSnapshot.getValue().getTeamLeaderName();
+            areaInfo[0] = dataSnapshot.getValue().getAreaInfo();
+            foodInfo[0] = dataSnapshot.getValue().getFoodInfo();
+            location[0] = dataSnapshot.getValue().getLocation();
+            teamLeaderPicUrl[0] = dataSnapshot.getValue().getTeamLeaderPicUrl();
+            dispatch[0] = dataSnapshot.getValue().getDispatch();
+        }
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
 
-        VIBJobInfo info = new VIBJobInfo(teamName, ref.getValue().getTeamDescription(), ref.getValue().getTeamLeaderName(), ref.getValue().getAreaInfo(), ref.getValue().getFoodInfo(), ref.getValue().getLocation(), ref.getValue().getTeamLeaderPicUrl(), ref.getValue().getDispatch());
+        }
+    });
+
+        VIBJobInfo info = new VIBJobInfo(teamName, teamDescription[0], teamLeaderName[0], areaInfo[0], foodInfo[0], location[0], teamLeaderPicUrl[0], dispatch[0]);
         localRepo.pushToLocal(info);
     }
 
@@ -75,21 +99,21 @@ public class VIBFBRepo {
                         toDeleteRef[0].removeValue();
                     }
                 }
-                Integer currentCrucial = mutableData.child("crucial").getValue(Integer.class);
-                Integer currentHelpful = mutableData.child("helpful").getValue(Integer.class);
-                Integer currentUnnecessary = mutableData.child("unnecessary").getValue(Integer.class);
-                Integer currentNeed = mutableData.child("need").getValue(Integer.class);
+                Integer currentCrucial = dataSnapshot.child(credentials.getTeamName()).child("crucial").getValue(Integer.class);
+                Integer currentHelpful = dataSnapshot.child(credentials.getTeamName()).child("helpful").getValue(Integer.class);
+                Integer currentUnnecessary = dataSnapshot.child(credentials.getTeamName()).child("unnecessary").getValue(Integer.class);
+                Integer currentNeed = dataSnapshot.child(credentials.getTeamName()).child("need").getValue(Integer.class);
 
                 int smallestValue = findSmallestValue(currentCrucial, currentHelpful, currentNeed, currentUnnecessary);
 
                 if (smallestValue == currentCrucial) {
-                    mutableData.child("crucial").setValue(currentCrucial - 1);
+                    dataSnapshot.child(credentials.getTeamName()).child("crucial").setValue(currentCrucial - 1);
                 } else if (smallestValue == currentHelpful) {
-                    mutableData.child("helpful").setValue(currentHelpful - 1);
+                    dataSnapshot.child(credentials.getTeamName()).setValue(currentHelpful - 1);
                 } else if (smallestValue == currentUnnecessary) {
-                    mutableData.child("unnecessary").setValue(currentUnnecessary - 1);
+                    dataSnapshot.child(credentials.getTeamName()).setValue(currentUnnecessary - 1);
                 } else {
-                    mutableData.child("need").setValue(currentNeed - 1);
+                    dataSnapshot.child(credentials.getTeamName()).setValue(currentNeed - 1);
                 }
             }
             @Override
