@@ -51,6 +51,6 @@ public class VIBAreaDomain {
     }
 
     public void updateFoodInfo(String foodInfo){
-        FBRepo.updateFoodInfo(foodInfo); // TODO VIBCommon city, place, team
+        //FBRepo.updateFoodInfo(foodInfo); // TODO VIBCommon city, place, team
     }
 }

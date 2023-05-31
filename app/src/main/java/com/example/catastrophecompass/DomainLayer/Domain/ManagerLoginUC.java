@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.catastrophecompass.DataLayer.Dao.CurrentUserDao;
 import com.example.catastrophecompass.DataLayer.FBRepository.ManagerLoginFBRepo;
+import com.example.catastrophecompass.DataLayer.LocalDB;
 import com.example.catastrophecompass.DataLayer.Model.User;
 import com.example.catastrophecompass.DataLayer.Model.UserLogin;
 
@@ -19,9 +20,11 @@ public class ManagerLoginUC {
     private ManagerLoginFBRepo FBRepo;
     private CurrentUserDao currentUserDao;
 
-    public ManagerLoginUC(ManagerLoginFBRepo FBRepo, CurrentUserDao currentUserDao) {
+    private LocalDB db;
+    public ManagerLoginUC(ManagerLoginFBRepo FBRepo, LocalDB DB) {
+        this.db = DB;
         this.FBRepo = FBRepo;
-        this.currentUserDao = currentUserDao;
+        this.currentUserDao = DB.currentUserDao();
     }
 
     public String validateLogin(UserLogin userLogin){

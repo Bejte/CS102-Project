@@ -8,6 +8,14 @@ import com.example.catastrophecompass.DataLayer.Dao.FieldOrganizationDao;
 import com.example.catastrophecompass.DataLayer.Dao.MissionDao;
 import com.example.catastrophecompass.DataLayer.Dao.TLJobLocalDao;
 import com.example.catastrophecompass.DataLayer.Dao.VIBDao;
+import com.example.catastrophecompass.DataLayer.FBRepository.ChatActivityFBRepo;
+import com.example.catastrophecompass.DataLayer.FBRepository.ChatFragmentFBRepo;
+import com.example.catastrophecompass.DataLayer.FBRepository.FieldOrganizatonInfoFBRepo;
+import com.example.catastrophecompass.DataLayer.FBRepository.LogisticMissionFBRepo;
+import com.example.catastrophecompass.DataLayer.FBRepository.ManagerLoginFBRepo;
+import com.example.catastrophecompass.DataLayer.FBRepository.OVWorkforceListFBRepo;
+import com.example.catastrophecompass.DataLayer.FBRepository.TLJobFBRepo;
+import com.example.catastrophecompass.DataLayer.FBRepository.VIBFBRepo;
 import com.example.catastrophecompass.DataLayer.LocalDB;
 import com.example.catastrophecompass.DataLayer.LocalRepository.ChatActivityLocalRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.ChatFragmentLocalRepo;
@@ -18,6 +26,18 @@ import com.example.catastrophecompass.DataLayer.LocalRepository.VIBAreaLocalRepo
 import com.example.catastrophecompass.DataLayer.LocalRepository.VIBLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.ChatItem;
 import com.example.catastrophecompass.DataLayer.RemoteDataRepository.WeatherRepository.WeatherAPI;
+import com.example.catastrophecompass.DomainLayer.Domain.ChatActivityDomain;
+import com.example.catastrophecompass.DomainLayer.Domain.ChatFragmentDomain;
+import com.example.catastrophecompass.DomainLayer.Domain.FieldOrganizationDomain;
+import com.example.catastrophecompass.DomainLayer.Domain.LoginDomain;
+import com.example.catastrophecompass.DomainLayer.Domain.LogisticMissionDomain;
+import com.example.catastrophecompass.DomainLayer.Domain.ManagerLoginUC;
+import com.example.catastrophecompass.DomainLayer.Domain.OVWorkforceListUC;
+import com.example.catastrophecompass.DomainLayer.Domain.TLJobInfoDomain;
+import com.example.catastrophecompass.DomainLayer.Domain.VIBAreaDomain;
+import com.example.catastrophecompass.DomainLayer.Domain.VIBJobDomain;
+import com.example.catastrophecompass.RemoteDataRepository.CloudFunctionRepo.CloudRestApi;
+import com.example.catastrophecompass.RemoteDataRepository.VectorDatabaseRepo.VectorDatabaseRepo;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -126,6 +146,95 @@ public class AppModule {
     public WeatherAPI provideWAPİ() {
         return new WeatherAPI();
     }
+
+    // Domain
+
+    @Provides
+    @Singleton
+    public ChatActivityDomain provideChatActivityDomain(ChatActivityLocalRepo localRepo, ChatActivityFBRepo FBRepo) {
+        return new ChatActivityDomain(localRepo, FBRepo);
+    }
+
+    @Provides
+    @Singleton
+    public ChatFragmentDomain provideChatFragmentDomain(ChatFragmentLocalRepo localRepo, ChatFragmentFBRepo FBRepo) {
+        return new ChatFragmentDomain(localRepo, FBRepo);
+    }
+
+    @Provides
+    @Singleton
+    public FieldOrganizationDomain provideFieldOrganizationDomain(FieldOrganizationInfoLocalRepo localRepo, FieldOrganizatonInfoFBRepo FBRepo, VectorDatabaseRepo vectorRepo) {
+        return new FieldOrganizationDomain(localRepo, FBRepo, vectorRepo);
+    }
+
+    @Provides
+    @Singleton
+    public LoginDomain provideLoginDomain(CurrentUserDao currentUserDao, VIBDao vibDao) {
+        return new LoginDomain(currentUserDao, vibDao);
+    }
+
+    @Provides
+    @Singleton
+    public LogisticMissionDomain provideLogisticMissionDomain(LogisticMissionLocalRepo localRepo, LogisticMissionFBRepo FBRepo, CloudRestApi restAPI) {
+        return new LogisticMissionDomain(localRepo, FBRepo, restAPI);
+    }
+
+    @Provides
+    @Singleton
+    public ManagerLoginUC provideManagerLoginUC(ManagerLoginFBRepo FBRepo, LocalDB db) {
+        return new ManagerLoginUC(FBRepo, db);
+    }
+
+
+
+
+
+    @Provides
+    @Singleton
+    public OVWorkforceListUC provideOVWorkforceListUC(OVWorkforceListFBRepo repo, WeatherAPI weather) {
+        return new OVWorkforceListUC(repo, weather);
+    }
+
+
+    @Provides
+    @Singleton
+    public TLJobInfoDomain provideTLJobInfoDomain(TLJobLocalRepo localRepo, TLJobFBRepo FBRepo) {
+        return new TLJobInfoDomain(localRepo, FBRepo);
+    }
+
+
+    @Provides
+    @Singleton
+    public VIBAreaDomain provideVibAreaDomain(VIBAreaLocalRepo localRepo, VIBFBRepo FBRepo, WeatherAPI weather) {
+        return new VIBAreaDomain(localRepo, FBRepo, weather);
+    }
+
+
+
+    @Provides
+    @Singleton
+    public VIBJobDomain provideVıbJobDomain(VIBLocalRepo localRepo, VIBFBRepo FBRepo) {
+        return  new VIBJobDomain(localRepo, FBRepo);
+    }
+
+    // cloud + vector
+
+
+    @Provides
+    @Singleton
+    public CloudRestApi provideCloudRestApi() {
+        return new CloudRestApi();
+    }
+
+
+
+    @Provides
+    @Singleton
+    public VectorDatabaseRepo provideVBDR(CloudRestApi cloudRestApi) {
+        return new VectorDatabaseRepo(cloudRestApi);
+    }
+
+
 
 
 
