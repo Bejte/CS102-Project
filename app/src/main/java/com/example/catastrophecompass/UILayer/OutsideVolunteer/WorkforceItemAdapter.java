@@ -1,4 +1,4 @@
-package com.example.catastrophecompass.UILayer.Common;
+package com.example.catastrophecompass.UILayer.OutsideVolunteer;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,16 +13,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.OutsideVolunteer.OVWorkforceListVM;
+import com.example.catastrophecompass.DataLayer.Model.WItem;
 
 public class WorkforceItemAdapter extends RecyclerView.Adapter<WorkforceItemAdapter.WorkforceViewHolder> {
     private List<WItem> wItemList;
-    OVWorkforceListVM ovvm;
     private OnWorkforceItemClickListener onWorkforceItemClickListener;
 
     public WorkforceItemAdapter(List<WItem> wItemList, OnWorkforceItemClickListener listener) {
-
-        this.wItemList=ovvm.getWItemList();
+        this.wItemList= wItemList;
         this.onWorkforceItemClickListener = listener;
     }
 

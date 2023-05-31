@@ -5,7 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.ViewModel;
 
 import com.example.catastrophecompass.DataLayer.FBRepository.AidPlacesListFBRepo;
-import com.example.catastrophecompass.UILayer.Common.AidItem;
+import com.example.catastrophecompass.DataLayer.Model.AItem;
 
 import java.util.List;
 
@@ -22,8 +22,8 @@ public class AidPlacesListVM extends ViewModel {
     public AidPlacesListVM(AidPlacesListFBRepo FBRepo) {
         this.FBRepo = FBRepo;
     }
-    public List<AidItem> getAidPlacesList (String cityName){
+    public List<AItem> getAidPlacesList (String cityName){
         Log.d("AidPlacesListVM", "getAidPlacesList() called");
-        return FBRepo.getAidPlacesList(cityName);
+        return FBRepo.getAItemList(cityName);
     }
 }

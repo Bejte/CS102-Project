@@ -27,7 +27,7 @@ public class OVMainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tabLayout);
 
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this);
+        sectionsPagerAdapter = new SectionsPagerAdapter(this);
 
         // Set up your fragments for the EighthActivity here
         Fragment workforceFragment = new OVWorkforceFragment();

@@ -17,7 +17,7 @@ public class AidPlaceFBRepo
 {
     DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("AidList");
 
-    public List<InventoryList> getItemList(String place)
+    public InventoryList getItemList(String place)
     {
         ArrayList<InventoryList>[] itemList = new ArrayList[1];
         databaseRef.child(place).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -66,6 +66,6 @@ public class AidPlaceFBRepo
             }
         });
 
-        return itemList[0];
+        return itemList[0].get(0);
     }
 }

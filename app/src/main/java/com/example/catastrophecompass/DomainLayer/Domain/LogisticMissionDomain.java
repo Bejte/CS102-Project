@@ -1,5 +1,6 @@
 package com.example.catastrophecompass.DomainLayer.Domain;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.example.catastrophecompass.DataLayer.FBRepository.LogisticMissionFBRepo;
@@ -28,6 +29,7 @@ public class LogisticMissionDomain {
         this.restAPI = restAPI;
     }
 
+    @SuppressLint("CheckResult")
     public void setupDB(LogisticMissionInterface logisticMissionInterface){
         // TODO Test the difference between DisposableSubscriber and DisposableObserver
         localRepo.getDriverName()

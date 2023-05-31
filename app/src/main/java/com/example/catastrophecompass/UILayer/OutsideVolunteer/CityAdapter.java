@@ -1,6 +1,5 @@
-package com.example.catastrophecompass.UILayer.Common;
+package com.example.catastrophecompass.UILayer.OutsideVolunteer;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.catastrophecompass.R;
-
-import java.util.List;
 
 public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder> {
 
@@ -32,6 +21,10 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder
     public CityAdapter(List<String> cityList, OnCityItemClickListener onCityItemClickListener) {
         this.cityList = cityList;
         this.onCityItemClickListener = onCityItemClickListener;
+    }
+
+    public List<String> getCityList(){
+        return this.cityList;
     }
 
     @NonNull

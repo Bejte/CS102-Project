@@ -12,12 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.catastrophecompass.DataLayer.Model.Team;
 import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.Organization;
-import com.example.catastrophecompass.UILayer.HQOrganizer.Admin.AddEditOrganizationActivity;
 
 import java.util.List;
-
-import io.reactivex.rxjava3.annotations.NonNull;
 
 public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder> {
     private List<Team> teamList;
