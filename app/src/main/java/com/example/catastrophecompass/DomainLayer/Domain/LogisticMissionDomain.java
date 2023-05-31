@@ -44,7 +44,7 @@ public class LogisticMissionDomain {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        logisticMissionInterface.warnUserForNoConnection(); // TODO check
+                        // logisticMissionInterface.warnUserForNoConnection(); // TODO check
                         Log.d("LogisticMissionDomain", "getDriverName() onError() called");
                     }
                 });
