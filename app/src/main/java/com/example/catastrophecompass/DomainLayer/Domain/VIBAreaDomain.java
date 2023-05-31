@@ -7,6 +7,7 @@ import com.example.catastrophecompass.DataLayer.LocalRepository.VIBAreaLocalRepo
 import com.example.catastrophecompass.DataLayer.Model.VIBJobInfo;
 import com.example.catastrophecompass.DataLayer.Model.WorkplaceWeather;
 import com.example.catastrophecompass.DataLayer.RemoteDataRepository.WeatherRepository.WeatherAPI;
+import com.example.catastrophecompass.DomainLayer.Common.VIBCommon;
 import com.example.catastrophecompass.UILayer.VolunteerInBase.VIBAreaInterface;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -46,7 +47,7 @@ public class VIBAreaDomain {
                         Log.d("VIBAreaDomain", "getAreaInfo() onComplete() called");
                     }
                 });
-        return weather.getWeatherInfo(Common.location); //TODO Don't forget Common Class
+        return weather.getWeatherInfo(VIBCommon.location); //TODO Don't forget Common Class
     }
 
     public void updateFoodInfo(String foodInfo){

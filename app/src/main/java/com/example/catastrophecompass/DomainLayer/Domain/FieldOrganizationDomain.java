@@ -8,6 +8,7 @@ import com.example.catastrophecompass.DataLayer.Model.DemographicInfo;
 import com.example.catastrophecompass.DataLayer.Model.HousingInfo;
 import com.example.catastrophecompass.DataLayer.Model.InventoryList;
 import com.example.catastrophecompass.DataLayer.Model.User;
+import com.example.catastrophecompass.DomainLayer.Common.FieldOrganizerCommon;
 import com.example.catastrophecompass.RemoteDataRepository.VectorDatabaseRepo.VectorDatabaseRepo;
 import com.example.catastrophecompass.UILayer.FieldOrganizer.ArrivingInterface;
 import com.example.catastrophecompass.UILayer.FieldOrganizer.DemographicInterface;

@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.catastrophecompass.DataLayer.FBRepository.FieldOrganizatonInfoFBRepo;
 import com.example.catastrophecompass.DataLayer.Model.DemographicInfo;
+import com.example.catastrophecompass.DataLayer.Model.HousingInfo;
+import com.example.catastrophecompass.DomainLayer.Common.FieldOrganizerCommon;
 
 import javax.inject.Inject;
 
@@ -21,9 +23,9 @@ public class UpdateHousingVM extends ViewModel {
         this.FBRepo = FBRepo;
     }
 
-    public boolean updateHousingInfo(DemographicInfo demoInfo) {
+    public boolean updateHousingInfo(HousingInfo housingInfo) {
         Log.d("UpdateHousingVM", "updateHousingInfo() called");
-        return FBRepo.updateHousingInfo(demoInfo, FieldOrganizerCommon.organizationName);
+        return FBRepo.updateHousingInfo(housingInfo, FieldOrganizerCommon.organizationName);
     }
 
 }
