@@ -87,7 +87,7 @@ public class PlacesAvailableFBRepo
         logisticsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                logisticsRef.child("status").setValue("assigned").addOnFailureListener(new OnFailureListener() {
+                logisticsRef.child("status").setValue("onWayToGet").addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         success[0] = false;
