@@ -81,7 +81,7 @@ public class LogisticMissionFBRepo
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 dataSnapshot.child("dropStatus").getRef().setValue(true);
-                dataSnapshot.child("status").getRef().setValue("dropClicked");
+                dataSnapshot.child("status").getRef().setValue("available");
                 updateStatus[0] = true;
             }
 
