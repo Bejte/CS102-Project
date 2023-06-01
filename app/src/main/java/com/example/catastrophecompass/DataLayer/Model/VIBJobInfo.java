@@ -1,10 +1,14 @@
 package com.example.catastrophecompass.DataLayer.Model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 @Entity
 public class VIBJobInfo {
 
+    @NonNull
+    @PrimaryKey
     private int id; // use the same id everytime to delete VIBDao
     private String teamName, teamDescription, teamLeaderName, areaInfo, foodInfo, location, teamLeaderPicUrl;
     private boolean dispatch;
@@ -21,6 +25,14 @@ public class VIBJobInfo {
     }
 
     public VIBJobInfo() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTeamName() {

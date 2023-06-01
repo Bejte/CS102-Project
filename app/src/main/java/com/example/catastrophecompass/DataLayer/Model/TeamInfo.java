@@ -1,11 +1,13 @@
 package com.example.catastrophecompass.DataLayer.Model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class TeamInfo {
 
+    @NonNull
     @PrimaryKey
     private String teamName;
     private String teamDescription, TeamLeaderName, areaInfo, foodInfo, location, url;
