@@ -41,23 +41,23 @@ public class VIBStartActivity extends AppCompatActivity {
 
         // Get job data from your ViewModel
         // TO DO
-        List<Job> jobs = vibSelectionVM.fetchJobList(city, place);
-
-        JobAdapter jobAdapter = new JobAdapter(jobs);
-        recyclerView.setAdapter(jobAdapter);
-
-        jobAdapter.setOnJoinClickListener(new JobAdapter.OnJoinClickListener() {
-            @Override
-            public void onJoinClick(int position) {
-
-                vibSelectionVM.updateJobUrgency(city, place, teamName);
-                vibSelectionVM.recordCredentials(credentials);
-
-                Intent intent = new Intent(VIBStartActivity.this, VIBHomeActivity.class);
-
-
-                startActivity(intent);
-            }
-        });
+//        List<Job> jobs = vibSelectionVM.fetchJobList(city, place);
+//
+//        JobAdapter jobAdapter = new JobAdapter(jobs);
+//        recyclerView.setAdapter(jobAdapter);
+//
+//        jobAdapter.setOnJoinClickListener(new JobAdapter.OnJoinClickListener() {
+//            @Override
+//            public void onJoinClick(int position) {
+//
+//                vibSelectionVM.updateJobUrgency(city, place, teamName);
+//                vibSelectionVM.recordCredentials(credentials);
+//
+//                Intent intent = new Intent(VIBStartActivity.this, VIBHomeActivity.class);
+//
+//
+//                startActivity(intent);
+//            }
+//        });
     }
 }

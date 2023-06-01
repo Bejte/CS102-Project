@@ -45,9 +45,9 @@ public class JobInfoForTeamOrganizatorFragment extends Fragment {
 
         // find the button from the view
         btnAddOrganization = view.findViewById(R.id.add_organization_button_admin);
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.organization_recycler_view_hq);
-        TeamAdapter adapter = new TeamAdapter(yourTeamList, this);
-        recyclerView.setAdapter(adapter);
+//        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.organization_recycler_view_hq);
+//        TeamAdapter adapter = new TeamAdapter(yourTeamList, this);
+        //recyclerView.setAdapter(adapter);
 
 
         // set a click listener for the button

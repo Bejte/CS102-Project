@@ -44,8 +44,8 @@ public class OrganizationAdapter extends RecyclerView.Adapter<OrganizationAdapte
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, AddEditOrganizationActivity.class);
-                intent.putExtra("Organization", organization);
-                context.startActivity(intent);
+//                intent.putExtra("Organization", organization);
+//                context.startActivity(intent);
             }
         });
     }

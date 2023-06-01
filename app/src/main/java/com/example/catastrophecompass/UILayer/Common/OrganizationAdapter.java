@@ -45,8 +45,8 @@ public class OrganizationAdapter extends RecyclerView.Adapter<OrganizationAdapte
 
         OrganizationViewHolder(@NonNull View itemView) {
             super(itemView);
-            nameTextView = itemView.findViewById(R.id.organization_name);
-            typeTextView = itemView.findViewById(R.id.organization_type);
+           // nameTextView = itemView.findViewById(R.id.organization_name);
+            //typeTextView = itemView.findViewById(R.id.organization_type);
         }
     }
 }

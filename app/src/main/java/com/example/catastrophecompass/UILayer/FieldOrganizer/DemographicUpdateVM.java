@@ -23,6 +23,7 @@ public class DemographicUpdateVM extends ViewModel {
 
     public boolean updateDemographicInfo(DemographicInfo demoInfo) {
         Log.d("DemographicUpdateVM", "updateDemographicInfo() called");
-        return FBRepo.updateDemographicInfo(demoInfo, FieldOrganizationCommon.organizationName);
+        //return FBRepo.updateDemographicInfo(demoInfo, FieldOrganizationCommon.organizationName);
+        return false;
     }
 }

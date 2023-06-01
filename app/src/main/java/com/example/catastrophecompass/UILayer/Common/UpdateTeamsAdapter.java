@@ -55,7 +55,7 @@ public class UpdateTeamsAdapter extends RecyclerView.Adapter<UpdateTeamsAdapter.
             super(itemView);
 
             // Get references to the views in the item layout
-            typeEditText = itemView.findViewById(R.id.typeEditText);
+            //typeEditText = itemView.findViewById(R.id.typeEditText);
         }
     }
 }

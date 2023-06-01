@@ -26,8 +26,9 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_people, parent, false);
-        return new ViewHolder(view);
+        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_people, parent, false);
+        //return new ViewHolder(view);
+        return null;
     }
 
     @Override
@@ -50,7 +51,7 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.ViewHolder
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.name);
+            //name = itemView.findViewById(R.id.name);
             menu = itemView.findViewById(R.id.menu);
             profileImage = itemView.findViewById(R.id.profile_image);
         }

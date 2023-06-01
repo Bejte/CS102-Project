@@ -23,8 +23,9 @@ public class UpdateDemographicsAdapter extends RecyclerView.Adapter<UpdateDemogr
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_update_demographics, parent, false);
-        return new ViewHolder(view);
+        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_update_demographics, parent, false);
+        //return new ViewHolder(view);
+        return null;
     }
 
     @Override
@@ -43,8 +44,8 @@ public class UpdateDemographicsAdapter extends RecyclerView.Adapter<UpdateDemogr
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textLabel = itemView.findViewById(R.id.text_label);
-            editText = itemView.findViewById(R.id.edit_text);
+            //textLabel = itemView.findViewById(R.id.text_label);
+            //editText = itemView.findViewById(R.id.edit_text);
         }
     }
 }

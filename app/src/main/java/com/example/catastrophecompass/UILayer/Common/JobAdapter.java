@@ -72,8 +72,8 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
         public JobViewHolder(@NonNull View itemView, final OnJoinClickListener onJoinClickListener) {
             super(itemView);
 
-            jobTitle = itemView.findViewById(R.id.job_title); // replace with actual ID
-            joinButton = itemView.findViewById(R.id.join_button); // replace with actual ID
+            //jobTitle = itemView.findViewById(R.id.); // replace with actual ID
+            //joinButton = itemView.findViewById(R.id.join_button); // replace with actual ID
 
             joinButton.setOnClickListener(new View.OnClickListener() {
                 @Override

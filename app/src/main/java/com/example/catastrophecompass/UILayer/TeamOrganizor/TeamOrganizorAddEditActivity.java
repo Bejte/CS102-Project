@@ -58,7 +58,7 @@ public class TeamOrganizorAddEditActivity extends AppCompatActivity {
         discardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.discardTeam(team.getCity(), team.getPlace(), team);
+                //viewModel.discardTeam(team.getCity(), team.getPlace(), team);
                 finish();
             }
         });
@@ -72,7 +72,7 @@ public class TeamOrganizorAddEditActivity extends AppCompatActivity {
                 team.setTeamLeader(teamLeaderEditText.getText().toString());
 
                 // If the team has an id, it already exists and we should edit it. Otherwise, we should add a new team.
-                    viewModel.addTeam(team.getCity(), team.getPlace(), team);
+                    //viewModel.addTeam(team.getCity(), team.getPlace(), team);
 
                 finish();
             }

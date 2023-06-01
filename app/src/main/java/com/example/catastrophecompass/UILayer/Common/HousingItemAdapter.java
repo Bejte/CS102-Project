@@ -52,7 +52,7 @@ public class HousingItemAdapter extends RecyclerView.Adapter<HousingItemAdapter.
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
-            value = itemView.findViewById(R.id.value);
+            //value = itemView.findViewById(R.id.value);
         }
     }
 }

@@ -34,28 +34,7 @@ import io.reactivex.rxjava3.annotations.NonNull;
 
 public class TeamOrganizorMainActivity extends AppCompatActivity {
     Button btnAddOrganization;
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_general_info, container, false);
 
-        // find the add_organization_button_admin button from the view
-        btnAddOrganization = view.findViewById(R.id.add_organization_button_admin);
-
-        // set a click listener for the button
-        btnAddOrganization.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // create an intent to open the activity
-                Intent intent = new Intent(TeamOrganizorMainActivity.this, TeamOrganizorAddEditActivity.class);
-
-                // start the activity
-                startActivity(intent);
-            }
-        });
-
-        return view;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

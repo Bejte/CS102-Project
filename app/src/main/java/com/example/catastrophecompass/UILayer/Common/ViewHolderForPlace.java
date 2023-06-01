@@ -14,7 +14,7 @@ public class ViewHolderForPlace extends RecyclerView.ViewHolder {
 
     public ViewHolderForPlace(@NonNull View itemView) {
         super(itemView);
-        placeTextView = itemView.findViewById(R.id.place_text_view);
-        addressTextView = itemView.findViewById(R.id.address_text_view);
+        //placeTextView = itemView.findViewById(R.id.place_text_view);
+        //addressTextView = itemView.findViewById(R.id.address_text_view);
     }
 }

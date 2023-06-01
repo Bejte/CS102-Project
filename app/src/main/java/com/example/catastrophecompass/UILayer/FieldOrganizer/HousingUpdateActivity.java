@@ -46,12 +46,12 @@ public class HousingUpdateActivity extends AppCompatActivity implements HousingI
 
     public void preDisplay() {
         // Assuming you have a method to fetch a HousingInfo object in your VM
-        HousingInfo houseInfo = VM.getHousingInfo();
+        //HousingInfo houseInfo = VM.();
 
         // Fill in the EditTexts
-        noHouseEditText.setText(houseInfo.getNoHouse());
-        ContainerEditText.setText(houseInfo.getContainer());
-        HasHouseEditText.setText(houseInfo.getHasHouse());
+//        noHouseEditText.setText(houseInfo.getNoHouse());
+//        ContainerEditText.setText(houseInfo.getContainer());
+//        HasHouseEditText.setText(houseInfo.getHasHouse());
 
     }
 
@@ -62,11 +62,21 @@ public class HousingUpdateActivity extends AppCompatActivity implements HousingI
 
 
         // Assuming you have a method to update a HousingInfo object in your VM
-        VM.updateHousingInfo(new HousingInfo(noHouse, oneRoom, twoRoom));
+        //VM.updateHousingInfo(new HousingInfo(noHouse, oneRoom, twoRoom));
+    }
+
+//    @Override
+//    public void getHousingInfo(HousingInterface houseInt) {
+//        // Implementation for the housingInterface
+//    }
+
+    @Override
+    public void setDisplay(HousingInfo housingInfo) {
+
     }
 
     @Override
-    public void getHousingInfo(HousingInterface houseInt) {
-        // Implementation for the housingInterface
+    public void warnUser() {
+
     }
 }

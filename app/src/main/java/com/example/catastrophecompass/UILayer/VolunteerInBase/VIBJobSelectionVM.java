@@ -39,7 +39,8 @@ public class VIBJobSelectionVM extends ViewModel {
 
     public int recordID(){ // TODO return int or String
         Log.d("VIBJobSelectionVM", "recordID() called");
-        return FBRepo.recordID();
+       // return FBRepo.recordID();
+        return 0;
     }
 
     public void recordCredentials (Credentials cre){

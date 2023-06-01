@@ -44,7 +44,7 @@ public class AssignToGetActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rec_JobTeamOrganizator_fr_jo_in_fo_te_or_fr);
 
         // Add sample data to the placeItems list
-        placeItems = vm.getPlacesAvailable();
+        //placeItems = vm.getPlacesAvailable();
 
 
 

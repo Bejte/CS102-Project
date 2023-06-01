@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.catastrophecompass.R;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link JobFragment#newInstance} factory method to
@@ -62,18 +64,19 @@ public class JobFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.jobfragment_for_appbar, container, false);
-
-        Button updateTeamsButton = view.findViewById(R.id.update_teams_button);
-        updateTeamsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), UpdateTeamsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        return view;
+//        View view = inflater.inflate(R.layout.jobfragment_for_appbar, container, false);
+//
+//        Button updateTeamsButton = view.findViewById(R.id.update_teams_button);
+//        updateTeamsButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), UpdateTeamsActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        return view;
+        return null;
     }
 
 

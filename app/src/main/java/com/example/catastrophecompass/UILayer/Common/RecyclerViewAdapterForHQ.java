@@ -23,8 +23,9 @@ public class RecyclerViewAdapterForHQ extends RecyclerView.Adapter<ViewHolderFor
     @NonNull
     @Override
     public ViewHolderForHQ onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.hq_card_view_item, parent, false);
-        return new ViewHolderForHQ(view);
+        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.hq_card_view_item, parent, false);
+        //return new ViewHolderForHQ(view);
+        return null;
     }
 
     @Override
@@ -36,8 +37,8 @@ public class RecyclerViewAdapterForHQ extends RecyclerView.Adapter<ViewHolderFor
         holder.assignButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, HQPlacesForTrucksActivity.class);
-                context.startActivity(intent);
+               // Intent intent = new Intent(context, HQPlacesForTrucksActivity.class);
+                //context.startActivity(intent);
             }
         });
         // TODO: Set OnClickListener for the Assign button here

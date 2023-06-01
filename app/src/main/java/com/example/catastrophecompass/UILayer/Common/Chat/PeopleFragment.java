@@ -46,8 +46,8 @@ public class PeopleFragment extends Fragment {
 
         List<Contact> contacts = contactsVM.getContacts(organizationName, userName);
 
-        PeopleAdapter peopleAdapter = new PeopleAdapter(contacts, userType, contactsVM, getActivity());
-        recyclerView.setAdapter(peopleAdapter);
+        //PeopleAdapter peopleAdapter = new PeopleAdapter(contacts, userType, contactsVM, getActivity());
+        //recyclerView.setAdapter(peopleAdapter);
 
         return view;
     }

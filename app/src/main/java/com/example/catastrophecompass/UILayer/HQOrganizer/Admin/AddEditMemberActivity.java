@@ -80,8 +80,8 @@ public class AddEditMemberActivity extends AppCompatActivity {
                         // Call viewModel method for IfTeamLeaderFragment
                         break;
                     case 3:
-                        HQO hqo = // Initialize or get your HQO instance here
-                                viewModel.addHQOrganizator(hqo, organizationName);
+                        //HQO hqo = // Initialize or get your HQO instance here
+                               // viewModel.addHQOrganizator(hqo, organizationName);
                         break;
                     default:
                         // default case

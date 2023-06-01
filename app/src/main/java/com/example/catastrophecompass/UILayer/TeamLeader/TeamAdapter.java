@@ -7,6 +7,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.catastrophecompass.R;
+
 import java.util.List;
 
 public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder> {
@@ -20,8 +23,9 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     @NonNull
     @Override
     public TeamViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_update_team_item, parent, false);
-        return new TeamViewHolder(itemView);
+//        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_update_team_item, parent, false);
+//        return new TeamViewHolder(itemView);
+        return null;
     }
 
     @Override

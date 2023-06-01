@@ -8,6 +8,7 @@ import com.example.catastrophecompass.DataLayer.Dao.FieldOrganizationDao;
 import com.example.catastrophecompass.DataLayer.Dao.MissionDao;
 import com.example.catastrophecompass.DataLayer.Dao.TLJobLocalDao;
 import com.example.catastrophecompass.DataLayer.Dao.VIBDao;
+import com.example.catastrophecompass.DataLayer.FBRepository.AddOrganizationFBRepo;
 import com.example.catastrophecompass.DataLayer.FBRepository.ChatActivityFBRepo;
 import com.example.catastrophecompass.DataLayer.FBRepository.ChatFragmentFBRepo;
 import com.example.catastrophecompass.DataLayer.FBRepository.FieldOrganizatonInfoFBRepo;
@@ -233,6 +234,112 @@ public class AppModule {
     public VectorDatabaseRepo provideVBDR(CloudRestApi cloudRestApi) {
         return new VectorDatabaseRepo(cloudRestApi);
     }
+
+
+    // FB Repo
+    @Provides
+    @Singleton
+    public FieldOrganizatonInfoFBRepo provideFieldOrganizatonInfoFBRepo(FieldOrganizationInfoLocalRepo localRepo) {
+        return new FieldOrganizatonInfoFBRepo(localRepo);
+    }
+
+//    @Provides
+//    @Singleton
+//    public AddOrganizationFBRepo
+//
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+//
+//    @Provides
+//    @Singleton
+//    public
+
 
 
 

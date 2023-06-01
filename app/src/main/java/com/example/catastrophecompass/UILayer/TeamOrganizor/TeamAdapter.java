@@ -51,8 +51,8 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, TeamOrganizorAddEditActivity.class);
-                intent.putExtra("team", team); // here we put the Team object to the intent
-                context.startActivity(intent);
+//                intent.putExtra("team", team); // here we put the Team object to the intent
+//                context.startActivity(intent);
             }
         });
     }

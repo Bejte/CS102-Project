@@ -55,17 +55,17 @@ public class DemographicUpdateActivity extends AppCompatActivity implements Demo
 
     public void preDisplay() {
         // Assuming you have a method to fetch a DemographicInfo object in your VM
-        DemographicInfo demoInfo = VM.getDemographicInfo();
-
-        // Fill in the EditTexts
-        male08EditText.setText(demoInfo.getMale08());
-        female08EditText.setText(demoInfo.getFemale08());
-        male814EditText.setText(demoInfo.getMale814());
-        female814EditText.setText(demoInfo.getFemale814());
-        male1564EditText.setText(demoInfo.getMale1564());
-        female1564EditText.setText(demoInfo.getFemale1564());
-        male65EditText.setText(demoInfo.getMale65());
-        female65EditText.setText(demoInfo.getFemale65());
+//        DemographicInfo demoInfo = VM.getDemographicInfo();
+//
+//        // Fill in the EditTexts
+//        male08EditText.setText(demoInfo.getMale08());
+//        female08EditText.setText(demoInfo.getFemale08());
+//        male814EditText.setText(demoInfo.getMale814());
+//        female814EditText.setText(demoInfo.getFemale814());
+//        male1564EditText.setText(demoInfo.getMale1564());
+//        female1564EditText.setText(demoInfo.getFemale1564());
+//        male65EditText.setText(demoInfo.getMale65());
+//        female65EditText.setText(demoInfo.getFemale65());
     }
 
     private void updateDemographicInfo() {
@@ -82,10 +82,10 @@ public class DemographicUpdateActivity extends AppCompatActivity implements Demo
         VM.updateDemographicInfo(new DemographicInfo(male08, female08, male814, female814, male1564, female1564, male65, female65));
     }
 
-    @Override
-    public void getDemographicInfo(DemographicInterface demoInt) {
-        // Implementation for the demographicInterface
-    }
+//    @Override
+//    public void getDemographicInfo(DemographicInterface demoInt) {
+//        // Implementation for the demographicInterface
+//    }
 
     @Override
     public void setDisplay(DemographicInfo demographicInfo) {

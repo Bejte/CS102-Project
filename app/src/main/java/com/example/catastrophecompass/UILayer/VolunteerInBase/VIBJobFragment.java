@@ -45,31 +45,33 @@ public class VIBJobFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_vib_job, container, false);
+        //View view = inflater.inflate(R.layout.fragment_vib_job, container, false);
 
-        TextView jobInfoTitle = view.findViewById(R.id.txt_title_job_info_vib_job);
-        TextView jobDescription = view.findViewById(R.id.job_description_vib_job);
-        ImageView teamLeaderImage = view.findViewById(R.id.team_leader_image_vib_job);
-        TextView teamLeaderInfo = view.findViewById(R.id.team_leader_info_vib_job);
-        TextView teamLeaderName = view.findViewById(R.id.team_leader_name);
-        Button quitToLogoutButton = view.findViewById(R.id.quit_to_logout_button_vib);
-
-
-        jobInfoTitle.setText(vibJobInfoVM.getJobTitle());
-        jobDescription.setText(vibJobInfoVM.getJobDescription());
-        teamLeaderInfo.setText(vibJobInfoVM.getTeamLeaderInfo());
-        teamLeaderName.setText(vibJobInfoVM.getTeamLeaderName());
+//        TextView jobInfoTitle = view.findViewById(R.id.txt_title_job_info_vib_job);
+//        TextView jobDescription = view.findViewById(R.id.job_description_vib_job);
+//        ImageView teamLeaderImage = view.findViewById(R.id.team_leader_image_vib_job);
+//        TextView teamLeaderInfo = view.findViewById(R.id.team_leader_info_vib_job);
+//        TextView teamLeaderName = view.findViewById(R.id.team_leader_name);
+//        Button quitToLogoutButton = view.findViewById(R.id.quit_to_logout_button_vib);
 
 
-        quitToLogoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LoginOptionsActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
+//        jobInfoTitle.setText(vibJobInfoVM.getJobTitle());
+//        jobDescription.setText(vibJobInfoVM.getJobDescription());
+//        teamLeaderInfo.setText(vibJobInfoVM.getTeamLeaderInfo());
+//        teamLeaderName.setText(vibJobInfoVM.getTeamLeaderName());
 
-        return view;
+
+//        quitToLogoutButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), LoginOptionsActivity.class);
+//                startActivity(intent);
+//                getActivity().finish();
+//            }
+//        });
+//
+//        return view;
+
+        return null;
     }
 }

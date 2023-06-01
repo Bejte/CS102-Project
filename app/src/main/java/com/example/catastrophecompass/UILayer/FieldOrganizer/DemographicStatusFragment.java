@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.catastrophecompass.DataLayer.Model.DemographicInfo;
+import com.example.catastrophecompass.DataLayer.Model.HousingInfo;
 import com.example.catastrophecompass.R;
 
 
@@ -77,13 +79,20 @@ public class DemographicStatusFragment extends Fragment implements DemographicIn
         return view;
     }
 
+
+
     @Override
-    public void getDemographicInfo(DemographicInterface demoint) {
-        DVM.getDemographicInfo(this);
+    public void setDisplay(DemographicInfo demographicInfo) {
+
     }
 
     @Override
-    public void getHousingInfo(HousingInterface houseint) {
-        DVM.getHousingInfo(this);
+    public void setDisplay(HousingInfo housingInfo) {
+
+    }
+
+    @Override
+    public void warnUser() {
+
     }
 }

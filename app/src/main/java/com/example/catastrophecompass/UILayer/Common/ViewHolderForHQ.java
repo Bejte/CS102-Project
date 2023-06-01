@@ -19,11 +19,11 @@ public class ViewHolderForHQ extends RecyclerView.ViewHolder {
     public ViewHolderForHQ(@NonNull View itemView) {
         super(itemView);
 
-        driverNameEditText = itemView.findViewById(R.id.driver_name_edit_text);
-        sizeEditText = itemView.findViewById(R.id.size_edit_text);
-        statusEditText = itemView.findViewById(R.id.status_edit_text);
-        assignButton = itemView.findViewById(R.id.assign_button);
-        firstLinearLayout = itemView.findViewById(R.id.first_linear_layout);
-        secondLinearLayout = itemView.findViewById(R.id.second_linear_layout);
+//        driverNameEditText = itemView.findViewById(R.id.driver_name_edit_text);
+//        sizeEditText = itemView.findViewById(R.id.size_edit_text);
+//        statusEditText = itemView.findViewById(R.id.status_edit_text);
+//        assignButton = itemView.findViewById(R.id.assign_button);
+//        firstLinearLayout = itemView.findViewById(R.id.first_linear_layout);
+//        secondLinearLayout = itemView.findViewById(R.id.second_linear_layout);
     }
 }
