@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
 import com.example.catastrophecompass.R;
 
 import android.widget.CheckBox;
@@ -19,7 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class MissionFragment extends Fragment {
+public class MissionFragment extends Fragment implements LogisticMissionInterface{
 
     private TextView logisticGet;
     private CheckBox getCheckbox, dropCheckbox;
@@ -41,23 +42,48 @@ public class MissionFragment extends Fragment {
         getCheckbox = view.findViewById(R.id.getCheckbox);
         dropCheckbox = view.findViewById(R.id.dropCheckbox);
 
-        viewModel.getLogisticInfo(new LogisticMissionInterface() {
-            logisticGet.setText(getAddressInfo());
-            //TO DO:
-        });
+        viewModel.getLogisticInfo(this);
 
         getCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                viewModel.getChecked(new LogisticMissionInterface() {
-                    // TO DO
-                });
+                viewModel.getChecked(this);
             }
         });
 
         dropCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                viewModel.dropClicked();
+                viewModel.dropClicked(this);
             }
         });
+    }
+
+    @Override
+    public void display(LogisticInfo logisticInfo) {
+
+    }
+
+    @Override
+    public void warnUser() {
+
+    }
+
+    @Override
+    public void notifyGetSuccess() {
+
+    }
+
+    @Override
+    public void notifyGetFailed() {
+
+    }
+
+    @Override
+    public void notifyDropSuccess() {
+
+    }
+
+    @Override
+    public void notifyDropFailed() {
+
     }
 }
