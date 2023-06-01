@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.catastrophecompass.DataLayer.Model.DriverItem;
+import com.example.catastrophecompass.DomainLayer.Common.HQOrganizerCommon;
 import com.example.catastrophecompass.R;
 import com.example.catastrophecompass.UILayer.Common.RecyclerViewAdapterForHQ;
 import com.example.catastrophecompass.UILayer.Common.TruckItemForHQ;
@@ -46,7 +48,7 @@ public class OrganizeTrucksFragment extends Fragment implements OrganizeTrucksIn
 
     private RecyclerView recyclerView;
     private TruckAdapter truckAdapter;
-    private OrganizeTrucksVM vm;
+    public OrganizeTrucksVM vm;
     private List<DriverItem> truckList;
     private View view;
 
@@ -57,13 +59,14 @@ public class OrganizeTrucksFragment extends Fragment implements OrganizeTrucksIn
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        vm = new ViewModelProvider(this).get(OrganizeTrucksVM.class);
         view = inflater.inflate(R.layout.fragment_organize_trucks, container, false);
         vm.getAvailableDrivers(this, HQOrganizerCommon.organizationName);
         // TODO common
         recyclerView = view.findViewById(R.id.rec_organize_truck_fr);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         truckList = new ArrayList<>();
-        truckAdapter = new TruckAdapter(getActivity(), truckList);
+        truckAdapter = new TruckAdapter(getActivity(), truckList, this);
         recyclerView.setAdapter(truckAdapter);
 
 
@@ -85,9 +88,6 @@ public class OrganizeTrucksFragment extends Fragment implements OrganizeTrucksIn
         //truckList.clear();
         //truckList =new ArrayList<>(list);
         truckAdapter.notifyDataSetChanged(); // TODO test notifyDataSetChanged()
-
-
-
 
 
 

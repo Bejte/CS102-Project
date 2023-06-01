@@ -2,6 +2,7 @@ package com.example.catastrophecompass.UILayer.HQOrganizer;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +25,11 @@ public class TruckAdapter extends RecyclerView.Adapter<TruckAdapter.TruckViewHol
 
     // The context we'll use to start the AssignToGetActivity
     private Context context;
+    private OrganizeTrucksFragment fragment;
 
     // The constructor for our TruckAdapter
-    public TruckAdapter(Context context, List<DriverItem> truckList) {
+    public TruckAdapter(Context context, List<DriverItem> truckList, OrganizeTrucksFragment fragment) {
+        this.fragment = fragment;
         this.context = context;
         this.truckList = truckList;
     }
@@ -43,7 +46,7 @@ public class TruckAdapter extends RecyclerView.Adapter<TruckAdapter.TruckViewHol
     public void onBindViewHolder(@NonNull TruckViewHolder holder, int position) {
         // We retrieve the corresponding truck from our list
         DriverItem truck = truckList.get(position);
-        if(truck.getDriverStatus().equals("Available")){
+        if(truck.getDriverStatus().equals("available")){
             holder.assignButton.setVisibility(View.VISIBLE);
             holder.dropButton.setVisibility(View.GONE);
 
@@ -59,8 +62,29 @@ public class TruckAdapter extends RecyclerView.Adapter<TruckAdapter.TruckViewHol
         holder.assignButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, AssignToGetActivity.class);
-                context.startActivity(intent);
+
+                if (truck.getDriverStatus().equals("available")) {
+                    Intent intent = new Intent(context, AssignToGetActivity.class);
+                    context.startActivity(intent);
+                }
+
+                else if (truck.getDriverStatus().equals("onWayToGet")) {
+                    boolean deletionStatus = fragment.vm.reassignGET(truck.getDriverName());
+
+                    if (deletionStatus) {
+                        Intent intent = new Intent(context, AssignToGetActivity.class);
+                        context.startActivity(intent);
+                    }
+                    else {
+                        fragment.warnUser();
+                    }
+                }
+
+                else if (truck.getDriverStatus().equals("getChecked")) {
+                    boolean status = fragment.vm.reassignDROP(truck.getDriverName());
+                    Log.d("TruckAdapter ", "onClick: reassigndrop status: " + status);
+                }
+
             }
         });
 
