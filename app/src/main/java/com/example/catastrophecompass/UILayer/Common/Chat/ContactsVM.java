@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.catastrophecompass.DataLayer.FBRepository.ContactsFBRepo;
 import com.example.catastrophecompass.DataLayer.Model.Contact;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class ContactsVM extends ViewModel {
 
     public List<Contact> getContacts(String organizationName, String userName){
         Log.d("ContactsVM", "getContacts() called");
-        return FBRepo.getContacts(organizationName);
+        return FBRepo.getContact(organizationName);
     }
 
     public boolean startChat(String userName, String contactName){

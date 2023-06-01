@@ -12,20 +12,21 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.catastrophecompass.DataLayer.Model.VIBJobInfo;
 import com.example.catastrophecompass.R;
 import com.example.catastrophecompass.UILayer.Common.AreaFragment;
 import com.example.catastrophecompass.UILayer.Common.FoodAdapter;
 
 import java.util.ArrayList;
 
-public class VIBAreaFragment extends Fragment {
+public class VIBAreaFragment extends Fragment implements VIBAreaInterface{
 
     private RecyclerView foodRecyclerView, weatherRecyclerView;
     private FoodAdapter foodAdapter;
-    private WeatherAdapter weatherAdapter;
+    //private WeatherAdapter weatherAdapter;
     private VIBAreaVM viewModel;
 
-    public AreaFragment() {
+    public VIBAreaFragment() {
         // Required empty public constructor
     }
 
@@ -51,21 +52,12 @@ public class VIBAreaFragment extends Fragment {
 
         weatherRecyclerView = view.findViewById(R.id.weather_recycler_view);
         weatherRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        weatherAdapter = new WeatherAdapter(new ArrayList<>()); // replace ArrayList with your weather data
-        weatherRecyclerView.setAdapter(weatherAdapter);
+        //weatherAdapter = new WeatherAdapter(new ArrayList<>()); // replace ArrayList with your weather data
+        //weatherRecyclerView.setAdapter(weatherAdapter);
 
         viewModel = new ViewModelProvider(this).get(VIBAreaVM.class);
 
-        viewModel.getAreaInfo(new VIBAreaInterface() {
-            @Override
-            public void onAreaInfoReceived(Camera.Area area) {
-                TextView areaDescriptionTextView = view.findViewById(R.id.vibt);
-
-                 areaDescriptionTextView.setText(area.getAreaDescription());
-                 foodAdapter.updateData(area.getFoodInfo());
-                 weatherAdapter.updateData(area.getWeatherInfo());
-            }
-        });
+        viewModel.getAreaInfo(this);
 
         return view;
     }
@@ -76,4 +68,13 @@ public class VIBAreaFragment extends Fragment {
         viewModel.updateFoodInfo("Food Info");  // Replace "Food Info" with your actual data
     }
 
+    @Override
+    public void setDisplay(VIBJobInfo vibJobInfo) {
+
+    }
+
+    @Override
+    public void warnUser() {
+
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.catastrophecompass.UILayer.Common.Chat;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -8,10 +9,12 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.catastrophecompass.DataLayer.Model.Contact;
 import com.example.catastrophecompass.R;
+import com.example.catastrophecompass.UILayer.HQOrganizer.Admin.AddEditMemberActivity;
 
 import java.util.List;
 import java.util.function.Consumer;

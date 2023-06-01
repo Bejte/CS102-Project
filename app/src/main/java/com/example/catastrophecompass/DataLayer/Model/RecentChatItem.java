@@ -1,5 +1,6 @@
 package com.example.catastrophecompass.DataLayer.Model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -8,6 +9,7 @@ public class RecentChatItem {
 
     private String time; // parse to string when getting time
 
+    @NonNull
     @PrimaryKey
     private String chattedUserName;
     private String lastMessage, pictureUrl;

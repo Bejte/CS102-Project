@@ -9,6 +9,7 @@ import java.util.List;
 import com.example.catastrophecompass.DataLayer.FBRepository.JobListFBRepo;
 import com.example.catastrophecompass.DataLayer.LocalRepository.VIBLocalRepo;
 import com.example.catastrophecompass.DataLayer.Model.Credentials;
+import com.example.catastrophecompass.DataLayer.Model.Job;
 import com.example.catastrophecompass.DataLayer.Model.VIBJobInfo;
 
 import javax.inject.Inject;
@@ -27,7 +28,7 @@ public class VIBJobSelectionVM extends ViewModel {
         this.localRepo = localRepo;
     }
 
-    public List<VIBJobInfo> fetchJobList(String city, String place){
+    public List<Job> fetchJobList(String city, String place){
         Log.d("VIBJobSelectionVM", "fetchJobList() called");
         return FBRepo.fetchJobList(city,place);
     }

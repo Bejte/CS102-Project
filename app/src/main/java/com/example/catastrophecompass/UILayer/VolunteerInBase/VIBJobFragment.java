@@ -18,8 +18,6 @@ import com.example.catastrophecompass.R;
 import android.widget.Button;
 
 import com.example.catastrophecompass.UILayer.Login.LoginOptionsActivity;
-import com.example.myapplication.MainActivity;
-import com.example.myapplication.R;
 
 import android.widget.ImageView;
 import android.widget.TextView;

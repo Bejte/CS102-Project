@@ -11,6 +11,10 @@ import android.widget.EditText;
 import com.example.catastrophecompass.DataLayer.Model.Team;
 import com.example.catastrophecompass.R;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
 /**
  * Display changes regarding to the intent starting source
  * For details, see sketches
@@ -46,7 +50,7 @@ public class TeamOrganizorAddEditActivity extends AppCompatActivity {
         addButton = findViewById(R.id.addButton);
 
         // Populate the fields with the team data
-        teamTypeEditText.setText(team.getTeamType());
+        teamTypeEditText.setText(team.getTeamName());
         descriptionEditText.setText(team.getDescription());
         teamLeaderEditText.setText(team.getTeamLeader());
 
@@ -63,16 +67,12 @@ public class TeamOrganizorAddEditActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                team.setTeamType(teamTypeEditText.getText().toString());
+                team.setTeamName(teamTypeEditText.getText().toString());
                 team.setDescription(descriptionEditText.getText().toString());
                 team.setTeamLeader(teamLeaderEditText.getText().toString());
 
                 // If the team has an id, it already exists and we should edit it. Otherwise, we should add a new team.
-                if (team.getId() != null) {
-                    viewModel.editTeam(team.getCity(), team.getPlace(), team);
-                } else {
                     viewModel.addTeam(team.getCity(), team.getPlace(), team);
-                }
 
                 finish();
             }

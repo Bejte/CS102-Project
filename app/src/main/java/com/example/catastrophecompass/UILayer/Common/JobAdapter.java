@@ -5,8 +5,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.catastrophecompass.DataLayer.Model.Job;
 import com.example.catastrophecompass.R;
-import com.example.myapplication.R;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,7 +51,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull JobViewHolder holder, int position) {
         Job job = jobs.get(position);
-        holder.jobTitle.setText(job.getTitle()); // Assuming the job object has a getTitle() method
+        holder.jobTitle.setText(job.getTeamName()); // Assuming the job object has a getTitle() method
         // Populate other fields as necessary
     }
 

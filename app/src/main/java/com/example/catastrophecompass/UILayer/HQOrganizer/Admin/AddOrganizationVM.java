@@ -4,7 +4,9 @@ import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.catastrophecompass.DataLayer.FBRepository.AddOrganizationFBRepo;
 import com.example.catastrophecompass.DataLayer.Model.OrganizationAsNode;
+import com.example.catastrophecompass.DataLayer.Model.TeamOrganization;
 
 import java.util.List;
 
@@ -28,16 +30,16 @@ public class AddOrganizationVM extends ViewModel {
 
     public boolean createFieldOrganization(OrganizationAsNode organization, OrganizationAsNode lastClicked){
         Log.d("AddOrganizationVM", "createFieldOrganization() called");
-        return FBRepo.createFieldOrganization(organization, lastClicked);
+        return FBRepo.createFieldOrganization(organization, lastClicked.getName());
     }
 
     public boolean createHQOrganization(OrganizationAsNode organization, OrganizationAsNode lastClicked){
         Log.d("AddOrganizationVM", "createHQOrganization() called");
-        return FBRepo.createHQOrganization(organization, lastClicked);
+        return FBRepo.createHQOrganization(organization, lastClicked.getName());
     }
 
     public boolean createTeamOrganization(OrganizationAsNode organization, OrganizationAsNode lastClicked){
         Log.d("AddOrganizationVM", "createTeamOrganization() called");
-        return FBRepo.createTeamOrganization(organization, lastClicked);
+        return FBRepo.createTeamOrganization((TeamOrganization) organization, lastClicked.getName());
     }
 }

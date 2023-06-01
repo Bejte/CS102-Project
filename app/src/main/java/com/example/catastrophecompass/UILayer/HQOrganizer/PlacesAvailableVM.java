@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.catastrophecompass.DataLayer.FBRepository.PlacesAvailableFBRepo;
 import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
 import com.example.catastrophecompass.DataLayer.Model.Request;
+import com.example.catastrophecompass.DomainLayer.Common.HQOrganizerCommon;
 
 import javax.inject.Inject;
 
@@ -23,11 +24,11 @@ public class PlacesAvailableVM extends ViewModel {
     }
     public void getPlacesAvailable (LogisticInfo logisticInfo, PlacesAvailableInterface placesAvailableInterface){
         Log.d("PlacesAvailableVM", "getPlacesAvailable() called");
-        placesAvailableFBRepo.getPlacesAvailable(logisticInfo,placesAvailableInterface);
+        placesAvailableFBRepo.getPlacesAvailable(HQOrganizerCommon.organizationName,placesAvailableInterface);
     }
-    public void assign(Logistics logistics, Request request, PlacesAvailableInterface placesAvailableInterface){ //TODO Logistics to LogisticInfo??
+    public void assign(LogisticInfo logistics, Request request, PlacesAvailableInterface placesAvailableInterface){ //TODO Logistics to LogisticInfo??
         Log.d("PlacesAvailableVM", "assign() called");
-        placesAvailableFBRepo.assaign(logistics,request,placesAvailableInterface);
+        placesAvailableFBRepo.assign(logistics,request,placesAvailableInterface);
     }
 
 

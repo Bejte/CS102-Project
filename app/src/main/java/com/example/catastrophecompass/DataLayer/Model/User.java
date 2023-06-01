@@ -1,11 +1,13 @@
 package com.example.catastrophecompass.DataLayer.Model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class User {
 
+    @NonNull
     @PrimaryKey
     private String userName;
     private String userType; //"USER_TYPES: VIB, OV, TL, TO, HQO, AHQO"

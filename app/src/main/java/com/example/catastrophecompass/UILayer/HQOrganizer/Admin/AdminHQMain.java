@@ -17,7 +17,6 @@ import com.example.catastrophecompass.UILayer.Common.Chat.PeopleFragment;
 import com.example.catastrophecompass.UILayer.Common.GeneralInfoFragment;
 import com.example.catastrophecompass.UILayer.OutsideVolunteer.OVMainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.example.myapplication.R;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +26,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.example.myapplication.R;
 
 public class AdminHQMain extends AppCompatActivity {
 

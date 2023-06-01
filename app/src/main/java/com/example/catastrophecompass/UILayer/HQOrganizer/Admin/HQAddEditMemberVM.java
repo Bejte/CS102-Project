@@ -8,6 +8,7 @@ import com.example.catastrophecompass.DataLayer.FBRepository.HQAddEditMemberFBRe
 import com.example.catastrophecompass.DataLayer.Model.Contact;
 import com.example.catastrophecompass.DataLayer.Model.HQO;
 import com.example.catastrophecompass.DataLayer.Model.LogisticInfo;
+import com.example.catastrophecompass.DataLayer.Model.Member;
 import com.example.catastrophecompass.DataLayer.Model.TeamOrganizator;
 import com.example.catastrophecompass.DataLayer.Model.UserLogin;
 
@@ -31,17 +32,17 @@ public class HQAddEditMemberVM extends ViewModel {
 
     public void addHQOrganizer(HQO hqo, String organizationName){
         Log.d("HQAddEditMemberVM", "addHQOrganizer() called");
-        FBRepo.addHQOrganizer(hqo, organizationName);
+        FBRepo.addHQOrganizator(hqo, organizationName);
     }
 
     public void addTeamOrganizer(TeamOrganizator teamOrganizator, String organizationName){
         Log.d("HQAddEditMemberVM", "addTeamOrganizer() called");
-        FBRepo.addTeamOrganizer(teamOrganizator, organizationName);
+        FBRepo.addTeamOrganizatorMember(teamOrganizator, organizationName);
     }
 
     public Member getPreDisplay(Contact contact){ // TODO create Member class or find another way
         Log.d("HQAddEditMemberVM", "getPreDisplay() called");
-        return FBRepo.getPreDisplay(contact);
+        return FBRepo.getPredisplay(contact);
     }
 
     public void editLogisticMember(LogisticInfo logisticInfo, String organizationName, UserLogin userLogin){
@@ -51,11 +52,11 @@ public class HQAddEditMemberVM extends ViewModel {
 
     public void editHQOrganizer(HQO hqo, String organizationName){
         Log.d("HQAddEditMemberVM", "editHQOrganizer() called");
-        FBRepo.editHQOrganizer(hqo, organizationName);
+        FBRepo.editHQOrganizator(hqo, organizationName);
     }
 
     public void editTeamOrganizer(TeamOrganizator teamOrganizator, String organizationName){
         Log.d("HQAddEditMemberVM", "editTeamOrganizer() called");
-        FBRepo.editTeamOrganizer(teamOrganizator, organizationName);
+        FBRepo.editTeamOrganizatorMember(teamOrganizator, organizationName);
     }
 }

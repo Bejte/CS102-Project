@@ -12,37 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.catastrophecompass.UILayer.Common.JobAdapter;
 import android.content.Intent;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.Arrays;
 import java.util.List;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.VIBSelectionVM;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import android.widget.Toast;
-import com.example.catastrophecompass.R;
-import com.example.catastrophecompass.UILayer.Common.VIBSelectionVM;
 
 public class VIBStartActivity extends AppCompatActivity {
 
-    private VIBSelectionVM vibSelectionVM;
+    private VIBJobSelectionVM vibSelectionVM;
     private RecyclerView recyclerView;
     private TextView placeName;
     private TextView jobsAvailable;
@@ -59,7 +37,7 @@ public class VIBStartActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Obtain ViewModel from ViewModelProviders
-        vibSelectionVM = new ViewModelProvider(this).get(VIBSelectionVM.class);
+        vibSelectionVM = new ViewModelProvider(this).get(VIBJobSelectionVM.class);
 
         // Get job data from your ViewModel
         // TO DO
