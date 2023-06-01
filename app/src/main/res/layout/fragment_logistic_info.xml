@@ -6,5 +6,5 @@
     tools:context=".UILayer.Common.LogisticInfoFragment">
 
     <!-- Use arriving_truck_item in a recyclerview -->
-1
+
 </FrameLayout>

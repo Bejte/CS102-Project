@@ -86,4 +86,14 @@ public class DemographicUpdateActivity extends AppCompatActivity implements Demo
     public void getDemographicInfo(DemographicInterface demoInt) {
         // Implementation for the demographicInterface
     }
+
+    @Override
+    public void setDisplay(DemographicInfo demographicInfo) {
+
+    }
+
+    @Override
+    public void warnUser() {
+
+    }
 }
