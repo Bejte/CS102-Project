@@ -38,14 +38,14 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
     @NonNull
     @Override
     public PeopleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_people, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_people_item, parent, false);
         return new PeopleViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PeopleViewHolder holder, int position) {
         Contact contact = contactList.get(position);
-        holder.nameTextView.setText(contact.getName());
+        holder.nameTextView.setText(contact.getContactName());
         holder.menuImageView.setOnClickListener(v -> {
             PopupMenu popup = new PopupMenu(v.getContext(), holder.menuImageView);
             popup.getMenuInflater().inflate(R.menu.menu_people_item, popup.getMenu());
@@ -53,28 +53,28 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
             MenuItem editItem = popup.getMenu().findItem(R.id.action_edit);
             editItem.setVisible("Admin".equals(userType));
 
-            popup.setOnMenuItemClickListener(item -> {
-                switch (item.getItemId()) {
-                    case R.id.action_edit:
-                        Intent intent = new Intent(activity, AddEditMemberActivity.class);
-                        // Pass the contact information to the next activity
-                        intent.putExtra("contact_name", contact.getName());
-                        // Add more information as needed
-                        activity.startActivity(intent);
-                        return true;
-                    case R.id.action_contact:
-                        if (contactsVM.startChat(userName, contact.getName())) {
-                            SingleChatFragment singleChatFragment = SingleChatFragment.newInstance(contact);
-                            activity.getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.container, singleChatFragment)
-                                    .addToBackStack(null)
-                                    .commit();
-                        }
-                        return true;
-                    default:
-                        return false;
-                }
-            });
+//            popup.setOnMenuItemClickListener(item -> {
+//                switch (item.getItemId()) {
+//                    case R.id.action_edit:
+//                        Intent intent = new Intent(activity, AddEditMemberActivity.class);
+//                        // Pass the contact information to the next activity
+//                        intent.putExtra("contact_name", contact.getName());
+//                        // Add more information as needed
+//                        activity.startActivity(intent);
+//                        return true;
+//                    case R.id.action_contact:
+//                        if (contactsVM.startChat(userName, contact.getName())) {
+//                            SingleChatFragment singleChatFragment = SingleChatFragment.newInstance(contact);
+//                            activity.getSupportFragmentManager().beginTransaction()
+//                                    .replace(R.id.container, singleChatFragment)
+//                                    .addToBackStack(null)
+//                                    .commit();
+//                        }
+//                        return true;
+//                    default:
+//                        return false;
+//                }
+//            });
 
             popup.show();
         });

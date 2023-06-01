@@ -69,7 +69,7 @@ public abstract class LocalDB extends RoomDatabase {
             return instance;
         }
 
-        private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
+        public static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
             @Override
             public void onCreate(@NonNull SupportSQLiteDatabase db) {
                 super.onCreate(db);
@@ -78,9 +78,9 @@ public abstract class LocalDB extends RoomDatabase {
         };
     }
 
-    private static class PopulateDBAsyncTask extends AsyncTask<Void, Void, Void> {
+    public static class PopulateDBAsyncTask extends AsyncTask<Void, Void, Void> {
 
-        private ChatActivityDao dao;
+        public ChatActivityDao dao;
 
         @Inject
         public PopulateDBAsyncTask(ChatActivityDao dao) {

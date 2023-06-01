@@ -2,6 +2,7 @@ package com.example.catastrophecompass.DataLayer.Model;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -11,6 +12,7 @@ public class TeamInfo {
     @PrimaryKey
     private String teamName;
     private String teamDescription, TeamLeaderName, areaInfo, foodInfo, location, url;
+    @Ignore
     private VolunteerInfo volunteerInfo;
 
     public TeamInfo(String teamName, String teamDescription, String teamLeaderName, String areaInfo, String foodInfo, String location, VolunteerInfo volunteerInfo, String url) {

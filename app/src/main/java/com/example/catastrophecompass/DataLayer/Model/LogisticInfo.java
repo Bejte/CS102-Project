@@ -1,6 +1,7 @@
 package com.example.catastrophecompass.DataLayer.Model;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 /**
@@ -14,6 +15,7 @@ public class LogisticInfo {
     private int truckSize;
     private String getName, getAddress, dropName, dropAddress, status, pictureUrl;
     private boolean getStatus, dropStatus;
+    @Ignore
     private InventoryList inventoryList;
 
     public LogisticInfo(String getName, String getAddress, String dropName, String dropAddress, String status, String pictureUrl, boolean getStatus, boolean dropStatus, InventoryList inventoryList, int truckSize) {

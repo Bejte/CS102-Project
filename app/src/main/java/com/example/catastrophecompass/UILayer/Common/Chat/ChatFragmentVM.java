@@ -22,7 +22,7 @@ public class ChatFragmentVM extends ViewModel {
 
     public void setupDBConnection(Credentials credentials){
         Log.d("ChatFragmentVM", "setupDBConnection() called");
-        domain.setupDBConnection(credentials);
+        //domain.setupDBConnection(credentials);
     }
 
     public void getRecentChats(ChatFragmentInterface chatFragmentInterface){

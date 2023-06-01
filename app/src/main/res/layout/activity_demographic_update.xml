@@ -157,7 +157,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:id="@+id/edt_male_15_64"
+
                         android:text="15-64 M:"/>
 
                     <EditText

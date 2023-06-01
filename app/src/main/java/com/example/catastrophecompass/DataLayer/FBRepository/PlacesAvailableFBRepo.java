@@ -81,7 +81,7 @@ public class PlacesAvailableFBRepo
 
     public void assign(LogisticInfo info, Request request, PlacesAvailableInterface placesAvailableInterface)
     {
-        DatabaseReference logisticsRef = FirebaseDatabase.getInstance().getReference("Logistics").child();// TODO driverName add common
+        DatabaseReference logisticsRef = FirebaseDatabase.getInstance().getReference("Logistics").child("");// TODO driverName add common
         boolean[] success = {true};
 
         logisticsRef.addListenerForSingleValueEvent(new ValueEventListener() {
