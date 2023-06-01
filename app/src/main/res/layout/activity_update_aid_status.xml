@@ -28,7 +28,7 @@
             android:layout_toRightOf="@id/backIcon" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/updateAidRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_below="@+id/title"

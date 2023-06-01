@@ -7,4 +7,5 @@ public class FieldOrganizerCommon {
     public static String organizationName;
     public static DemographicInfo demographicInfo;
     public static InventoryList arrivingInfo;
+    public static InventoryList aidStatus;
 }

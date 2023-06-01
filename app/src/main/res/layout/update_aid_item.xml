@@ -15,11 +15,13 @@
         android:padding="16dp">
 
         <TextView
+            android:id="@+id/updateAidTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Type: " />
 
         <EditText
+            android:id="@+id/updateAidEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
