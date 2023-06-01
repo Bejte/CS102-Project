@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:backgroundTint="@color/item_card"
     android:layout_height="match_parent"
-    tools:context=".ManagerLoginActivity"
+    tools:context=".UILayer.Login.ManagerLoginActivity"
     android:background="@color/white">
 
     <LinearLayout
