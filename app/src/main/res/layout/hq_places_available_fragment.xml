@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/main_background_color"
     android:id="@+id/hq_organize_truck_fragment"
-    tools:context=".UILayer.HQOrganizer.PlacesAvailableFragment">
+   >
 
     <TextView
         android:id="@+id/txt_hq_places_available_title_fr"
