@@ -12,3 +12,5 @@ hybrid algorithm, we plan to automate the allocation of humanitarian assistance 
 need and teams of volunteers to workplaces.
 
 ## Setup
+
+Pinecone, GCP, OpenWeather and Firebase is used in the project. API keys are removed due tıo the free trial usage and cloud functions are needed to depoleyd to GCP.
