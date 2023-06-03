@@ -1,0 +1,1 @@
+First gen Firebase RTDB triggered function
