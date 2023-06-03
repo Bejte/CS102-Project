@@ -23,7 +23,9 @@ Record them in respective places in CS102-Project/app/src/main/java/com/example/
 You can reach Pinecone from: https://www.pinecone.io/learn/vector-database/
 Note that free trials are limited due to high request.
 
-For OpenWeather: 
+For OpenWeather: You need to create an account and subscribe to One Call API 3.0. 
+Then, retrieve the API key and exclude the data that you don't want to use. You can reach One Call API 3.0 from 
+https://openweathermap.org/api/one-call-3#multi. Don't forget to limit the API usage as only 1000 calls per day is free.
 
 For GCP: We have 2 cloud functions in CS102-Project/Cloud_Functions/ that needs to be deployed to GCP. 
 We reccomend the usage of Google Cloud CLI. The trigger types are notes in the respective readme files. Remove readme files in the deployment.
